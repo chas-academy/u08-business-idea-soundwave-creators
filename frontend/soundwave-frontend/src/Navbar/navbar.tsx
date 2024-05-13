@@ -36,22 +36,29 @@ function Navbar() {
     setShowMenu((prevState) => !prevState);
   };
 
+  const handleCloseDropdowns = () => {
+    setShowGenreDropdown(false);
+    setShowPlaylistDropdown(false);
+    setShowProfileDropdown(false);
+  };
+
+
   const handleSearch = (value: string) => {
     // Implement your search logic here
     console.log("Search query:", value);
   };
   return (
-    <header className="text-gray-600 body-font">
+    <header className="text-gray-600 body-font bg-primary">
       <div className="container mx-auto flex flex-wrap p-5 items-center justify-between">
         {/* Large devices */}
         <div className="hidden md:flex md:justify-between md:items-center w-full">
           <a
             href="/"
-            className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+            className="flex title-font font-medium items-center text-secondary mb-4 md:mb-0"
           >
             <span className="ml-3 text-xl">Music App</span>
           </a>
-          <div className=" text-gray-600 flex">
+          <div className="  flex">
             <Search onSearch={handleSearch} />
             <GenreDropdownMenu
               showGenreDropdown={showGenreDropdown}
@@ -72,20 +79,23 @@ function Navbar() {
           <div className="md:hidden flex justify-between items-center w-full">
             <a
               href="/"
-              className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+              className="flex title-font font-medium items-center text-secondary mb-4 md:mb-0"
             >
               <span className="ml-3 text-xl">Music App</span>
             </a>
             <div>
               {showMenu ? (
                 <FaTimes
-                  onClick={toggleMenu}
-                  className="cursor-pointer text-gray-500"
+                onClick={() => {
+                  toggleMenu();
+                  handleCloseDropdowns(); // Close dropdowns when X is clicked
+                }}
+                  className="cursor-pointer text-secondary text-2xl "
                 />
               ) : (
                 <FaBars
                   onClick={toggleMenu}
-                  className="cursor-pointer text-gray-500"
+                  className="cursor-pointer text-secondary text-2xl "
                 />
               )}
             </div>
@@ -108,6 +118,7 @@ function Navbar() {
           </div>
         </div>
       </div>
+    
     </header>
   );
 }
