@@ -2,7 +2,7 @@
 
 function Aboutus() {
   return (
-    <section className="text-secondary body-font bg-primary shadow-secondary">
+    <section className="text-gray-400 body-font bg-primary shadow-secondary">
     <div className="container px-5 py-24 mx-auto">
       <div className="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="inline-block w-8 h-8 text-secondary mb-8 " viewBox="0 0 975.036 975.036">
@@ -13,7 +13,7 @@ function Aboutus() {
         </p>
         <span className="inline-block h-1 w-10 rounded bg-secondary mt-8 mb-6 shadow-secondary"></span>
         <h2 className="text-secondary-900 font-medium title-font tracking-wider text-sm">Music App Team </h2>
-         <p className="text-secondary mt-4">Together, our team has accomplished everything, united by a shared vision and passion for innovation. Every milestone, every success, we have achieved side by side.</p>
+         <p className="text-gray-400 mt-4">Together, our team has accomplished everything, united by a shared vision and passion for innovation. Every milestone, every success, we have achieved side by side.</p>
       </div>
     </div>
   </section>
