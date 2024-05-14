@@ -1,10 +1,11 @@
 // import React from 'react'
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function footer() {
   return (
     <div>
-      <footer className="text-text bg-primary body-font">
+      <footer className="text-text bg-primary body-font shadow-secondary">
         <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
           <div className="w-64 lg:w-72 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
             <a className="flex title-font font-medium items-center md:justify-start justify-center text-text-900">
@@ -28,12 +29,12 @@ function footer() {
                   <a className="text-text hover:text-hover">Home</a>
                 </li>
                 <li>
-                  <a className="text-text hover:text-hover">About Us</a>
+                  <Link to="/aboutus" className="text-text hover:text-hover">About Us</Link>
                 </li>
                 <li>
-                  <a className="text-text hover:text-hover">
+                  <Link to="/contactus" className="text-text hover:text-hover">
                     Contact Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a className="text-text hover:text-hover">
@@ -73,7 +74,7 @@ function footer() {
               <h2 className="title-font font-medium text-text-900 tracking-widest text-sm mb-3">
                 Subscription Links
               </h2>
-              <hr className="border border-secondary w-3/4" />
+              <hr className="border border-secondary lg:w-3/4 sm:w-1/2 md:w-1/2" />
               <nav className="list-none mb-10">
                 <li>
                   <a className="text-text hover:text-hover">
@@ -95,7 +96,7 @@ function footer() {
             </div>
           </div>
         </div>
-        <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+        <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row ">
           <p className="text-secondary text-sm text-center sm:text-left">
             © {new Date().getFullYear()} Music App
           </p>

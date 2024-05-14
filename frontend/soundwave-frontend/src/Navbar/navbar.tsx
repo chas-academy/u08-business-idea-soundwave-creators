@@ -54,7 +54,7 @@ function Navbar() {
         <div className="hidden md:flex md:justify-between md:items-center w-full">
           <a
             href="/"
-            className="flex title-font font-medium items-center text-secondary mb-4 md:mb-0"
+            className="flex title-font font-medium items-center text-secondary mb-4 md:mb-0 transition-transform duration-300 hover:scale-125"
           >
             <span className="ml-3 text-xl">Music App</span>
           </a>
@@ -108,7 +108,6 @@ function Navbar() {
               showGenreDropdown={showGenreDropdown}
               showPlaylistDropdown={showPlaylistDropdown}
               showProfileDropdown={showProfileDropdown}
-              toggleMenu={toggleMenu}
             />
           )}
         </div>
