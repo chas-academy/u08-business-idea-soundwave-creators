@@ -1,13 +1,13 @@
-import SimpleSlider from "./components/LandingPage";
-import CenterMode from "./components/LandingPage";
-import LandingPage from "./components/LandingPage";
+// import React from 'react'
+import Home from './Pages/Home'
+
 
 function App() {
   return (
     <>
-      <SimpleSlider/>
+    <Home/>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
