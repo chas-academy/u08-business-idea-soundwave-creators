@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MusicService from "../services/MusicService";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiHeart } from "react-icons/fi"; // Import the heart icon
 
 interface TrackWithAlbum {
   id: string;
@@ -40,8 +40,13 @@ const GenrePage: React.FC<GenrePageProps> = ({ genres }) => {
     setShowMore(!showMore);
   };
 
+  const handleAddToPlaylist = (songId: string) => {
+    // Implement the logic to add the song to the playlist
+    console.log("Adding song to playlist:", songId);
+  };
+
   return (
-    <div className="container mx-auto p-4 bg-gray-900 text-white">
+    <div className="container mx-auto p-4 bg-primary text-white">
       <div className="mb-4">
         <label htmlFor="genreSelect" className="mr-2 text-white">
           Select Genre:
@@ -78,8 +83,13 @@ const GenrePage: React.FC<GenrePageProps> = ({ genres }) => {
             {tracks.slice(0, showMore ? tracks.length : 8).map((track) => (
               <div
                 key={track.id}
-                className="p-4 border border-black rounded-3xl bg-gradient-to-b from-yellow-700 to-orange-800 flex flex-col items-center shadow-md"
+                className="p-4 border border-black rounded-3xl bg-gradient-to-b from-yellow-700 to-orange-800 flex flex-col items-center shadow-md relative"
               >
+                <FiHeart
+                  className="absolute top-2 right-2 text-white cursor-pointer"
+                  size={24}
+                  onClick={() => handleAddToPlaylist(track.id)}
+                />
                 <img
                   src={track.album.images[0].url}
                   alt={track.name}
