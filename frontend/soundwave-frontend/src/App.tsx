@@ -1,9 +1,9 @@
 // import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from "./Navbar/navbar"
-import Footer from "./Footer/footer"
-import Aboutus from "./Aboutus/aboutus"
-import Contactus from './Contactus/contactus';
+import Navbar from "./components/Navbar/navbar"
+import Footer from "./components/Footer/footer"
+import Aboutus from "./components/Aboutus/aboutus"
+import Contactus from './components/Contactus/contactus';
 
 
 function App() {
