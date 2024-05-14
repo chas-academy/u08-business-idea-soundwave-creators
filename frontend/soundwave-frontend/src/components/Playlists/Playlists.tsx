@@ -6,7 +6,8 @@ import data from "../../Data/Data";
 
 const Playlists: React.FC = () => {
   const [slidesToShow, setSlidesToShow] = useState<number>(1);
-
+  console.log(slidesToShow);
+  
   useEffect(() => {
     const updateSlidesToShow = () => {
       if (window.innerWidth < 1024) {
@@ -79,13 +80,5 @@ const Playlists: React.FC = () => {
     </div>
   );
 };
-
-interface SliderSettings {
-  dots: boolean;
-  infinite: boolean;
-  speed: number;
-  slidesToShow: number;
-  slidesToScroll: number;
-}
 
 export default Playlists;

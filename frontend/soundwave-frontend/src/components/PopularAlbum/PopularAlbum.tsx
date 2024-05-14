@@ -4,14 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import data from "../../Data/Data";
 
-interface ReviewData {
-  name: string;
-  img: string;
-  review: string;
-}
-
 const PopularAlbum: React.FC = () => {
   const [slidesToShow, setSlidesToShow] = useState<number>(1);
+  console.log(slidesToShow)
+  
 
   useEffect(() => {
     const updateSlidesToShow = () => {

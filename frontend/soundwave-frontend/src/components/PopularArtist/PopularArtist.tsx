@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import data from "../../Data/Data.tsx"
+import data from "../../Data/Data.tsx";
 
 const PopularArtist: React.FC = () => {
   const [slidesToShow, setSlidesToShow] = useState<number>(1);
+  console.log(slidesToShow)
 
   useEffect(() => {
     const updateSlidesToShow = () => {
@@ -41,7 +42,7 @@ const PopularArtist: React.FC = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
           infinite: true,
           dots: true,
         },
@@ -89,14 +90,5 @@ const PopularArtist: React.FC = () => {
     </div>
   );
 };
-
-
-interface SliderSettings {
-  dots: boolean;
-  infinite: boolean;
-  speed: number;
-  slidesToShow: number;
-  slidesToScroll: number;
-}
 
 export default PopularArtist;
