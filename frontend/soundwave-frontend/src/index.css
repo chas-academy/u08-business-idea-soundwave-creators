@@ -3,14 +3,15 @@
 @tailwind utilities;
 
 @layer base{
-  body {
-    background-color: #14161b;
-  }
+  /* body {
+    background-color:#0f172a;
+    box-shadow: 0 0 0.5rem rgba(246, 132, 2, 0.5);
+  } */
 }
 
-.slick-slide > div {
+ .slick-slide > div {
   margin: 0 10px;
-}
+} 
 
 .slick-dots li.slick-active button:before {
   color:orange !important;

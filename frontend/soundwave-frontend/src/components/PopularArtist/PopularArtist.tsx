@@ -66,7 +66,7 @@ const PopularArtist: React.FC = () => {
   };
 
   return (
-    <div className="w-3/4 m-auto mt-5">
+    <div className="w-3/4 m-auto pt-5">
       <p className="text-center text-secondary text-4xl">Popular Artist</p>
       <div className="mt-10">
         <Slider {...settings}>
