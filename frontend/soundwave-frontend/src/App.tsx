@@ -1,23 +1,23 @@
-import React from "react";
-import GenrePage from "./components/Genre/GenrePage";
+// import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar/navbar";
+import Footer from "./components/Footer/footer";
+import Aboutus from "./components/Aboutus/aboutus";
+import Contactus from "./components/Contactus/contactus";
 
-const App: React.FC = () => {
-  const genres = [
-    "pop",
-    "rock",
-    "hip-hop",
-    "jazz",
-    "electronic",
-    "folk",
-    "classical",
-    "country",
-  ];
-
+function App() {
   return (
-    <div>
-      <GenrePage genres={genres} />
-    </div>
+    <>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/aboutus" element={<Aboutus />} />
+          <Route path="/contactus" element={<Contactus />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </>
   );
-};
+}
 
 export default App;
