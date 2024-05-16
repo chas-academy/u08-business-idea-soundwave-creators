@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState,  useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import HamburgerMenu from "./hamburgermenu";
 import Search from "./search";
 import GenreDropdownMenu from "./dropdowns/genreDropdown";
 import PlaylistDropdownMenu from "./dropdowns/playlistDropdown";
 import ProfileDropdown from "./dropdowns/profileDropdown";
+import useClickOutside from "../../hooks/useClickOutside";
 
 function Navbar() {
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -13,6 +14,16 @@ function Navbar() {
     useState<boolean>(false);
   const [showProfileDropdown, setShowProfileDropdown] =
     useState<boolean>(false);
+
+    
+  const genreRef = useRef<HTMLDivElement>(null);
+  const playlistRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(genreRef, () => setShowGenreDropdown(false));
+  useClickOutside(playlistRef, () => setShowPlaylistDropdown(false));
+  useClickOutside(profileRef, () => setShowProfileDropdown(false));
+
 
   const toggleGenreDropdown = () => {
     setShowGenreDropdown((prevState) => !prevState);
@@ -47,6 +58,9 @@ function Navbar() {
     // Implement your search logic here
     console.log("Search query:", value);
   };
+
+  
+
   return (
     <header className="text-gray-600 body-font bg-primary">
       <div className="container mx-auto flex flex-wrap p-5 items-center justify-between">
@@ -60,18 +74,24 @@ function Navbar() {
           </a>
           <div className="  flex">
             <Search onSearch={handleSearch} />
+            <div ref={genreRef}> 
             <GenreDropdownMenu
               showGenreDropdown={showGenreDropdown}
               toggleGenreDropdown={toggleGenreDropdown}
             />
+            </div>
+            <div ref={playlistRef}> 
             <PlaylistDropdownMenu
               showPlaylistDropdown={showPlaylistDropdown}
               togglePlaylistDropdown={togglePlaylistDropdown}
             />
+            </div>
+            <div ref={profileRef}> 
             <ProfileDropdown
               showProfileDropdown={showProfileDropdown}
               toggleProfileDropdown={toggleProfileDropdown}
             />
+            </div>
           </div>
         </div>
         {/* Small devices */}
@@ -101,14 +121,15 @@ function Navbar() {
             </div>
           </div>
           {showMenu && (
+        
             <HamburgerMenu
               toggleGenreDropdown={toggleGenreDropdown}
               togglePlaylistDropdown={togglePlaylistDropdown}
               toggleProfileDropdown={toggleProfileDropdown}
               showGenreDropdown={showGenreDropdown}
               showPlaylistDropdown={showPlaylistDropdown}
-              showProfileDropdown={showProfileDropdown}
-            />
+              showProfileDropdown={showProfileDropdown}   />
+           
           )}
         </div>
         <div className="  md:flex md:justify-center md:items-center md:w-auto w-full mt-4">

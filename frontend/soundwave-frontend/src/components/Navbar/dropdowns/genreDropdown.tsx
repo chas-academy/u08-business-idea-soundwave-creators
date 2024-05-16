@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FaAngleDown } from "react-icons/fa";
+import useClickOutside from "../../../hooks/useClickOutside";
 
 interface GenreDropdownMenuProps {
   showGenreDropdown: boolean;
@@ -10,8 +11,15 @@ const GenreDropdownMenu: React.FC<GenreDropdownMenuProps> = ({
   showGenreDropdown,
   toggleGenreDropdown,
 }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useClickOutside(ref, () => {
+    if (showGenreDropdown) {
+      toggleGenreDropdown();
+    }
+  });
   return (
-    <>
+    <div ref={ref}>
       <button
         type="button"
         onClick={toggleGenreDropdown}
@@ -20,7 +28,8 @@ const GenreDropdownMenu: React.FC<GenreDropdownMenuProps> = ({
         Genre <FaAngleDown className="ml-3" />
       </button>
       {showGenreDropdown && (
-        <div className="absolute right-20 mr-32 mt-11 w-44  border rounded-lg overflow-hidden genre-dropdown  bg-primary shadow-secondary  text-secondary hover:text-text  z-10 ">
+        <div 
+         className="absolute  mr-32 mt-5 w-44 rounded-lg overflow-hidden genre-dropdown  bg-primary shadow-secondary  text-secondary hover:text-text  z-10 ">
           <button className="block px-4 py-2 w-full text-left bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none">
             Pop
           </button>
@@ -47,7 +56,7 @@ const GenreDropdownMenu: React.FC<GenreDropdownMenuProps> = ({
           </button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
