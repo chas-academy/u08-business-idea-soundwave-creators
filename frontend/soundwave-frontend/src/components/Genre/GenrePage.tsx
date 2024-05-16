@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MusicService from "../services/MusicService";
+import MusicService from "../../services/MusicService";
 import { FiChevronDown, FiHeart } from "react-icons/fi"; // Import the heart icon
 
 interface TrackWithAlbum {
@@ -41,12 +41,11 @@ const GenrePage: React.FC<GenrePageProps> = ({ genres }) => {
   };
 
   const handleAddToPlaylist = (songId: string) => {
-    // Implement the logic to add the song to the playlist
     console.log("Adding song to playlist:", songId);
   };
 
   return (
-    <div className="container mx-auto p-4 bg-primary text-white">
+    <div className="container mx-auto p-4 bg-primary text-text">
       <div className="mb-4">
         <label htmlFor="genreSelect" className="mr-2 text-white">
           Select Genre:
@@ -83,10 +82,10 @@ const GenrePage: React.FC<GenrePageProps> = ({ genres }) => {
             {tracks.slice(0, showMore ? tracks.length : 8).map((track) => (
               <div
                 key={track.id}
-                className="p-4 border border-black rounded-3xl bg-gradient-to-b from-yellow-700 to-orange-800 flex flex-col items-center shadow-md relative"
+                className="p-4 border border-black rounded-xl bg-gradient-to-b bg-secondary flex flex-col items-center shadow-md relative"
               >
                 <FiHeart
-                  className="absolute top-2 right-2 text-white cursor-pointer"
+                  className="absolute top-2 right-2 bg-hover text-white cursor-pointer mt-2 mr-3 hover:text-red-500"
                   size={24}
                   onClick={() => handleAddToPlaylist(track.id)}
                 />

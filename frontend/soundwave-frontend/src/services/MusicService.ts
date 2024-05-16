@@ -2,7 +2,7 @@ import axios from "axios";
 
 const spotifyApiBaseUrl = "https://api.spotify.com/v1";
 
-interface TrackWithAlbum {
+interface TrackWithTracks {
   id: string;
   name: string;
   artists: { name: string }[];
@@ -31,20 +31,6 @@ const MusicService = {
     return response.data.access_token;
   },
 
-  searchAlbumsByGenre: async (genre: string) => {
-    const token = await MusicService.getToken();
-    const response = await axios.get(`${spotifyApiBaseUrl}/search`, {
-      params: {
-        q: `genre:${genre}`,
-        type: "album",
-      },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data.albums.items;
-  },
-
   searchTracksByGenre: async (genre: string) => {
     const token = await MusicService.getToken();
     const response = await axios.get(`${spotifyApiBaseUrl}/search`, {
@@ -57,7 +43,7 @@ const MusicService = {
       },
     });
 
-    const tracks: TrackWithAlbum[] = response.data.tracks.items.map(
+    const tracks: TrackWithTracks[] = response.data.tracks.items.map(
       (item: any) => ({
         id: item.id,
         name: item.name,

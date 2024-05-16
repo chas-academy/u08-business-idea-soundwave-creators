@@ -1,5 +1,5 @@
 import React from "react";
-import GenrePage from "./components/GenrePage";
+import GenrePage from "./components/Genre/GenrePage";
 
 const App: React.FC = () => {
   const genres = [
