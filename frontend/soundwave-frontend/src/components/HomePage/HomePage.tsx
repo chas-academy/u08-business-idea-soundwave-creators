@@ -1,7 +1,7 @@
 // import React from "react";
 
 
-import Playlists from "../Playlists/Playlists";
+import Heroes from "../Heroes/Heroes";
 import PopularAlbum from "../PopularAlbum/PopularAlbum";
 import PopularArtist from "../PopularArtist/PopularArtist";
 
@@ -10,7 +10,7 @@ function Home() {
     <section id="HomePage" className="text-secondary body-font relative bg-primary shadow-secondary">
       <PopularArtist />
       <PopularAlbum/>
-      <Playlists />
+      <Heroes />
       </section>
   );
 }
