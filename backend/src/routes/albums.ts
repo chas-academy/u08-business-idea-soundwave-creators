@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { addAlbum, deleteAlbum, getAllAlbums,getAlbum, updateAlbum } from "../controllers/albumcontroller";
 
-const bookRouter = Router();
+const albumRouter = Router();
 
-bookRouter.get("/", getAllAlbums);
-bookRouter.post("/", addAlbum);
-bookRouter.get("/:id", getAlbum);
-bookRouter.put("/:id", updateAlbum);
-bookRouter.delete("/:id", deleteAlbum);
+albumRouter.get("/", getAllAlbums);
+albumRouter.post("/", addAlbum);
+albumRouter.get("/:id", getAlbum);
+albumRouter.put("/:id", updateAlbum);
+albumRouter.delete("/:id", deleteAlbum);
 
-export default bookRouter;
+export default albumRouter;
