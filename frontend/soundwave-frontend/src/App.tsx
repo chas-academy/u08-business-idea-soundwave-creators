@@ -10,8 +10,6 @@ import Subscribe from './components/subscribe/subscribe';
 import Navbar from './components/Navbar/navbar';
 import Footer from './components/Footer/footer';
 // import Home from './components/home/home';
-// import AdminDashboard from './components/dashboard/admindashboard';
-// import UserDashboard from './components/dashboard/userdashboard';
 
 function App() {
   return (
@@ -27,8 +25,7 @@ function App() {
       {/* <Route path="/" element={<Home />} /> */}
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/contactus" element={<Contactus />} />
-        {/* <Route path="/admindashboard" element={<AdminDashboard />} />
-        <Route path="/userdashboard" element={<UserDashboard />} /> */}
+      
       </Routes>
      <Footer/>
     </Router>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faThumbsUp, faUsers, faDoorOpen, faUserPlus, faTrash, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
 //import UserProfile from '../userprofile/userprofile';
@@ -107,8 +107,8 @@ const AdminDashboard = () => {
           }
       };
     return (
-        <div className="shadow-secondary min-h-screen bg-primary text-white ms:pl-25 ">
-            <section className="pl-6 pr-6 sm:pl-10 sm:pl-28 sm:pr-28  max-h-screen:full">
+        <div className="shadow-secondary min-h-screen bg-primary text-white ms:pl-25 py-20 ">
+            <section className="pl-6 pr-6 sm:pl-10 sm:pr-28  max-h-screen:full">
                 <div className=''><h1  className="sm:text-5xl text-2xl font-bold mb-5 pt-16">Admin Dashboard </h1><a href="#" className="text-text2  sm:text-s text-xs pb-1 flex items-center space-x-1" onClick={() => console.log('Logout clicked')}>
                         <FontAwesomeIcon icon={faDoorOpen} />
                         <span>Logout</span>
