@@ -1,36 +1,26 @@
- import React from "react";
- import Admindashboard from "./components/dashboard/admindashboard";
- //import Userprofile from "./components/dashboard/userdashboard";
- //import Subscribe from "./components/subscribe/subscribe";
- //import Googlelogin from "./components/login/googlelogin";
+// import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from "./components/Navbar/navbar"
+import Footer from "./components/Footer/footer"
+import Aboutus from "./components/Aboutus/aboutus"
+import Contactus from './components/Contactus/contactus';
 
- const App: React.FC = () => {
-   return (
 
+function App() {
+  return (
+    <>
+  
+    <Router>
+    <Navbar/>
+      <Routes>
+        <Route path="/aboutus" element={<Aboutus />} />
+        <Route path="/contactus" element={<Contactus />} />
+      </Routes>
+      <Footer/>
+    </Router>
     
-    //<div><Subscribe /></div>
-     //<div><Googlelogin /></div>
-     //<div><Userdashboard fullName={""} emailAddress={""} createdAt={""} /></div>
-     <div><Admindashboard /></div>
-      //<><div><Subscribe /></div><div><AdminDash /></div></>
+   </>
+  )
+}
 
-   );
- };
-
-export default App;
-
-
-//  import Googlelogin from './components/login/googlelogin';
-//  import ReactDOM from 'react-dom';
-//  import { BrowserRouter as Router } from 'react-router-dom';
-//  import App from './App';
-//  import React from 'react';
-
-//  ReactDOM.render(
-//    <Router>
-//      <Googlelogin />
-//    </Router>,
-//    document.getElementById('root')
-//  );
-
-//  export default App;
+export default App
