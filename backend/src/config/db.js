@@ -3,8 +3,10 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true, /*These options ensure that Mongoose uses the latest features and best practices for connecting to MongoDB*/
-      useUnifiedTopology: true
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true, // Add this line to enable automatic index creation for unique fields
+      useFindAndModify: false // Add this line to avoid deprecation warning for findOneAndUpdate
     });
     console.log('MongoDB Connected...');
   } catch (err) {

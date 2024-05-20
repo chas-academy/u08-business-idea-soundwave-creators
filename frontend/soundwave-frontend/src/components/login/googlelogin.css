@@ -1,9 +1,0 @@
-@media (max-width: 390px) {
-    .form-container {
-      padding: 38px;
-      width: calc(70% - 25px);
-      font-size: small;
-    }
-    
-  }
-  
