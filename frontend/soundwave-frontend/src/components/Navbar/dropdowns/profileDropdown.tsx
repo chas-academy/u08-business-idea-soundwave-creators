@@ -24,9 +24,11 @@ interface ProfileDropdownMenuProps {
             {showProfileDropdown && (
               <div 
                className="absolute right-0 mt-5 w-44 bg-primary shadow-secondary  text-secondary hover:text-text  rounded-lg overflow-hidden shadow-md profile-dropdown z-10 " >
-               <button className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none">Log In</button>
+               <Link to="/login" className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none">Log In</Link>
                <Link to="/aboutus" className="block px-4 py-2 w-full text-left bg-transparent shadow-secondary text-secondary hover:text-text hover:bg-hover focus:outline-none">Home</Link>
-                <button className="block px-4 py-2 w-full text-left bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none">Subscribe</button>
+                <Link to="/subscribe" className="block px-4 py-2 w-full text-left bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none">Subscribe</Link>
+                <Link to="/admindashboard" className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none">Admin Dashboard</Link>
+                <Link to="/userdashboard" className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none">User Dashboard</Link>
                 <Link to="/aboutus" className="block px-4 py-2 w-full text-left bg-transparent shadow-secondary text-secondary hover:text-text hover:bg-hover focus:outline-none">About Us</Link>
                 <Link to="/contactus" className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none">Contact Us</Link>
                 <button className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none">Log Out</button>

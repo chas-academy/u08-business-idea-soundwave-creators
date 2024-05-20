@@ -19,7 +19,7 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ fullName, emailAddress, c
     };
 
     return (
-        <div className="justify-center items-center bg-primary px-8 py-12">
+        <div className="shadow-secondary justify-center items-center bg-primary px-8 py-12">
             <section className="shadow-secondary mt-7  rounded-xl   dark:border-gray-500 border-2 border-secondary max-w-md mx-auto">
                 <div className="px-4 py-5 sm:px-8">
       

@@ -3,7 +3,7 @@ import './subscribe.css'; // Ensure that Tailwind CSS is imported correctly in t
 
 const Subscribe = () => {
   return (
-    <div className="container bg-primary min-h-screen flex justify-center items-center">
+    <div className="shadow-secondary bg-primary flex justify-center items-center">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 px-4">
         <div className="card shadow-secondary bg-primary text-text">
           <h2 className="card_title text-secondary text-2xl mb-2">Student</h2>
