@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import useClickOutside from '../../hooks/useClickOutside';
+
 
 interface HamburgerMenuProps {
   toggleGenreDropdown: () => void;
@@ -29,36 +31,55 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   const playlistDropdownRef = useRef<HTMLDivElement>(null);
   const profileDropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleDropdownToggle = (dropdownType: string) => {
-    const newAngleStates = {
-      genreDropdown: false,
-      playlistDropdown: false,
-      profileDropdown: false,
-    };
-
-    switch (dropdownType) {
-      case 'genre':
-        toggleGenreDropdown();
-        newAngleStates.genreDropdown = !angleStates.genreDropdown;
-        break;
-      case 'playlist':
-        togglePlaylistDropdown();
-        newAngleStates.playlistDropdown = !angleStates.playlistDropdown;
-        break;
-      case 'profile':
-        toggleProfileDropdown();
-        newAngleStates.profileDropdown = !angleStates.profileDropdown;
-        break;
-      default:
-        break;
+ // Apply useClickOutside hook to close dropdowns when clicking outside of them
+  useClickOutside(genreDropdownRef, () => {
+    if (showGenreDropdown) {
+      toggleGenreDropdown();
     }
-
-    setAngleStates(newAngleStates);
+  });
+  useClickOutside(playlistDropdownRef, () => {
+    if (showPlaylistDropdown) {
+      togglePlaylistDropdown();
+    }
+  });
+  useClickOutside(profileDropdownRef, () => {
+    if (showProfileDropdown) {
+      toggleProfileDropdown();
+  }
+});
+const handleDropdownToggle = (dropdownType: string) => {
+  console.log("Dropdown type:", dropdownType);
+  const newAngleStates = {
+    genreDropdown: false,
+    playlistDropdown: false,
+    profileDropdown: false,
   };
+
+  switch (dropdownType) {
+    case 'genre':
+      toggleGenreDropdown();
+      newAngleStates.genreDropdown = !angleStates.genreDropdown;
+      break;
+    case 'playlist':
+      togglePlaylistDropdown();
+      newAngleStates.playlistDropdown = !angleStates.playlistDropdown;
+      break;
+    case 'profile':
+      toggleProfileDropdown();
+      newAngleStates.profileDropdown = !angleStates.profileDropdown;
+      break;
+    default:
+      break;
+  }
+  console.log("New angle states:", newAngleStates);
+  setAngleStates(newAngleStates);
+};
+
+
 
   return (
     <div className="absolute top-16 left-0 w-full h-auto bg-primary z-50 pb-4  ">
-     <button type="button" onClick={() => handleDropdownToggle('genre')}className=" px-4 py-2 w-full text-left hover:text-text hover:bg-hover text-secondary focus:outline-none flex flex-row bg-transparent shadow-secondary">
+     <button type="button" onClick={() => handleDropdownToggle('genre')} className=" px-4 py-2 w-full text-left hover:text-text hover:bg-hover text-secondary focus:outline-none flex flex-row bg-transparent shadow-secondary">
         Genre  <FaAngleDown className={`ml-3 mt-1 text-12 ${angleStates.genreDropdown ? 'rotate-180' : ''}`} />
       </button>
        {showGenreDropdown && (
@@ -105,3 +126,4 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
 }
 
 export default HamburgerMenu;
+
