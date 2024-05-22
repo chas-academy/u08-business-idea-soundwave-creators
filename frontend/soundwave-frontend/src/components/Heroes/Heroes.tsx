@@ -1,82 +1,19 @@
-import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import data from "../../Data/Data";
-
+import React from "react";
+import heroImage from "../../assets/hero4.png";
 
 const Heroes: React.FC = () => {
-  const [slidesToShow, setSlidesToShow] = useState<number>(1);
-  console.log(slidesToShow);
-  
-  useEffect(() => {
-    const updateSlidesToShow = () => {
-      if (window.innerWidth < 1024) {
-        setSlidesToShow(1);
-      } else {
-        setSlidesToShow(4);
-      }
-    };
-
-    updateSlidesToShow();
-
-    const handleResize = () => {
-      updateSlidesToShow();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const settings = {
-    className: "center",
-    centerMode: true,
-    infinite: true,
-    centerPadding: "20px",
-    slidesToShow: 5,
-    speed: 500,
-    responsive: [
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-    ],
-  };
-
   return (
-    <div className="w-3/4 m-auto mt-5 p-10">
-      <p className="text-center text-secondary text-4xl">Heroes</p>
-      <div className="mt-10">
-        <Slider {...settings}>
-          {data.map((d) => (
-            <div
-              key={d.name}
-              className="relative h-20 sm:h-32 md:h-28 lg:h-32 rounded-xl overflow-hidden"
-            >
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${d.img})` }}
-              />
-              <div className="absolute inset-0 bg-secondary bg-opacity-75 flex flex-col items-center justify-center p-4">
-                <p className="text-white text-lg font-semibold">{d.name}</p>
-                <p className="text-white text-center">{d.review}</p>
-              </div>
-            </div>
-          ))}
-        </Slider>
+    <div className="w-11/12 mx-auto mt-10 p-10 bg-primary rounded-lg shadow-secondary">
+      <p className="text-center text-secondary text-5xl font-extrabold tracking-wide mb-6">Transform Your Listening Experience</p>
+      <div className="relative mt-10 h-80 sm:h-96 md:h-112 lg:h-128 rounded-xl overflow-hidden shadow-2xl">
+        <img src={heroImage} alt="Hero" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col items-center justify-center p-6">
+          <p className="text-text text-3xl font-extrabold drop-shadow-lg">Discover New Music</p>
+          <p className="text-text text-center text-lg mt-2 drop-shadow-lg">Explore curated playlists and personalized recommendations. Start your journey today.</p>
+          <button className="mt-4 bg-secondary hover:bg-hover text-text font-bold py-2 px-4 shadow-secondary rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+            Get Started
+          </button>
+        </div>
       </div>
     </div>
   );

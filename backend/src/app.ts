@@ -1,6 +1,6 @@
-import express, { Express, Request, Response } from "express";
+/*import express, { Express, Request, Response } from "express";
 import cors from "cors";
-import albumRouter from "./routes/albums";
+import albumRouter from "./routes/albumRoutes";
 import connectDB from "./db/db"
 
 const app: Express = express();
@@ -17,5 +17,5 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
 });
 
-export default app;
+export default app;*/
 
