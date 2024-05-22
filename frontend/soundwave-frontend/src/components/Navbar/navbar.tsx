@@ -19,14 +19,19 @@ function Navbar() {
   const genreRef = useRef<HTMLDivElement>(null);
   const playlistRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(genreRef, () => setShowGenreDropdown(false));
   useClickOutside(playlistRef, () => setShowPlaylistDropdown(false));
   useClickOutside(profileRef, () => setShowProfileDropdown(false));
+  useClickOutside(menuRef, () => {
+    setShowMenu(false); // Close the entire hamburger menu when clicking outside
+  });
 
 
   const toggleGenreDropdown = () => {
-    setShowGenreDropdown((prevState) => !prevState);
+    // setShowGenreDropdown((prevState) => !prevState);
+    setShowGenreDropdown(!showGenreDropdown);
     setShowPlaylistDropdown(false);
     setShowProfileDropdown(false);
   };
@@ -44,7 +49,8 @@ function Navbar() {
   };
 
   const toggleMenu = () => {
-    setShowMenu((prevState) => !prevState);
+    setShowMenu(!showMenu);
+    handleCloseDropdowns();
   };
 
   const handleCloseDropdowns = () => {
@@ -121,16 +127,10 @@ function Navbar() {
             </div>
           </div>
           {showMenu && (
-        
-            <HamburgerMenu
-              toggleGenreDropdown={toggleGenreDropdown}
-              togglePlaylistDropdown={togglePlaylistDropdown}
-              toggleProfileDropdown={toggleProfileDropdown}
-              showGenreDropdown={showGenreDropdown}
-              showPlaylistDropdown={showPlaylistDropdown}
-              showProfileDropdown={showProfileDropdown}   />
-           
-          )}
+         <div ref={menuRef}>
+         <HamburgerMenu />
+       </div>
+        )}
         </div>
         <div className="  md:flex md:justify-center md:items-center md:w-auto w-full mt-4">
           <div className="md:hidden">

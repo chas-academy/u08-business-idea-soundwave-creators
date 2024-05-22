@@ -57,7 +57,7 @@ const LoginPage = () => {
             <form className="mt-4 sm:mt-2" onSubmit={handleEmailLogin}>
               <input className="bg-text2 w-full mt-9 px-3 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:border-secondary" type="text" placeholder="Email" autoComplete="current-email"/>
               <input className="bg-text2 w-full mt-5 px-3 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:border-secondary" type="password" placeholder="Password" autoComplete="current-password"/>
-              <button type="submit" className="border-0 py-2  focus:outline-none transition-transform duration-300 hover:scale-110 shadow-secondary rounded text-lg w-full mt-5 bg-secondary text-white py-2 rounded-2xl hover:bg-hover focus:outline-none focus:bg-hover">
+              <button type="submit" className="border-0 focus:outline-none transition-transform duration-300 hover:scale-110 shadow-secondary text-lg w-full mt-5 bg-secondary text-white py-2 rounded-2xl hover:bg-hover focus:bg-hover">
                 Sign In
               </button>
             </form>
@@ -67,7 +67,7 @@ const LoginPage = () => {
               <input className="bg-text2 w-full mt-5 px-3 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:border-secondary" type="text" placeholder="Email" />
               <input className="bg-text2 w-full mt-5 px-3 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:border-secondary" type="password" placeholder="Password" />
               <input className="bg-text2 w-full mt-5 px-3 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:border-secondary" type="password" placeholder="Confirm Password" />
-              <button type="submit" className="border-0 py-2  focus:outline-none transition-transform duration-300 hover:scale-110 shadow-secondary rounded text-lg w-full mt-5 bg-secondary text-white py-2 rounded-2xl hover:bg-hover focus:outline-none focus:bg-hover">
+              <button type="submit" className="border-0 focus:outline-none transition-transform duration-300 hover:scale-110 shadow-secondary text-lg w-full mt-5 bg-secondary text-white py-2 rounded-2xl hover:bg-hover focus:bg-hover">
                 Sign Up
               </button>
             </form>

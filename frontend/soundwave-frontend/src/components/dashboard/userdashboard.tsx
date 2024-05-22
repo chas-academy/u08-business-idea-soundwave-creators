@@ -19,16 +19,16 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ fullName, emailAddress, c
     };
 
     return (
-        <div className="shadow-secondary justify-center items-center bg-primary px-8 py-12">
-            <section className="shadow-secondary mt-7  rounded-xl   dark:border-gray-500 border-2 border-secondary max-w-md mx-auto">
+        <div className="shadow-secondary justify-center items-center bg-primary px-8 py-12 ">
+            <section className="shadow-secondary mt-7 rounded-xl max-w-md mx-auto">
                 <div className="px-4 py-5 sm:px-8">
       
                     <p className="block text-m font-bold px-4 pb-auto mt-8 max-w-2xl text-2xl text-gray-300">
                         User's Details and information
                     </p>
                 </div>
-                <div className="px-9 py-1 pt-auto border-gray-200 rounded-xl">
-                    <dl className=" border-2 border-secondary shadow-secondary bg-trasnparentext-sm font-medium text-gray-500  w-full mt-3 mb-4 px-3 py-2 rounded-2xl  focus:outline-none">
+                <div className="px-9 py-1 pt-auto rounded-xl">
+                    <dl className="  shadow-secondary bg-trasnparentext-sm font-medium text-gray-500  w-full mt-3 mb-4 px-3 py-2 rounded-2xl  focus:outline-none">
                         <div className=" ">
                             <dt className="bg-trasnparentext-sm font-medium text-gray-500  w-full py-2 focus:outline-none">
                                 Full name:
@@ -47,7 +47,7 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ fullName, emailAddress, c
                             </dd>
                         </div>
                         <div className="bg-trasnparentext-sm font-medium text-gray-500  w-full py-2 focus:outline-none">
-                            <dt className="bg-trasnparentext-sm font-medium text-gray-500  w-full py-2 focus:outline-none focus:border-secondary">
+                            <dt className="bg-trasnparentext-sm font-medium text-gray-500  w-full py-2 focus:outline-none ">
                                 Created at:
                             </dt>
                             <dd className="bg-trasnparen mt-1 text-sm text-gray-300 sm:mt-0 sm:col-span-2">
@@ -56,7 +56,7 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ fullName, emailAddress, c
                         </div>
                     </dl>
                 </div>
-                <dl className=" border-2 border-secondary shadow-secondary bg-trasnparentext-sm font-medium text-gray-500 ml-9 mr-9   mb-9 px-9 py-2 rounded-2xl  focus:outline-none">
+                <dl className=" shadow-secondary bg-trasnparentext-sm font-medium text-gray-500 ml-9 mr-9 mb-9 px-9 py-2 rounded-2xl  focus:outline-none">
                     <div>
                                     <label htmlFor="email" className="block text-m font-bold ml-4 pb-3 mt-3 dark:text-white text-secondary ">Forgot password?</label>
                                     <div className="relative rounded-2xl">
@@ -96,7 +96,7 @@ Reset password</button>
             </div> */}
 
             {/* Added div for saved songs */}
-            <div className="shadow-secondary mt-9  rounded-xl   dark:border-gray-500 border-2 border-secondary max-w-md mx-auto">
+            <div className="shadow-secondary mt-9  rounded-xl  max-w-md mx-auto">
                 <div className="p-2 sm:p-2 rounded-2xl mt-2">
                     <div className="text-center">
                         <h1 className="block text-m font-bold  mt-8 max-w-2xl text-2xl text-gray-300">Saved Songs</h1>
