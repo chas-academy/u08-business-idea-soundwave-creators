@@ -1,4 +1,4 @@
-import { connect } from "mongoose";
+/*import { connect } from "mongoose";
 
 const connectDB = async () => {
   try {
@@ -12,4 +12,25 @@ const connectDB = async () => {
   }
 };
 
-export default connectDB();
+export default connectDB();*/
+
+import mongoose from 'mongoose';
+
+
+const connectDB = async () => {
+  try {
+    
+    const mongoURI: string = process.env.MONGO_URI || '';
+    await mongoose.connect(mongoURI);
+    console.log("MongoDB Connected...");
+  } catch (err) {
+    if (err instanceof Error) {
+      console.error(err.message);
+    } else {
+      console.error('An unknown error occurred during MongoDB connection');
+    }
+    process.exit(1);
+  }
+};
+
+export default connectDB;
