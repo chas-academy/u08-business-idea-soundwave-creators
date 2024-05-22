@@ -99,8 +99,6 @@ const handleDropdownToggle = (dropdownType: string) => {
               
                         </div>
                       )}
-                      {/* </div>
-                      <div  ref={ref}> */}
              <button type="button" onClick={() => handleDropdownToggle('playlist')} className=" px-4 py-2 w-full text-left hover:text-text hover:bg-hover bg-transparent shadow-secondary  text-secondary focus:outline-none flex flex-row">
         Playlist<FaAngleDown className={`ml-3 mt-1 text-12 ${angleStates.playlistDropdown ? 'rotate-180' : ''}`} />
       </button>
@@ -113,19 +111,19 @@ const handleDropdownToggle = (dropdownType: string) => {
                     
                         </div>
                       )}
-                       {/* </div>
-                       <div  ref={ref}> */}
            <button type="button"  onClick={() => handleDropdownToggle('profile')} className="px-4 py-2 w-full text-left hover:text-text hover:bg-hover  bg-transparent shadow-secondary  text-secondary focus:outline-none flex flex-row">
         Profile<FaAngleDown className={`ml-3 mt-1 text-12 ${angleStates.profileDropdown ? 'rotate-180' : ''}`} />
       </button>
                 {showProfileDropdown && (
                         <div >
-                          <button className="block px-4 py-2 w-full text-left bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">Login</button>
-                          <button className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">Home</button>
-                          <button className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">Subscribe</button>
+                          <Link to="/login" className="block px-4 py-2 w-full text-left bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">Login</Link>
+                          <Link to="/"className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">Home</Link>
+                          <Link to="/subscribe" className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">Subscribe</Link>
                           <Link to="/aboutus" className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">About Us</Link>
                           <Link to="/contactus" className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">Contact Us</Link>
-                          <button className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">Log Out</button>
+                          <Link to="/admindashboard" className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none">Admin Dashboard</Link>
+                <Link to="/userdashboard" className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none">User Dashboard</Link>
+               <button className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">Log Out</button>
                        
                         </div>
                       )}
