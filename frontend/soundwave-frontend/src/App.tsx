@@ -1,3 +1,4 @@
+import React from 'react';
  import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Aboutus from "./components/Aboutus/aboutus";
 import Contactus from './components/Contactus/contactus';
@@ -8,6 +9,7 @@ import UserDashboard from './components/dashboard/userdashboard';
 import Subscribe from './components/subscribe/subscribe';
 import Navbar from './components/Navbar/navbar';
 import Footer from './components/Footer/footer';
+
 
 const App: React.FC = () => {
   return (
@@ -22,6 +24,7 @@ const App: React.FC = () => {
           <Route path="/subscribe" element={<Subscribe />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/contactus" element={<Contactus />} />
+          
         </Routes>
         <Footer />
       </Router>
