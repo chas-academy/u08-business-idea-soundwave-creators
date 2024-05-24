@@ -1,0 +1,24 @@
+
+
+  .grid {
+   
+    padding: 16% 6%;
+  } 
+  
+  .card {
+    padding: 50px;
+    border-radius: 25px;
+  }
+   
+  a.cta_btn {
+    border-radius: 20px;
+   letter-spacing: 2px;
+    transition: background .3s ease;
+  }
+  
+  .features {
+    margin: 40px 0;
+    list-style-position: inside;
+    
+  }
+ 
