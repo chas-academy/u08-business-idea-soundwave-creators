@@ -13,6 +13,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "@fortawesome/react-fontawesome": ["../node_modules/@fortawesome/react-fontawesome"],
+      "@fortawesome/free-solid-svg-icons": ["../node_modules/@fortawesome/free-solid-svg-icons"]
+    },
 
     /* Linting */
     "strict": true,
