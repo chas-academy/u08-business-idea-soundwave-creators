@@ -18,9 +18,4 @@ export default {
     },
   },
   plugins: [],
-<<<<<<< HEAD
-};
-=======
 }
-
->>>>>>> test

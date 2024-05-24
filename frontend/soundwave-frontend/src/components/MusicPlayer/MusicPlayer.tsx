@@ -1,189 +1,3 @@
-// import React, { useState, useEffect, useRef } from "react";
-// import {
-//   BsSkipBackwardCircleFill,
-//   BsFillSkipForwardCircleFill,
-//   BsShuffle,
-//   BsPlayFill,
-//   BsPauseFill,
-// } from "react-icons/bs";
-// import { FaRegHeart, FaHeart } from "react-icons/fa";
-// import { IoArrowBackSharp } from "react-icons/io5";
-
-// // Mock API endpoints
-// const mockApi = {
-//   addToPlaylist: async (songId) => {
-//     // Simulate a network request
-//     return new Promise((resolve) => {
-//       setTimeout(() => {
-//         resolve({ success: true, message: "Song added to playlist" });
-//       }, 1000);
-//     });
-//   },
-//   removeFromPlaylist: async (songId) => {
-//     // Simulate a network request
-//     return new Promise((resolve) => {
-//       setTimeout(() => {
-//         resolve({ success: true, message: "Song removed from playlist" });
-//       }, 1000);
-//     });
-//   },
-// };
-
-// const MusicPlayer = () => {
-//   const [liked, setLiked] = useState(false);
-//   const [showNotification, setShowNotification] = useState(false);
-//   const [notificationMessage, setNotificationMessage] = useState("");
-//   const [isShuffleOn, setIsShuffleOn] = useState(false); // State for shuffle button
-//   const [isPlaying, setIsPlaying] = useState(false); // State for play/pause
-//   const [currentTime, setCurrentTime] = useState(0); // Current time of the audio
-//   const [duration, setDuration] = useState(0); // Total duration of the audio
-
-//   const audioRef = useRef(null); // Reference to the audio element
-
-//   const songId = "123"; // Example song ID
-
-//   const handleLike = async () => {
-//     if (liked) {
-//       // Remove song from playlist
-//       const response = await mockApi.removeFromPlaylist(songId);
-//       setNotificationMessage(response.message);
-//     } else {
-//       // Add song to playlist
-//       const response = await mockApi.addToPlaylist(songId);
-//       setNotificationMessage(response.message);
-//     }
-
-//     setLiked(!liked);
-//     setShowNotification(true);
-//   };
-
-//   const handleShuffle = () => {
-//     setIsShuffleOn(!isShuffleOn);
-//   };
-
-//   const togglePlayPause = () => {
-//     if (isPlaying) {
-//       audioRef.current.pause();
-//     } else {
-//       audioRef.current.play();
-//     }
-//     setIsPlaying(!isPlaying);
-//   };
-
-//   const handleTimeUpdate = () => {
-//     setCurrentTime(audioRef.current.currentTime);
-//   };
-
-//   const handleLoadedMetadata = () => {
-//     setDuration(audioRef.current.duration);
-//   };
-
-//   const handleSeek = (e) => {
-//     const newTime = e.target.value;
-//     audioRef.current.currentTime = newTime;
-//     setCurrentTime(newTime);
-//   };
-
-//   useEffect(() => {
-//     if (showNotification) {
-//       const timer = setTimeout(() => {
-//         setShowNotification(false);
-//       }, 3000); // Notification will disappear after 3 seconds
-
-//       return () => clearTimeout(timer); // Clear timeout if component unmounts
-//     }
-//   }, [showNotification]);
-
-//   return (
-//     <div className="flex flex-col items-center justify-center h-screen bg-primary">
-//       {/* Go Back Button */}
-//       <button className="absolute top-12 left-16 text-white text-lg cursor-pointer transition ease-out hover:scale-125">
-//         <IoArrowBackSharp size={35} />
-//       </button>
-
-//       {/* Song Title and Artist Name */}
-//       <div className="text-center mb-8">
-//         <h1 className="text-2xl font-bold text-white">Song Title</h1>
-//         <p className="text-lg text-white">Artist</p>
-//       </div>
-
-//       {/* Music Player Box */}
-//       <div className="bg-secondary p-10 rounded-3xl shadow-lg shadow-secondary flex flex-col items-center relative w-1/3">
-//         {/* Heart Symbol */}
-//         <button
-//           onClick={handleLike}
-//           className="absolute top-4 right-4 text-white cursor-pointer transition ease-out hover:scale-125"
-//         >
-//           {liked ? <FaHeart size={25} /> : <FaRegHeart size={25} />}
-//         </button>
-
-//         {/* Song Photo Circle */}
-//         <div className="rounded-full overflow-hidden border-3 border-gray-900 mb-6">
-//           <img
-//             src="https://i.pinimg.com/736x/a8/14/eb/a814eb4c51518adcf827f4ee64137f7c.jpg"
-//             className="w-48 h-48 object-cover transition ease-out hover:scale-110"
-//             alt="Song Cover"
-//           />
-//         </div>
-
-//         {/* Audio Element */}
-//         <audio
-//           ref={audioRef}
-//           onTimeUpdate={handleTimeUpdate}
-//           onLoadedMetadata={handleLoadedMetadata}
-//           className="mb-6"
-//         >
-//           <source src="song.mp3" type="audio/mpeg" />
-//           Your browser does not support the audio element.
-//         </audio>
-
-//         {/* Audio Progress Bar */}
-//         <input
-//           type="range"
-//           value={currentTime}
-//           max={duration}
-//           onChange={handleSeek}
-//           className="w-full cursor-pointer"
-//         />
-
-//         {/* Skip, Go Back, Shuffle Buttons */}
-//         <div className="flex ml-8  mt-6 justify-center">
-//           <button className="text-white mr-4 cursor-pointer transition ease-out hover:scale-125">
-//             <BsSkipBackwardCircleFill size={25} />
-//           </button>
-//           {/* Play/Pause Button */}
-//           <button
-//             className="text-white mr-4 cursor-pointer transition ease-out hover:scale-125"
-//             onClick={togglePlayPause}
-//           >
-//             {isPlaying ? <BsPauseFill size={30} /> : <BsPlayFill size={30} />}
-//           </button>
-//           <button className="text-white mr-4 cursor-pointer transition ease-out hover:scale-125">
-//             <BsFillSkipForwardCircleFill size={25} />
-//           </button>
-//           <button
-//             className={`text-white cursor-pointer transition ease-out hover:scale-125 ${
-//               isShuffleOn ? "text-primary" : ""
-//             }`}
-//             onClick={handleShuffle}
-//           >
-//             <BsShuffle size={25} />
-//           </button>
-//         </div>
-//       </div>
-
-//       {/* Notification */}
-//       {showNotification && (
-//         <div className="absolute top-6 right-10 text-white bg-secondary shadow-lg shadow-secondary p-4 rounded-lg transition-all duration ease-in-out">
-//           {notificationMessage}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default MusicPlayer;
-
 import React, { useState, useEffect, useRef } from "react";
 import {
   BsSkipBackwardCircleFill,
@@ -198,7 +12,6 @@ import { IoArrowBackSharp } from "react-icons/io5";
 // Mock API endpoints
 const mockApi = {
   addToPlaylist: async (songId) => {
-    // Simulate a network request
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({ success: true, message: "Song added to playlist" });
@@ -206,7 +19,6 @@ const mockApi = {
     });
   },
   removeFromPlaylist: async (songId) => {
-    // Simulate a network request
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({ success: true, message: "Song removed from playlist" });
@@ -215,27 +27,72 @@ const mockApi = {
   },
 };
 
+// Hardcoded songs list with streaming URLs
+const songs = [
+  {
+    id: "1",
+    title: "Song One",
+    artist: "Artist One",
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    cover:
+      "https://i.pinimg.com/736x/a8/14/eb/a814eb4c51518adcf827f4ee64137f7c.jpg",
+  },
+  {
+    id: "2",
+    title: "Song Two",
+    artist: "Artist Two",
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    cover:
+      "https://d1csarkz8obe9u.cloudfront.net/themedlandingpages/tlp_hero_album-cover-art-73ab5b3d9b81f442cb2288630ab63acf.jpg?ts%20=%201698245952",
+  },
+  {
+    id: "3",
+    title: "Song Three",
+    artist: "Artist Three",
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    cover:
+      "https://www.aimm.edu/hubfs/Blog%20Images/Top%2010%20Album%20Covers%20of%202017/Tyler%20the%20Creator-%20Flower%20boy.jpg",
+  },
+  {
+    id: "4",
+    title: "Song Four",
+    artist: "Artist Four",
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    cover:
+      "https://designwizard.com/blog/album-cover-ideas/resize/4-Design-Wizard-Album-Cover_1650885838707_resize.jpg",
+  },
+];
+
+const shuffleArray = (array) => {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
+
 const MusicPlayer = () => {
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [liked, setLiked] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
-  const [isShuffleOn, setIsShuffleOn] = useState(false); // State for shuffle button
-  const [isPlaying, setIsPlaying] = useState(false); // State for play/pause
-  const [currentTime, setCurrentTime] = useState(0); // Current time of the audio
-  const [duration, setDuration] = useState(0); // Total duration of the audio
+  const [isShuffleOn, setIsShuffleOn] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [shuffledSongs, setShuffledSongs] = useState([...songs]);
 
-  const audioRef = useRef(null); // Reference to the audio element
+  const audioRef = useRef(null);
 
-  const songId = "123"; // Example song ID
+  const currentSong = shuffledSongs[currentSongIndex];
 
   const handleLike = async () => {
     if (liked) {
-      // Remove song from playlist
-      const response = await mockApi.removeFromPlaylist(songId);
+      const response = await mockApi.removeFromPlaylist(currentSong.id);
       setNotificationMessage(response.message);
     } else {
-      // Add song to playlist
-      const response = await mockApi.addToPlaylist(songId);
+      const response = await mockApi.addToPlaylist(currentSong.id);
       setNotificationMessage(response.message);
     }
 
@@ -245,6 +102,11 @@ const MusicPlayer = () => {
 
   const handleShuffle = () => {
     setIsShuffleOn(!isShuffleOn);
+    if (!isShuffleOn) {
+      setShuffledSongs(shuffleArray(songs));
+    } else {
+      setShuffledSongs([...songs]);
+    }
   };
 
   const togglePlayPause = () => {
@@ -270,32 +132,77 @@ const MusicPlayer = () => {
     setCurrentTime(newTime);
   };
 
+  const skipBackward = () => {
+    if (currentSongIndex > 0) {
+      setCurrentSongIndex(currentSongIndex - 1);
+    } else {
+      setCurrentSongIndex(shuffledSongs.length - 1);
+    }
+    setIsPlaying(false);
+    setCurrentTime(0);
+  };
+
+  const skipForward = () => {
+    if (isShuffleOn) {
+      setCurrentSongIndex((prevIndex) => {
+        const nextIndex = Math.floor(Math.random() * shuffledSongs.length);
+        return nextIndex !== prevIndex
+          ? nextIndex
+          : (nextIndex + 1) % shuffledSongs.length;
+      });
+    } else {
+      if (currentSongIndex < shuffledSongs.length - 1) {
+        setCurrentSongIndex(currentSongIndex + 1);
+      } else {
+        setCurrentSongIndex(0);
+      }
+    }
+    setIsPlaying(false);
+    setCurrentTime(0);
+  };
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
   useEffect(() => {
     if (showNotification) {
       const timer = setTimeout(() => {
         setShowNotification(false);
-      }, 3000); // Notification will disappear after 3 seconds
+      }, 3000);
 
-      return () => clearTimeout(timer); // Clear timeout if component unmounts
+      return () => clearTimeout(timer);
     }
   }, [showNotification]);
 
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.load();
+      if (isPlaying) {
+        audioRef.current.play();
+      }
+    }
+  }, [currentSongIndex]);
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-primary">
-      {/* Go Back Button */}
-      <button className="absolute top-12 left-4 sm:left-16 text-white text-lg cursor-pointer transition ease-out hover:scale-125">
+    <div className="flex flex-col items-center justify-center h-screen bg-primary p-4 md:p-8 lg:p-12">
+      <button className="absolute top-4 left-4 md:top-8 md:left-8 text-white text-lg cursor-pointer transition ease-out hover:scale-125">
         <IoArrowBackSharp size={35} />
       </button>
 
-      {/* Song Title and Artist Name */}
-      <div className="text-center mb-4 sm:mb-8">
-        <h1 className="text-lg sm:text-2xl font-bold text-white">Song Title</h1>
-        <p className="text-sm sm:text-lg text-white">Artist</p>
+      <div className="text-center mb-4 md:mb-8">
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
+          {currentSong.title}
+        </h1>
+        <p className="text-base md:text-lg lg:text-xl text-white">
+          {currentSong.artist}
+        </p>
       </div>
 
-      {/* Music Player Box */}
-      <div className="bg-secondary p-4 sm:p-10 rounded-3xl shadow-lg shadow-secondary flex flex-col items-center relative w-full sm:w-full md:w-2/3 lg:w-2/5">
-        {/* Heart Symbol */}
+      <div className="bg-secondary p-6 md:p-10 lg:p-12 rounded-3xl shadow-lg shadow-secondary flex flex-col items-center relative w-full max-w-md md:max-w-lg lg:max-w-xl">
         <button
           onClick={handleLike}
           className="absolute top-4 right-4 text-white cursor-pointer transition ease-out hover:scale-125"
@@ -303,53 +210,58 @@ const MusicPlayer = () => {
           {liked ? <FaHeart size={25} /> : <FaRegHeart size={25} />}
         </button>
 
-        {/* Song Photo Circle */}
-        <div className="rounded-full overflow-hidden border-3 border-gray-900 mb-4 sm:mb-6">
+        <div className="rounded-full overflow-hidden border-4 border-gray-900 mb-4 md:mb-6 lg:mb-8">
           <img
-            src="https://i.pinimg.com/736x/a8/14/eb/a814eb4c51518adcf827f4ee64137f7c.jpg"
-            className="w-24 h-24 sm:w-48 sm:h-48 object-cover transition ease-out hover:scale-110"
+            src={currentSong.cover}
+            className="w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 object-cover"
             alt="Song Cover"
           />
         </div>
 
-        {/* Audio Element */}
         <audio
           ref={audioRef}
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
-          className="mb-6"
+          className="mb-4 md:mb-6 lg:mb-8"
         >
-          <source src="song.mp3" type="audio/mpeg" />
+          <source src={currentSong.src} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
 
-        {/* Audio Progress Bar */}
-        <input
-          type="range"
-          value={currentTime}
-          max={duration}
-          onChange={handleSeek}
-          className="w-full cursor-pointer"
-        />
+        <div className="flex items-center w-full mb-2 md:mb-4 lg:mb-6">
+          <span className="text-white">{formatTime(currentTime)}</span>
+          <input
+            type="range"
+            value={currentTime}
+            max={duration}
+            onChange={handleSeek}
+            className="w-full mx-2 cursor-pointer"
+          />
+          <span className="text-white">{formatTime(duration)}</span>
+        </div>
 
-        {/* Skip, Go Back, Shuffle Buttons */}
-        <div className="flex ml-8  mt-6 justify-center">
-          <button className="text-white mr-4 cursor-pointer transition ease-out hover:scale-125">
+        <div className="flex justify-center items-center space-x-4">
+          <button
+            className="text-white cursor-pointer transition ease-out hover:scale-125"
+            onClick={skipBackward}
+          >
             <BsSkipBackwardCircleFill size={25} />
           </button>
-          {/* Play/Pause Button */}
           <button
-            className="text-white mr-4 cursor-pointer transition ease-out hover:scale-125"
+            className="text-white cursor-pointer transition ease-out hover:scale-125"
             onClick={togglePlayPause}
           >
             {isPlaying ? <BsPauseFill size={30} /> : <BsPlayFill size={30} />}
           </button>
-          <button className="text-white mr-4 cursor-pointer transition ease-out hover:scale-125">
+          <button
+            className="text-white cursor-pointer transition ease-out hover:scale-125"
+            onClick={skipForward}
+          >
             <BsFillSkipForwardCircleFill size={25} />
           </button>
           <button
-            className={`text-white cursor-pointer transition ease-out hover:scale-125 ${
-              isShuffleOn ? "text-primary" : ""
+            className={`cursor-pointer transition ease-out hover:scale-125 ${
+              isShuffleOn ? "text-primary" : "text-white"
             }`}
             onClick={handleShuffle}
           >
@@ -358,9 +270,8 @@ const MusicPlayer = () => {
         </div>
       </div>
 
-      {/* Notification */}
       {showNotification && (
-        <div className="absolute top-6 right-10 text-white bg-secondary shadow-lg shadow-secondary p-4 rounded-lg transition-all duration ease-in-out">
+        <div className="absolute top-10 right-4 md:top-8 md:right-10 text-white bg-secondary shadow-lg shadow-secondary p-4 rounded-lg transition-all duration ease-in-out">
           {notificationMessage}
         </div>
       )}
