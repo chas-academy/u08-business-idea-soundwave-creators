@@ -4,7 +4,10 @@ import cors from 'cors';
 import connectDB from './src/db/db';
 import albumRoutes from './src/routes/albumRoutes'; // Import album routes
 import artistRoutes from './src/routes/artistRoutes'; // Import artist routes
+import songsRoutes from './src/routes/songsRoutes';
 import { getAllAlbums } from './src/controllers/albumcontroller'; 
+
+
 
 dotenv.config();
 connectDB();
@@ -27,6 +30,9 @@ app.use('/api/albums', albumRoutes);
 
 // Use artist routes
 app.use('/api/artists', artistRoutes);
+
+
+app.use('/api/songs', songsRoutes);
 
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
