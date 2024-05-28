@@ -23,7 +23,7 @@ export const fetchPopularAlbums = async (): Promise<Album[]> => {
 export interface Artist {
     _id: string;
     name: string;
-    imageURL: string;
+    imageUrl: string;
     createdAt: string;
     updatedAt: string;
   }
@@ -31,10 +31,14 @@ export interface Artist {
   // Function to fetch popular artists
   export const fetchPopularArtists = async (): Promise<Artist[]> => {
     try {
-      const response = await axios.get<Artist[]>('http://localhost:3000/api/albums');
+      const response = await axios.get<Artist[]>('http://localhost:3000/api/artists/getAll');
       return response.data;
     } catch (error) {
       console.error("Error fetching popular artists:", error);
       throw new Error("Failed to fetch popular artists. Please try again.");
     }
   };
+
+  // src/api/HomePageApi.ts
+
+  // src/api/HomePageApi.ts

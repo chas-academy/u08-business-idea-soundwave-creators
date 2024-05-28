@@ -34,3 +34,4 @@ const album: IAlbum = {
       // Add more tracks as needed
   ],
 };
+

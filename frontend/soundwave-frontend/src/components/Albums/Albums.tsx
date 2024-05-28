@@ -20,7 +20,8 @@ const Albums: React.FC = () => {
     useEffect(() => {
         const fetchAlbums = async () => {
             try {
-                const res = await axios.get<Album[]>('http://localhost:3000/api/albums/getAll');
+                const res = await axios.get<Album[]>('http://localhost:3000/api/albums/');
+                console.log(res.data);
                 setAlbums(res.data);
             } catch (err) {
                 console.error(err);

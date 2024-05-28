@@ -18,7 +18,8 @@ const SongsByAlbum: React.FC = () => {
     useEffect(() => {
         const fetchSongs = async () => {
             try {
-                const res = await axios.get<Song[]>(`http://localhost:3000/api/songs/by-album/${albumId}`);
+                const res = await axios.get<Song[]>(`http://localhost:3000/api/songs/songs/${albumId}`);
+                console.log(res.data);
                 setSongs(res.data);
             } catch (err) {
                 console.error(err);

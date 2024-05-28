@@ -4,7 +4,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface ISong extends Document {
   title: string;
   artist: string;
-  albumId: mongoose.Types.ObjectId;
+  albumId: number;
   album: string;
   genre: string[];
   duration: number;
@@ -18,7 +18,7 @@ const songSchema = new Schema<ISong>(
   {
     title: { type: String, required: true, trim: true },
     artist: { type: String, required: true, trim: true },
-    albumId: { type: Schema.Types.ObjectId, ref: 'Album', required: true },
+    albumId: { type: Number, ref: 'Album', required: true },
     album: { type: String, trim: true },
     genre: { type: [String], required: true },
     duration: { type: Number, required: true },

@@ -2,6 +2,7 @@ import { Schema, model, Document } from 'mongoose';
 
 // Define an interface representing a document in MongoDB.
 interface IArtist extends Document {
+  _id: string;
   name: string;
   imageURL: string;
   twitter: string;
@@ -11,6 +12,7 @@ interface IArtist extends Document {
 // Create a Schema corresponding to the document interface.
 const artistSchema = new Schema<IArtist>(
   {
+    _id: String,
     name: {
       type: String,
       required: true,
