@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IAlbum extends Document {
-    title: string;
+    name: string;
     artist: string;
     release_date: string;
     genre: string;
@@ -21,7 +21,7 @@ export interface IAlbum extends Document {
 }
 
 const AlbumSchema: Schema<IAlbum> = new Schema({
-    title: {
+    name: {
         type: String,
         required: true
     },
@@ -61,5 +61,5 @@ const AlbumSchema: Schema<IAlbum> = new Schema({
     }
 });
 
-const albums = mongoose.model<IAlbum>('Test', AlbumSchema);
+const albums = mongoose.model<IAlbum>('Album', AlbumSchema);
 export default albums;

@@ -26,7 +26,7 @@ export interface SearchResult {
 
     export interface AlbumResult {
       _id: string;
-      title: string;
+      name: string;
       artist: string;
       release_date: string;
       genre: string;

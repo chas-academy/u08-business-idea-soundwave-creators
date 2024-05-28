@@ -18,7 +18,7 @@ router.get('/search', async (req, res) => {
     let searchResult;
     if (type === 'album') {
       console.log(new RegExp(queryString, 'i'))
-      searchResult = await albums.find({ title: new RegExp(queryString, 'i') });
+      searchResult = await albums.find({ name: new RegExp(queryString, 'i') });
     } else {
       return res.status(400).json({ message: 'Invalid search type' });
     }
