@@ -2,7 +2,8 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 
-export interface ISongs extends Document{
+export interface ITitles extends Document{
+  _id: number;
     title: string;
     artist: string;
     createdAt: Date;
@@ -10,7 +11,8 @@ export interface ISongs extends Document{
 
 }
 
-const SongSchema = new Schema<ISongs>({
+const SongSchema = new Schema<ITitles>({
+  _id: String,
   title: {
     type: String,
     required: true
@@ -19,9 +21,17 @@ const SongSchema = new Schema<ISongs>({
     type: String,
     required: true
   },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  }
   // other fields
 });
 
 // module.exports = mongoose.model('Song', SongSchema);
-const SongModel = mongoose.model<ISongs>('Songs', SongSchema);
-export default SongModel;
+const titles = mongoose.model<ITitles>('Songs', SongSchema);
+export default titles;

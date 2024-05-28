@@ -1,7 +1,5 @@
-// // routes/songs.ts
-
 // import express, { Request, Response } from 'express';
-// import songs from '../models/songs';
+// import songs from '../../models/search/songs';
 
 // const router = express.Router();
 
@@ -21,9 +19,18 @@
 //       searchResult = await songs.find({ artist: new RegExp(queryString, 'i') });
 //     } else if (type === 'title') {
 //       searchResult = await songs.find({ title: new RegExp(queryString, 'i') });
+//     } else if (type === 'both') {
+//       // Search by both title and artist
+//       searchResult = await songs.find({
+//         $or: [
+//           { title: new RegExp(queryString, 'i') },
+//           { artist: new RegExp(queryString, 'i') },
+//         ],
+//       });
 //     } else {
 //       return res.status(400).json({ message: 'Invalid search type' });
 //     }
+
 
 //     res.json(searchResult);
 //   } catch (error) {
@@ -32,18 +39,15 @@
 //   }
 // });
 
-
 // export default router;
 
-// routes/songs.ts
-
-import express, { Request, Response } from 'express';
-import songs from '../models/songs';
+import express from 'express';
+import titles from '../../models/search/titles';
 
 const router = express.Router();
 
-// Search route
-router.get('/search', async (req: Request, res: Response) => {
+// Title search route
+router.get('/search', async (req, res) => {
   const { query, type } = req.query;
 
   if (!query || !type) {
@@ -54,18 +58,8 @@ router.get('/search', async (req: Request, res: Response) => {
 
   try {
     let searchResult;
-    if (type === 'artist') {
-      searchResult = await songs.find({ artist: new RegExp(queryString, 'i') });
-    } else if (type === 'title') {
-      searchResult = await songs.find({ title: new RegExp(queryString, 'i') });
-    } else if (type === 'both') {
-      // Search by both title and artist
-      searchResult = await songs.find({
-        $or: [
-          { title: new RegExp(queryString, 'i') },
-          { artist: new RegExp(queryString, 'i') },
-        ],
-      });
+    if (type === 'title') {
+      searchResult = await titles.find({ title: new RegExp(queryString, 'i') });
     } else {
       return res.status(400).json({ message: 'Invalid search type' });
     }
@@ -78,3 +72,4 @@ router.get('/search', async (req: Request, res: Response) => {
 });
 
 export default router;
+

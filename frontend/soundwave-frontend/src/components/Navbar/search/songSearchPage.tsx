@@ -1,20 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchSearchResults } from '../../../api/api'; // Import fetchSearchResults from api.ts
-
-
-
-interface SearchResult {
-  _id: string;
-  title: string;
-  artist: string;
-  album: string;
-  albumImageUrl: string;
-  releaseDate: string;
-  genre: string;
-  duration: string;
-  trackNumber: number;
-  albumId: number;
-}
+import { fetchSearchResultsByTitle, SearchResult } from '../../../api/SearchApi'; // Import fetchSearchResults from api.ts
 
 interface SongSearchPageProps {
   searchQuery: string;
@@ -30,7 +15,7 @@ const SongSearchPage: React.FC<SongSearchPageProps> = ({ searchQuery }) => {
       setLoading(true);
       setError(null);
       try {
-        const results = await fetchSearchResults(searchQuery, 'both'); // Use fetchSearchResults from api.ts
+        const results = await fetchSearchResultsByTitle(searchQuery); // Use fetchSearchResults from api.ts
         setSearchResults(results);
       } catch (error) {
         setError('Failed to fetch search results. Please try again.');
@@ -38,12 +23,12 @@ const SongSearchPage: React.FC<SongSearchPageProps> = ({ searchQuery }) => {
         setLoading(false);
       }
     };
-
+  
     if (searchQuery) {
       fetchData();
     }
   }, [searchQuery]);
-
+  
   return (
     <div className="container mx-auto px-4 mt-8 bg-primary p-8 rounded shadow-secondary">
       <h2 className="text-3xl font-semibold mb-6">Search Results</h2>
@@ -51,6 +36,8 @@ const SongSearchPage: React.FC<SongSearchPageProps> = ({ searchQuery }) => {
         <p>Loading...</p>
       ) : error ? (
         <p>{error}</p>
+        ) : !Array.isArray(searchResults) ? (
+  <p>No search results found.</p>
       ) : searchResults.length === 0 ? (
         <p>No search results found.</p>
       ) : (
@@ -74,4 +61,3 @@ const SongSearchPage: React.FC<SongSearchPageProps> = ({ searchQuery }) => {
 };
 
 export default SongSearchPage;
-
