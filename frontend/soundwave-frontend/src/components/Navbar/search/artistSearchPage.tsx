@@ -72,46 +72,43 @@ const ArtistSearchPage: React.FC<ArtistSearchPageProps> = ({ searchQuery }) => {
     }
   }, [searchQuery]);
 
-  return (
-    <div className="container mx-auto px-4 mt-8 bg-primary p-8 rounded shadow-secondary">
-      <h2 className="text-3xl font-semibold mb-6">Artist Search Results</h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-  ) : !Array.isArray(artistResults) ? (
-  <p>No search results found.</p>
-      ) : artistResults.length === 0 ? (
-        <p>No artist results found.</p>
-      ) : (
-        <div>
-         {artistResults && artistResults.map((artist) => (
-  <div key={artist._id} className="bg-white rounded-lg p-4 shadow-secondary">
-    <img src={artist.imageUrl} alt={artist.name} className="w-full mb-4" />
-    <h3 className="text-xl font-semibold">{artist.name}</h3>
-    <p className="text-gray-600">Biography: {artist.biography}</p>
-    <h4 className="text-lg font-semibold mt-4">Popular Songs</h4>
-    <ul>
-    {artist.popularSongs && Array.isArray(artist.popularSongs) && artist.popularSongs.map((song, index) => (
-  <li key={index}>{song.title}</li>
-))}
 
-    </ul>
-    <h4 className="text-lg font-semibold mt-4">Popular Albums</h4>
-    <ul>
-    {artist.albums && Array.isArray(artist.albums) && artist.albums.map((album, index) => (
-  <li key={index}>{album.title}</li>
-))}
-
-    </ul>
-    {/* You can display albums similarly */}
-  </div>
-))}
-
-        </div>
-      )}
-    </div>
-  );
-};
+    return (
+      <div className=" mx-auto px-4 bg-primary p-8  shadow-secondary">
+        {/* <h2 className="text-3xl font-semibold mb-6">Artist Search Results</h2> */}
+        {loading ? (
+          <p className="text-center text-gray-600">Loading...</p>
+        ) : error ? (
+          <p className="text-center text-red-600">{error}</p>
+        ) : !Array.isArray(artistResults) ? (
+          <p className="text-center text-gray-600">No search results found.</p>
+        ) : artistResults.length === 0 ? (
+          <p className="text-center text-gray-600">No artist results found.</p>
+        ) : (
+          <div className="max-w-2xl mx-auto space-y-6">
+            {artistResults.map((artist) => (
+              <div key={artist._id} className="bg-primary rounded-lg p-6 shadow-secondary">
+                <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4">Artist: {artist.name}</h2>
+                <img src={artist.imageUrl} alt={artist.name} className="w-full h-64 object-cover rounded-md mb-4" />
+                <p className="text-gray-600 mb-1">Biography: {artist.biography}</p>
+                <h4 className="text-lg text-secondary mt-4">Popular Songs</h4>
+                <ul className="list-disc list-inside ml-4">
+                  {artist.popularSongs.map((song, index) => (
+                    <li key={index} className="text-gray-600">{song.title}</li>
+                  ))}
+                </ul>
+                <h4 className="text-lg text-secondary mt-4">Popular Albums</h4>
+                <ul className="list-disc list-inside ml-4">
+                  {artist.albums.map((album, index) => (
+                    <li key={index} className="text-gray-600">{album.name}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
 
 export default ArtistSearchPage;
