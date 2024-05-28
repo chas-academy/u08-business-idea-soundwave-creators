@@ -33,7 +33,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 export interface IAlbum extends Document {
   _id: number;
   name: string;
-  imageURL: string;
+  album_cover: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -45,7 +45,7 @@ const albumSchema: Schema = new Schema(
       type: String,
       required: true,
     },
-    imageURL: {
+    album_cover: {
       type: String,
       required: true,
     },

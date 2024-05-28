@@ -341,7 +341,7 @@ const PopularAlbum: React.FC = () => {
             >
               <div
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${album.imageURL})` }}
+                style={{ backgroundImage: `url(${album.album_cover})` }}
               />
               <div className="absolute inset-0 bg-transparent bg-opacity-75 flex flex-col items-center justify-center p-4">
                 <p className="text-white text-lg font-semibold">{album.name}</p>

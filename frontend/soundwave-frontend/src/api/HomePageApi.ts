@@ -4,10 +4,24 @@ import axios from 'axios';
 export interface Album {
   _id: string;
   name: string;
-  imageURL: string;
-  createdAt: string;
-  updatedAt: string;
+  artist: string;
+  release_date: string;
+  genre: string;
+  tracklist: { title: string, duration: string }[];
+  album_cover: string;
+  other_details: {
+    producer: string;
+    label: string;
+    certifications: string;
+  };
+  singles: { title: string, release_date: string }[];
+  options: {
+    play_album: string;
+    save_album: string;
+    explore_songs: string;
+  };
 }
+
 
 // Function to fetch popular albums
 export const fetchPopularAlbums = async (): Promise<Album[]> => {
