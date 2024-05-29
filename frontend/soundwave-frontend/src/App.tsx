@@ -10,8 +10,8 @@ import UserDashboard from "./components/dashboard/userdashboard";
 import Subscribe from "./components/subscribe/subscribe";
 import Navbar from "./components/Navbar/navbar";
 import Footer from "./components/Footer/footer";
-import GenrePage from "./components/Genre/GenrePage";
-import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
+ // import GenrePage from "./components/Genre/GenrePage";
+ // import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 // import Albums from './components/Albums/Albums';
 import SongsByAlbum from "./components/Albums/SongsByAlbum";
 import SongSearchPage from './components/Navbar/search/songSearchPage';
@@ -21,16 +21,16 @@ import AlbumSearchPage from './components/Navbar/search/albumSearchPage';
 const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  // const genres = [
-  //   "pop",
-  //   "rock",
-  //   "hip-hop",
-  //   "jazz",
-  //   "electronic",
-  //   "folk",
-  //   "classical",
-  //   "country",
-  // ];
+   const genres = [
+     "pop",
+     "rock",
+     "hip-hop",
+     "jazz",
+     "electronic",
+     "folk",
+     "classical",
+     "country",
+   ];
 
   const handleSearchQueryChange = (query: string) => {
     setSearchQuery(query);

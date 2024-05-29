@@ -27,7 +27,7 @@ app.get("/", (req: Request, res: Response) => {
     res.send("Express + TypeScript");
 });
 
-app.get("/test", getAllAlbums);
+// app.get("/test", getAllAlbums);
 
 // Use album routes
 // app.use('/api/albums', albumRoutes);
