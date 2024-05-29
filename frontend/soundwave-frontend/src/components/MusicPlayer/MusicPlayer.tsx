@@ -27,37 +27,36 @@ const mockApi = {
   },
 };
 
-// Hardcoded songs list with streaming URLs
 const songs = [
   {
     id: "1",
-    title: "Song One",
-    artist: "Artist One",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    title: "Glow",
+    artist: "A Himitsu (feat. Nori)",
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
     cover:
       "https://i.pinimg.com/736x/a8/14/eb/a814eb4c51518adcf827f4ee64137f7c.jpg",
   },
   {
     id: "2",
-    title: "Song Two",
-    artist: "Artist Two",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    title: "The Last Ones",
+    artist: "Gunnar Johnsén (feat. JayQ)",
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
     cover:
       "https://d1csarkz8obe9u.cloudfront.net/themedlandingpages/tlp_hero_album-cover-art-73ab5b3d9b81f442cb2288630ab63acf.jpg?ts%20=%201698245952",
   },
   {
     id: "3",
-    title: "Song Three",
-    artist: "Artist Three",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    title: "Way Up High",
+    artist: "Aakash Gandhi (feat. Tom Bailey)",
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
     cover:
       "https://www.aimm.edu/hubfs/Blog%20Images/Top%2010%20Album%20Covers%20of%202017/Tyler%20the%20Creator-%20Flower%20boy.jpg",
   },
   {
     id: "4",
-    title: "Song Four",
-    artist: "Artist Four",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    title: "Under The Radar",
+    artist: "Silent Partner (feat. Paisley Saunders)",
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
     cover:
       "https://designwizard.com/blog/album-cover-ideas/resize/4-Design-Wizard-Album-Cover_1650885838707_resize.jpg",
   },
@@ -185,7 +184,7 @@ const MusicPlayer = () => {
         audioRef.current.play();
       }
     }
-  }, [currentSongIndex]);
+  });
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-primary p-4 md:p-8 lg:p-12">
