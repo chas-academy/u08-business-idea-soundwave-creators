@@ -14,7 +14,8 @@ const PopularArtist: React.FC = () => {
       try {
         const fetchedArtists = await fetchPopularArtists();
         console.log(fetchedArtists)
-        setArtists(fetchedArtists.data);
+        
+        setArtists(fetchedArtists);
       } catch (err) {
         console.error(err);
       }
