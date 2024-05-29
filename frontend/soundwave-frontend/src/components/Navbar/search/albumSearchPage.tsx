@@ -45,7 +45,7 @@ const AlbumSearchPage: React.FC<AlbumSearchPageProps> = ({ searchQuery }) => {
             <div className="space-y-6">
               {albumResults.map((album) => (
                 <div key={album._id} className="bg-primary shadow-secondary rounded-lg p-6 ">
-                  <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4 ">Album Name: {album.name}</h2>
+                  <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4 "> {album.name}</h2>
                   <img src={album.album_cover} alt={album.name} className="w-full h-64 object-cover rounded-md mb-4" />
                   {/* <h3 className="text-2xl font-semibold mb-2">{album.name}</h3> */}
                   <p className="text-gray-600 mb-1">Artist: {album.artist}</p>

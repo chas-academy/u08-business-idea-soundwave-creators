@@ -88,7 +88,7 @@ const ArtistSearchPage: React.FC<ArtistSearchPageProps> = ({ searchQuery }) => {
           <div className="max-w-2xl mx-auto space-y-6">
             {artistResults.map((artist) => (
               <div key={artist._id} className="bg-primary rounded-lg p-6 shadow-secondary">
-                <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4">Artist: {artist.name}</h2>
+                <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4">{artist.name}</h2>
                 <img src={artist.imageUrl} alt={artist.name} className="w-full h-64 object-cover rounded-md mb-4" />
                 <p className="text-gray-600 mb-1">Biography: {artist.biography}</p>
                 <h4 className="text-lg text-secondary mt-4">Popular Songs</h4>

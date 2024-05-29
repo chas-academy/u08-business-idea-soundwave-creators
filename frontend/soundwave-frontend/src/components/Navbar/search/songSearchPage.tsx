@@ -44,7 +44,7 @@ const SongSearchPage: React.FC<SongSearchPageProps> = ({ searchQuery }) => {
         <div className="max-w-2xl mx-auto space-y-6">
           {searchResults.map((song) => (
              <div key={song._id} className="bg-primary rounded-lg p-6 shadow-secondary">
-             <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4">Song: {song.title}</h2>
+             <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4">{song.title}</h2>
               <img src={song.albumImageUrl} alt={song.album} className="w-full h-64 object-cover rounded-md mb-4"  />
               <h3 className="text-xl text-secondary">{song.title}</h3>
               <p className="text-gray-600">Artist: {song.artist}</p>
