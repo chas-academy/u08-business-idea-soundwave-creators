@@ -1,7 +1,7 @@
 
 
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import React from 'react';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // import Aboutus from "./components/Aboutus/aboutus";
 // import Contactus from "./components/Contactus/contactus";
@@ -60,7 +60,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // export default App;
 
-import React from "react";
+import React,{useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Aboutus from "./components/Aboutus/aboutus";
@@ -73,7 +73,8 @@ import Subscribe from "./components/subscribe/subscribe";
 import Navbar from "./components/Navbar/navbar";
 import Footer from "./components/Footer/footer";
 import GenrePage from "./components/Genre/GenrePage";
-import Albums from './components/Albums/Albums';
+// import Albums from './components/Albums/Albums';
+import SongsByAlbum from "./components/Albums/SongsByAlbum";
 
 const App: React.FC = () => {
   const genres = [
@@ -92,7 +93,7 @@ const App: React.FC = () => {
       <Router>
         <Navbar />
         <Routes>
-          {/* <Route path="/" element={<HomePage />} />
+           <Route path="/" element={<HomePage />} />
           <Route path="/admindashboard" element={<AdminDashboard />} />
           <Route path="/userdashboard" element={<UserDashboard fullName="" emailAddress="" createdAt="" />} />
           <Route path="/subscribe" element={<Subscribe />} />
