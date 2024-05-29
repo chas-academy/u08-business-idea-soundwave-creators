@@ -28,7 +28,7 @@ const Album = mongoose.model<IAlbum>('Album', albumSchema);
 
 export default Album;*/
 
-import mongoose, { Document, Schema } from 'mongoose';
+// import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IAlbum extends Document {
   _id: number;
@@ -53,7 +53,7 @@ const albumSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-const Album = mongoose.model<IAlbum>('Album', albumSchema);
+// const Album = mongoose.model<IAlbum>('Album', albumSchema);
 
-export default Album;
+// export default Album;
 

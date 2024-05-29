@@ -1,13 +1,18 @@
 import { useState,  useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import HamburgerMenu from "./hamburgermenu";
-import Search from "./search";
+import Search from "./search/search";
 import GenreDropdownMenu from "./dropdowns/genreDropdown";
 import PlaylistDropdownMenu from "./dropdowns/playlistDropdown";
 import ProfileDropdown from "./dropdowns/profileDropdown";
 import useClickOutside from "../../hooks/useClickOutside";
 
-function Navbar() {
+
+interface NavbarProps {
+  onSearchQueryChange: (query: string) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onSearchQueryChange }) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [showGenreDropdown, setShowGenreDropdown] = useState<boolean>(false);
   const [showPlaylistDropdown, setShowPlaylistDropdown] =
@@ -29,21 +34,21 @@ function Navbar() {
   });
 
 
+  
   const toggleGenreDropdown = () => {
-    // setShowGenreDropdown((prevState) => !prevState);
     setShowGenreDropdown(!showGenreDropdown);
     setShowPlaylistDropdown(false);
     setShowProfileDropdown(false);
   };
 
   const togglePlaylistDropdown = () => {
-    setShowPlaylistDropdown((prevState) => !prevState);
+    setShowPlaylistDropdown(!showPlaylistDropdown);
     setShowGenreDropdown(false);
     setShowProfileDropdown(false);
   };
 
   const toggleProfileDropdown = () => {
-    setShowProfileDropdown((prevState) => !prevState);
+    setShowProfileDropdown(!showProfileDropdown);
     setShowGenreDropdown(false);
     setShowPlaylistDropdown(false);
   };
@@ -60,12 +65,11 @@ function Navbar() {
   };
 
 
-  const handleSearch = (value: string) => {
-    // Implement your search logic here
-    console.log("Search query:", value);
-  };
-
-  
+  // const handleSearchQueryChange = (query: string) => {
+  //   console.log("Search query received in Navbar:", query); // Add this console log
+  //   onSearchQueryChange(query);
+  // };
+  console.log("Navbar rendered"); // Add this console log
 
   return (
     <header className="text-gray-600 body-font bg-primary">
@@ -79,7 +83,7 @@ function Navbar() {
             <span className="ml-3 text-xl">Music App</span>
           </a>
           <div className="  flex">
-            <Search onSearch={handleSearch} />
+            <Search  onSearchQueryChange={onSearchQueryChange}/>
             <div ref={genreRef}> 
             <GenreDropdownMenu
               showGenreDropdown={showGenreDropdown}
@@ -134,7 +138,7 @@ function Navbar() {
         </div>
         <div className="  md:flex md:justify-center md:items-center md:w-auto w-full mt-4">
           <div className="md:hidden">
-            <Search onSearch={handleSearch} />
+            <Search  onSearchQueryChange={onSearchQueryChange} />
           </div>
         </div>
       </div>
