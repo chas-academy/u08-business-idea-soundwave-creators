@@ -71,6 +71,7 @@ import Subscribe from "./components/subscribe/subscribe";
 import Navbar from "./components/Navbar/navbar";
 import Footer from "./components/Footer/footer";
 import GenrePage from "./components/Genre/GenrePage";
+import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 
 const App: React.FC = () => {
   const genres = [
@@ -89,21 +90,33 @@ const App: React.FC = () => {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} />
           <Route path="/admindashboard" element={<AdminDashboard />} />
           <Route
-            path="/userdashboard"
-            element={
+            path="/userdashboard" */}
+            {/* element={
               <UserDashboard fullName={""} emailAddress={""} createdAt={""} />
             }
-          />
+          /> */}
           {/* <Route path="/login" element={<LoginPage />} /> */}
-          <Route path="/subscribe" element={<Subscribe />} />
+          {/* <Route path="/subscribe" element={<Subscribe />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/contactus" element={<Contactus />} />
           <Route
             path="/genres/:genre"
             element={<GenrePage genres={genres} />}
+          /> */}
+          <Route
+            path="/musicplayer"
+            element={
+              <MusicPlayer
+                song={{
+                  title: "Song Title",
+                  artist: "Artist Name",
+                  albumArt: "path_to_album_art.jpg",
+                }}
+              />
+            }
           />
         </Routes>
         <Footer />
