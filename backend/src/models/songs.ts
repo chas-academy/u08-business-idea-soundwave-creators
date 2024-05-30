@@ -30,6 +30,6 @@ const songSchema = new Schema<ISong>(
   { timestamps: true }
 );
 
-const Song = mongoose.model<ISong>('Song', songSchema);
+const songs = mongoose.model<ISong>('Songs', songSchema);
 
-export default Song;
+export default songs;
