@@ -48,7 +48,7 @@ export interface SearchResult {
     
     export const fetchSearchResultsByAlbum = async (query: string): Promise<AlbumResult[]> => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/albumss/search`, {
+        const response = await axios.get(`http://localhost:3000/api/albums/search`, {
           params: { query, type: 'album' }
         });
         return response.data;

@@ -2,48 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchSearchResultsByArtist, ArtistResult } from '../../../api/SearchApi'; 
 
-// interface SearchResult {
-//   _id: string;
-//   title: string;
-//   artist: string;
-//   album: string;
-//   albumImageUrl: string;
-//   releaseDate: string;
-//   genre: string;
-//   duration: string;
-//   trackNumber: number;
-//   albumId: number;
-// }
-
-// interface ArtistResult {
-//   _id: string;
-//   name: string;
-//   biography: string;
-//   albums:AlbumResult [];
-//   popularSongs: SearchResult[];
-//   imageUrl: string;
-// }
-
-// interface AlbumResult {
-//   _id: string;
-//   title: string;
-//   artist: string;
-//   release_date: string;
-//   genre: string;
-//   tracklist: { title: string, duration: string }[];
-//   album_cover: string;
-//   other_details: {
-//     producer: string;
-//     label: string;
-//     certifications: string;
-//   };
-//   singles: { title: string, release_date: string }[];
-//   options: {
-//     play_album: string;
-//     save_album: string;
-//     explore_songs: string;
-//   };
-// }
 interface ArtistSearchPageProps {
   searchQuery: string;
 }

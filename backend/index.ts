@@ -40,7 +40,7 @@ app.use('/api/songs', titleSearchRoutes);
 app.use('/api/artists', artistSearchRoutes);
 
 // Use album search routes
-app.use('/api/albumss', albumsSearchRoutes);
+app.use('/api/albums', albumsSearchRoutes);
 
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
