@@ -48,8 +48,8 @@ const App: React.FC = () => {
       {/* <Route path="/login" element={<LoginPage />} /> */}
       <Route path="/subscribe" element={<Subscribe />} />
       <Route path="/search/:query" element={<SongSearchPage searchQuery={searchQuery} />} />
-          <Route path="/artist/:artistName" element={<ArtistSearchPage searchQuery={searchQuery} />} />
-          <Route path="/album/:albumTitle" element={<AlbumSearchPage searchQuery={searchQuery} />} />
+     <Route path="/artist/:artistName" element={<ArtistSearchPage searchQuery={searchQuery} />} />
+      <Route path="/album/:albumTitle" element={<AlbumSearchPage searchQuery={searchQuery} />} />
         
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/contactus" element={<Contactus />} />

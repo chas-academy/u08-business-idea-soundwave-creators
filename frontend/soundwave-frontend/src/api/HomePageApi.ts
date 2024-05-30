@@ -39,7 +39,7 @@ export interface Artist {
     name: string;
     imageUrl: string;
     biography: string;
-    albums:  any[];
+    albums: string;
   }
 
   interface Artistdata {

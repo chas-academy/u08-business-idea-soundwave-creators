@@ -1,36 +1,21 @@
 import { Schema, model, Document } from 'mongoose';
 
 // Define an interface representing a document in MongoDB.
-interface IArtist extends Document {
+ export interface IArtist extends Document {
   _id: string;
    name: string;
-  // imageURL: string;
-  // twitter: string;
-  // instagram: string;
     biography: string;
     imageUrl: string;
 }
 
 // Create a Schema corresponding to the document interface.
-const artistSchema = new Schema<IArtist>(
+const ArtistSchema = new Schema<IArtist>(
   {
     _id: String,
     name: {
       type: String,
       required: true,
     },
-    // imageURL: {
-    //   type: String,
-    //   required: true,
-    // },
-    // twitter: {
-    //   type: String,
-    //   required: true,
-    // },
-    // instagram: {
-    //   type: String,
-    //   required: true,
-    // },
     biography: {
       type: String,
       required: true
@@ -44,27 +29,6 @@ const artistSchema = new Schema<IArtist>(
 );
 
 // Create a Model.
-const Artist = model<IArtist>('Artists', artistSchema);
+const artists = model<IArtist>('Artists', ArtistSchema);
 
-export default Artist;
-
-// src/models/artistModel.ts
-/*import mongoose, { Document, Schema } from 'mongoose';
-
-export interface IArtist extends Document {
-  name: string;
-  imageURL: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-const artistSchema: Schema = new Schema(
-  {
-    name: { type: String, required: true },
-    imageURL: { type: String, required: true },
-  },
-  { timestamps: true }
-);
-
-export default mongoose.model<IArtist>('Artist', artistSchema);*/
-
+export default artists;

@@ -1,6 +1,10 @@
-// services/api.ts
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
+const baseURL = 'http://localhost:3000/api'; // Adjust the base URL as needed
+
+const api: AxiosInstance = axios.create({
+  baseURL,
+});
 
 export interface SearchResult {
       _id: string;
@@ -45,10 +49,9 @@ export interface SearchResult {
       };
     }
     
-    
-    export const fetchSearchResultsByAlbum = async (query: string): Promise<AlbumResult[]> => {
+    export const searchAlbums = async (query: string): Promise<AlbumResult[]> => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/albums/search`, {
+        const response = await api.get('/search/albums', {
           params: { query, type: 'album' }
         });
         return response.data;
@@ -57,28 +60,26 @@ export interface SearchResult {
         throw new Error("Failed to fetch search results by album. Please try again.");
       }
     };
+   
+    export const searchTitles = async (query: string): Promise<SearchResult[]> => {
+      try {
+        const response = await api.get(`/search/titles`, {
+          params: { query, type: 'title' } // Adjusted the endpoint
+        });
+        return response.data;
+      } catch (error) {
+        console.error("Error fetching search results by title:", error);
+        throw new Error("Failed to fetch search results by title. Please try again.");
+      }
+    };
 
-// Function to fetch search results by title
-export const fetchSearchResultsByTitle = async (query: string): Promise<SearchResult[]> => {
+export const searchArtists = async (query: string): Promise<ArtistResult[]> => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/songs/search`, {
-      params: { query, type: 'title' }
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching search results by title:", error);
-    throw new Error("Failed to fetch search results by title. Please try again.");
-  }
-};
-
-export const fetchSearchResultsByArtist = async (query: string): Promise<ArtistResult[]> => {
-  try {
-    const response = await axios.get(`http://localhost:3000/api/artists/search`, {
+    const response = await api.get(`/search/artists`, {
       params: { query, type: 'artist' }
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching search results by artist:", error);
-    throw new Error("Failed to fetch search results by artist. Please try again.");
+    throw new Error('Error searching artists');
   }
 };

@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { fetchSearchResultsByArtist, ArtistResult } from '../../../api/SearchApi'; 
+import { searchArtists, ArtistResult } from '../../../api/SearchApi'; 
 
 interface ArtistSearchPageProps {
   searchQuery: string;
@@ -16,7 +16,7 @@ const ArtistSearchPage: React.FC<ArtistSearchPageProps> = ({ searchQuery }) => {
       setLoading(true);
       setError(null);
       try {
-        const results = await fetchSearchResultsByArtist(searchQuery); // Fetch artist results based on the search query
+        const results = await searchArtists(searchQuery); // Fetch artist results based on the search query
         setArtistResults(results);
       } catch (error) {
         setError('Failed to fetch artist results. Please try again.');

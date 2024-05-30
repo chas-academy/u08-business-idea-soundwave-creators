@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchSearchResultsByAlbum, AlbumResult } from '../../../api/SearchApi';
+import { searchAlbums, AlbumResult } from '../../../api/SearchApi';
 
 
 interface AlbumSearchPageProps {
@@ -16,7 +16,7 @@ const AlbumSearchPage: React.FC<AlbumSearchPageProps> = ({ searchQuery }) => {
       setLoading(true);
       setError(null);
       try {
-        const results = await fetchSearchResultsByAlbum(searchQuery); // Fetch album results based on the search query
+        const results = await searchAlbums(searchQuery); // Fetch album results based on the search query
         setAlbumResults(results);
       } catch (error) {
         setError('Failed to fetch album results. Please try again.');

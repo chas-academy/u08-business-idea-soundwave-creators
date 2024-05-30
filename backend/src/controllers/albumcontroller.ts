@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 // import { IAlbum } from '../interfaces/IAlbum';
 
+// import Album, { IAlbum } from "../models/albums";
 import Album, { IAlbum } from "../models/albums";
+import albums from "../models/albums";
 
 const create = async (data: IAlbum) => {
   return await Album.create(data);
@@ -23,6 +25,10 @@ const update = async (id: string, data: IAlbum) => {
 const deleteOne = async (id: string) => {
   return await Album.findByIdAndDelete(id);
 };
+
+
+
+
 
 export const getAllAlbums = async (req: Request, res: Response) => {
   try {
