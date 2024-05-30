@@ -22,14 +22,15 @@ const Search: React.FC<SearchProps> = ({ onSearchQueryChange }) => {
     onSearchQueryChange(searchValue);
     console.log("Search value submitted:", searchValue);
     try {
-      const titleResults = await fetchSearchResultsByTitle(searchValue); // Search by title
-      const artistResults = await fetchSearchResultsByArtist(searchValue); // Search by artist
+      // const titleResults = await fetchSearchResultsByTitle(searchValue); // Search by title
+       const artistResults = await fetchSearchResultsByArtist(searchValue); // Search by artist
       const albumResults = await fetchSearchResultsByAlbum(searchValue); // Search by album
 
-      console.log("Title Search results:", titleResults);
-      console.log("Artist Search results:", artistResults);
+      // console.log("Title Search results:", titleResults);
+       console.log("Artist Search results:", artistResults);
       console.log("Album Search results:", albumResults);
-   
+   const titleResults: any = []
+  //  const artistResults: any = []
       // Navigate based on the search type
     if (titleResults.length > 0) {
       navigate(`/search/${encodeURIComponent(searchValue)}`, { state: { titleResults } });
