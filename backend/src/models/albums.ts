@@ -1,7 +1,40 @@
 /*import mongoose, { Document, Schema } from 'mongoose';
 
+// Define an interface representing an album document in MongoDB.
+interface IAlbum extends Document {
+  name: string;
+  imageURL: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// Create a Schema corresponding to the document interface.
+const albumSchema: Schema<IAlbum> = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    imageURL: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
+// Create a Model.
+const Album = mongoose.model<IAlbum>('Album', albumSchema);
+
+export default Album;*/
+
+
+
+ import mongoose, { Document, Schema } from 'mongoose';
+
 export interface IAlbum extends Document {
-    name: string;
+  _id: number;
+  name: string;
     artist: string;
     release_date: string;
     genre: string;
@@ -20,7 +53,7 @@ export interface IAlbum extends Document {
     };
 }
 
-const AlbumSchema: Schema<IAlbum> = new Schema({
+const albumSchema: Schema<IAlbum> = new Schema({
     name: {
         type: String,
         required: true
@@ -60,6 +93,28 @@ const AlbumSchema: Schema<IAlbum> = new Schema({
         explore_songs: String
     }
 });
+ /* name: string;
+  album_cover: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-const albums = mongoose.model<IAlbum>('Album', AlbumSchema);
-export default albums;*/
+const albumSchema: Schema = new Schema(
+  {
+    _id: Number,
+    name: {
+      type: String,
+      required: true,
+    },
+    album_cover: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);*/
+
+ const albums = mongoose.model<IAlbum>('Album', albumSchema);
+
+ export default albums;
+

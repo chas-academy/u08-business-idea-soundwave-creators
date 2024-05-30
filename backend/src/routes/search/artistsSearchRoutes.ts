@@ -1,4 +1,4 @@
-import express from 'express';
+/*import express from 'express';
 import artists from '../../models/search/artists';
 
 const router = express.Router();
@@ -28,4 +28,4 @@ router.get('/search', async (req, res) => {
   }
 });
 
-export default router;
+export default router;*/
