@@ -1,5 +1,4 @@
- import React from "react";
-import Heroes from "../Heroes/Heroes";
+ import Heroes from "../Heroes/Heroes";
 import PopularAlbum from "../PopularAlbum/PopularAlbum";
 import PopularArtist from "../PopularArtist/PopularArtist";
 

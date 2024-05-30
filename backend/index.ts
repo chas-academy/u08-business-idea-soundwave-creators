@@ -7,9 +7,11 @@ import artistRoutes from './src/routes/artistRoutes'; // Import artist routes
 import titleSearchRoutes from './src/routes/search/titleSearchRoutes';
 import artistSearchRoutes from './src/routes/search/artistsSearchRoutes';
 import albumsSearchRoutes from './src/routes/search/albumsSearchRoutes';
-// import { getAllAlbums } from './src/controllers/albumcontroller'; 
+// import { getAllAlbums } from './src/controllers/albumcontroller';
 
 
+import { getAllArtists } from './src/controllers/artistscontroller';
+import songRoutes from './src/routes/songsRouter';
 
 dotenv.config();
 connectDB();
@@ -41,6 +43,9 @@ app.use('/api/artists', artistSearchRoutes);
 
 // Use album search routes
 app.use('/api/albums', albumsSearchRoutes);
+app.use('/api/songs', songRoutes);
+
+
 
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
