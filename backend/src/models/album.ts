@@ -30,26 +30,28 @@ export default Album;*/
 
 // import mongoose, { Document, Schema } from 'mongoose';
 
-// export interface IAlbum extends Document {
-//   name: string;
-//   imageURL: string;
-//   createdAt: Date;
-//   updatedAt: Date;
-// }
+export interface IAlbum extends Document {
+  _id: number;
+  name: string;
+  album_cover: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-// const albumSchema: Schema = new Schema(
-//   {
-//     name: {
-//       type: String,
-//       required: true,
-//     },
-//     imageURL: {
-//       type: String,
-//       required: true,
-//     },
-//   },
-//   { timestamps: true }
-// );
+const albumSchema: Schema = new Schema(
+  {
+    _id: Number,
+    name: {
+      type: String,
+      required: true,
+    },
+    album_cover: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
 // const Album = mongoose.model<IAlbum>('Album', albumSchema);
 

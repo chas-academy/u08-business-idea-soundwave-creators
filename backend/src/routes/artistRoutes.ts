@@ -16,3 +16,5 @@ router.put('/update/:id', updateArtist);
 router.delete('/delete/:id', deleteArtist);
 
 export default router;
+
+
