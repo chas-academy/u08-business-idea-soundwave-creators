@@ -11,12 +11,24 @@ const SongSearchPage: React.FC<SongSearchPageProps> = ({ searchQuery }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+ // Retrieve search query and results from local storage
+ const savedQuery = localStorage.getItem('searchQuery');
+ const savedResults = JSON.parse(localStorage.getItem('searchResults') || '[]');
+
+ if (savedQuery && savedResults.length > 0) {
+   setSearchResults(savedResults);
+ }
+
     const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
         const results = await searchTitles(searchQuery); // Use fetchSearchResults from api.ts
         setSearchResults(results);
+          // Save query and results to local storage
+          localStorage.setItem('searchQuery', searchQuery);
+          localStorage.setItem('searchResults', JSON.stringify(results));
+       
       } catch (error) {
         setError('Failed to fetch search results. Please try again.');
       } finally {

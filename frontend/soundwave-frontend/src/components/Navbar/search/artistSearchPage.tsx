@@ -12,12 +12,27 @@ const ArtistSearchPage: React.FC<ArtistSearchPageProps> = ({ searchQuery }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+
+ // Retrieve search query and results from local storage
+ const savedQuery = localStorage.getItem('searchQuery');
+ const savedResults = JSON.parse(localStorage.getItem('artistResults') || '[]');
+
+ if (savedQuery && savedResults.length > 0) {
+   setArtistResults(savedResults);
+ }
+
+
     const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
         const results = await searchArtists(searchQuery); // Fetch artist results based on the search query
         setArtistResults(results);
+
+          // Save query and results to local storage
+          localStorage.setItem('searchQuery', searchQuery);
+          localStorage.setItem('artistResults', JSON.stringify(results));
+       
       } catch (error) {
         setError('Failed to fetch artist results. Please try again.');
       } finally {

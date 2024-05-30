@@ -47,7 +47,7 @@ const Search: React.FC<SearchProps> = ({ onSearchQueryChange }) => {
         placeholder="Search"
         value={searchValue}
         onChange={handleSearchChange}
-        className="bg-transparent h-10 pr-10 pl-4 rounded-full text-sm w-full focus:outline-none shadow-secondary transition-transform duration-300 hover:scale-110"
+        className="bg-transparent h-10 pr-12 pl-4 rounded-full text-sm w-full focus:outline-none shadow-secondary transition-transform duration-300 hover:scale-110"
       />
       <button
         type="submit"
