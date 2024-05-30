@@ -10,9 +10,9 @@ import UserDashboard from "./components/dashboard/userdashboard";
 import Subscribe from "./components/subscribe/subscribe";
 import Navbar from "./components/Navbar/navbar";
 import Footer from "./components/Footer/footer";
- // import GenrePage from "./components/Genre/GenrePage";
+  import GenrePage from "./components/Genre/GenrePage";
  // import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
-// import Albums from './components/Albums/Albums';
+ import Albums from './components/Albums/Albums';
 import SongsByAlbum from "./components/Albums/SongsByAlbum";
 import SongSearchPage from './components/Navbar/search/songSearchPage';
 import ArtistSearchPage from './components/Navbar/search/artistSearchPage';
@@ -54,6 +54,7 @@ const App: React.FC = () => {
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/contactus" element={<Contactus />} />
         <Route path="/albums/:albumId/songs" element={<SongsByAlbum />} />
+        <Route path="/albums" element={<Albums />} />
         {/* <Route
             path="/musicplayer"
             element={
@@ -66,6 +67,10 @@ const App: React.FC = () => {
               />
             }
           /> */}
+          <Route
+            path="/genres/:genre"
+            element={<GenrePage genres={genres} />}
+          />
       </Routes>
      <Footer/>
     </Router>

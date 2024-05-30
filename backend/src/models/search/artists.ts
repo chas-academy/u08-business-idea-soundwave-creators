@@ -1,5 +1,5 @@
 // models/artists.js
-import mongoose, { Document, Schema } from 'mongoose';
+/*import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IArtist extends Document {
     name: string;
@@ -23,4 +23,4 @@ const ArtistSchema: Schema<IArtist> = new Schema({
 });
 
 const artists = mongoose.model<IArtist>('Artists', ArtistSchema);
-export default artists;
+export default artists;*/
