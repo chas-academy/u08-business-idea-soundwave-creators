@@ -45,7 +45,7 @@ const AlbumSearchPage: React.FC<AlbumSearchPageProps> = ({ searchQuery }) => {
   }, [searchQuery]);
 
     return (
-      <div className=" mx-auto px-4 bg-primary p-8 shadow-secondary">
+      <div className=" mx-auto px-4 bg-primary p-8 shadow-secondary ">
         <div className='max-w-2xl mx-auto'>
           {loading ? (
             <p className="text-center text-gray-600">Loading...</p>
