@@ -78,6 +78,7 @@ const App: React.FC = () => {
     "pop",
     "rock",
     "hip-hop",
+    "R&B",
     "jazz",
     "electronic",
     "folk",
@@ -90,22 +91,22 @@ const App: React.FC = () => {
       <Router>
         <Navbar />
         <Routes>
-          {/* <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/admindashboard" element={<AdminDashboard />} />
           <Route
-            path="/userdashboard" */}
-            {/* element={
+            path="/userdashboard"
+            element={
               <UserDashboard fullName={""} emailAddress={""} createdAt={""} />
             }
-          /> */}
+          />
           {/* <Route path="/login" element={<LoginPage />} /> */}
-          {/* <Route path="/subscribe" element={<Subscribe />} />
+          <Route path="/subscribe" element={<Subscribe />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/contactus" element={<Contactus />} />
           <Route
             path="/genres/:genre"
             element={<GenrePage genres={genres} />}
-          /> */}
+          />
           <Route
             path="/musicplayer"
             element={

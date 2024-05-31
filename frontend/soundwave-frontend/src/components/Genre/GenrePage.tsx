@@ -50,7 +50,7 @@ const GenrePage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 bg-primary text-text shadow-secondary">
+    <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4 bg-primary text-text shadow-secondary">
       {genre && (
         <>
           <div className="relative mb-10 mt-10 flex justify-center items-center space-x-0">
@@ -71,10 +71,10 @@ const GenrePage: React.FC = () => {
             </div>
           </div>
 
-          <h2 className="text-xl font-semibold mb-4 text-center">
+          <h2 className="text-xl font-semibold  text-center">
             Songs in {genre} Genre:
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
             {songs.slice(0, showMore ? songs.length : 8).map((song) => (
               <div
                 key={song._id}

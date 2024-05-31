@@ -29,7 +29,7 @@ app.use("/api/albums", albumRoutes);
 // Use artist routes
 app.use("/api/artists", artistRoutes);
 
-// Use song routes
+// Use song routes for genres
 app.use("/api", genreRoutes);
 
 app.listen(port, () => {
