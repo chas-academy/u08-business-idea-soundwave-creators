@@ -6,14 +6,11 @@ export interface likedSong {
 }
 
 export const addLikedSong = async (songid:string, userid:string) => {
-  console.log(songid, userid)
-  // try {
-  //   const response = await axios.post(`http://localhost:3000/api/songs/search`, {
-  //     params: { query, type: 'title' }
-  //   });
-  //   return response.data;
-  // } catch (error) {
-  //   console.error("Error fetching search results by title:", error);
-  //   throw new Error("Failed to fetch search results by title. Please try again.");
-  // }
+  try {
+    const response = await axios.post(`http://localhost:3000/api/song/addLikedSong`, {songid, userid});
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching search results by title:", error);
+    throw new Error("Failed to fetch search results by title. Please try again.");
+  }
 };

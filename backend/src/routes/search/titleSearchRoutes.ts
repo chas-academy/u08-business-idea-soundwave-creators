@@ -43,7 +43,7 @@
 
 import express from 'express';
 import titles from '../../models/search/titles';
-
+import { addLikedSong } from '../../controllers/songsController';
 const router = express.Router();
 
 // Title search route
@@ -70,6 +70,8 @@ router.get('/search', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+router.post("/addLikedSong", addLikedSong)
 
 export default router;
 
