@@ -1,8 +1,8 @@
 // import React from 'react'
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Aboutus from "./components/Aboutus/aboutus"
-import Contactus from './components/Contactus/contactus';
+import Aboutus from "./components/Footer/aboutus"
+import Contactus from './components/Footer/contactus';
 import HomePage from './components/HomePage/HomePage';
 // import LoginPage from './components/login/login';
 import AdminDashboard from "./components/dashboard/admindashboard";
@@ -17,6 +17,11 @@ import SongsByAlbum from "./components/Albums/SongsByAlbum";
 import SongSearchPage from './components/Navbar/search/songSearchPage';
 import ArtistSearchPage from './components/Navbar/search/artistSearchPage';
 import AlbumSearchPage from './components/Navbar/search/albumSearchPage';
+import Termsofservice from './components/Footer/termsofservice';
+import PrivacyPolicy from './components/Footer/privacypolicy';
+import HelpAndSupport from './components/Footer/helpandsupport';
+import FAQ from './components/Footer/faq';
+import Feedback from './components/Footer/Feedback';
 
 const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -48,9 +53,13 @@ const App: React.FC = () => {
       {/* <Route path="/login" element={<LoginPage />} /> */}
       <Route path="/subscribe" element={<Subscribe />} />
       <Route path="/search/:query" element={<SongSearchPage searchQuery={searchQuery} />} />
-          <Route path="/artist/:artistName" element={<ArtistSearchPage searchQuery={searchQuery} />} />
-          <Route path="/album/:albumTitle" element={<AlbumSearchPage searchQuery={searchQuery} />} />
-        
+     <Route path="/artist/:artistName" element={<ArtistSearchPage searchQuery={searchQuery} />} />
+      <Route path="/album/:albumTitle" element={<AlbumSearchPage searchQuery={searchQuery} />} />
+      <Route path='/privacypolicy' element={<PrivacyPolicy/>}/>
+      <Route path='/feedback' element={<Feedback/>}/>
+      <Route path='/helpandsupport' element={<HelpAndSupport/>}/>
+      <Route path='/faq' element={<FAQ/>}/>
+        <Route path="/termsofservice" element={<Termsofservice/>}/>
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/contactus" element={<Contactus />} />
         <Route path="/albums/:albumId/songs" element={<SongsByAlbum />} />
