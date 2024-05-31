@@ -1,4 +1,3 @@
-import * as React from 'react';
 import './subscribe.css'; // Ensure that Tailwind CSS is imported correctly in this file
 
 const Subscribe = () => {

@@ -1,4 +1,3 @@
-// import React from 'react'
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -38,14 +37,14 @@ function footer() {
                   </Link>
                 </li>
                 <li>
-                  <a className="text-text hover:text-hover">
+                  <Link to="/termsofservice" className="text-text hover:text-hover">
                     Terms of Service
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="text-text hover:text-hover">
+                  <Link to="/privacypolicy" className="text-text hover:text-hover">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
               </nav>
             </div>
@@ -56,15 +55,15 @@ function footer() {
               <hr className="border border-secondary" />
               <nav className="list-none mb-10">
                 <li>
-                  <a className="text-text hover:text-hover">
+                  <Link to="/helpandsupport" className="text-text hover:text-hover">
                     Help & Support
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="text-text hover:text-hover">FAQ</a>
+                  <Link to="/faq" className="text-text hover:text-hover">FAQ</Link>
                 </li>
                 <li>
-                  <a className="text-text hover:text-hover">Feedback</a>
+                  <Link to="/feedback" className="text-text hover:text-hover">Feedback</Link>
                 </li>
                 <li>
                   <a className="text-text hover:text-hover">Sitemap</a>
