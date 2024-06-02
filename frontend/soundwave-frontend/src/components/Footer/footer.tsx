@@ -77,13 +77,11 @@ function footer() {
               <hr className="border border-secondary lg:w-3/4 sm:w-1/2 md:w-1/2" />
               <nav className="list-none mb-10">
                 <li>
-                  <a className="text-text hover:text-hover">
-                    Premium Plans
-                  </a>
+                <Link to="/subscribe" className="text-text hover:text-hover">
+                    Subscribe Plans
+                    </Link>
                 </li>
-                <li>
-                  <a className="text-text hover:text-hover">Subscribe</a>
-                </li>
+
                 <li>
                   <a className="text-text hover:text-hover">Pricing</a>
                 </li>
