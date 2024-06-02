@@ -1,49 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
-import { fetchSearchResultsByArtist, ArtistResult } from '../../../api/SearchApi'; 
+import { searchArtists, ArtistResult } from '../../../api/SearchApi'; 
 
-// interface SearchResult {
-//   _id: string;
-//   title: string;
-//   artist: string;
-//   album: string;
-//   albumImageUrl: string;
-//   releaseDate: string;
-//   genre: string;
-//   duration: string;
-//   trackNumber: number;
-//   albumId: number;
-// }
-
-// interface ArtistResult {
-//   _id: string;
-//   name: string;
-//   biography: string;
-//   albums:AlbumResult [];
-//   popularSongs: SearchResult[];
-//   imageUrl: string;
-// }
-
-// interface AlbumResult {
-//   _id: string;
-//   title: string;
-//   artist: string;
-//   release_date: string;
-//   genre: string;
-//   tracklist: { title: string, duration: string }[];
-//   album_cover: string;
-//   other_details: {
-//     producer: string;
-//     label: string;
-//     certifications: string;
-//   };
-//   singles: { title: string, release_date: string }[];
-//   options: {
-//     play_album: string;
-//     save_album: string;
-//     explore_songs: string;
-//   };
-// }
 interface ArtistSearchPageProps {
   searchQuery: string;
 }
@@ -54,12 +12,27 @@ const ArtistSearchPage: React.FC<ArtistSearchPageProps> = ({ searchQuery }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+
+ // Retrieve search query and results from local storage
+ const savedQuery = localStorage.getItem('searchQuery');
+ const savedResults = JSON.parse(localStorage.getItem('artistResults') || '[]');
+
+ if (savedQuery && savedResults.length > 0) {
+   setArtistResults(savedResults);
+ }
+
+
     const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
-        const results = await fetchSearchResultsByArtist(searchQuery); // Fetch artist results based on the search query
+        const results = await searchArtists(searchQuery); // Fetch artist results based on the search query
         setArtistResults(results);
+
+          // Save query and results to local storage
+          localStorage.setItem('searchQuery', searchQuery);
+          localStorage.setItem('artistResults', JSON.stringify(results));
+       
       } catch (error) {
         setError('Failed to fetch artist results. Please try again.');
       } finally {
@@ -88,7 +61,7 @@ const ArtistSearchPage: React.FC<ArtistSearchPageProps> = ({ searchQuery }) => {
           <div className="max-w-2xl mx-auto space-y-6">
             {artistResults.map((artist) => (
               <div key={artist._id} className="bg-primary rounded-lg p-6 shadow-secondary">
-                <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4">Artist: {artist.name}</h2>
+                <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4">{artist.name}</h2>
                 <img src={artist.imageUrl} alt={artist.name} className="w-full h-64 object-cover rounded-md mb-4" />
                 <p className="text-gray-600 mb-1">Biography: {artist.biography}</p>
                 <h4 className="text-lg text-secondary mt-4">Popular Songs</h4>

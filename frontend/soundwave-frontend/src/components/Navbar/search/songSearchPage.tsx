@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchSearchResultsByTitle, SearchResult } from '../../../api/SearchApi'; // Import fetchSearchResults from api.ts
+import { searchTitles, SearchResult } from '../../../api/SearchApi'; // Import fetchSearchResults from api.ts
 
 interface SongSearchPageProps {
   searchQuery: string;
@@ -11,12 +11,24 @@ const SongSearchPage: React.FC<SongSearchPageProps> = ({ searchQuery }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+ // Retrieve search query and results from local storage
+ const savedQuery = localStorage.getItem('searchQuery');
+ const savedResults = JSON.parse(localStorage.getItem('searchResults') || '[]');
+
+ if (savedQuery && savedResults.length > 0) {
+   setSearchResults(savedResults);
+ }
+
     const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
-        const results = await fetchSearchResultsByTitle(searchQuery); // Use fetchSearchResults from api.ts
+        const results = await searchTitles(searchQuery); // Use fetchSearchResults from api.ts
         setSearchResults(results);
+          // Save query and results to local storage
+          localStorage.setItem('searchQuery', searchQuery);
+          localStorage.setItem('searchResults', JSON.stringify(results));
+       
       } catch (error) {
         setError('Failed to fetch search results. Please try again.');
       } finally {
@@ -40,11 +52,10 @@ const SongSearchPage: React.FC<SongSearchPageProps> = ({ searchQuery }) => {
       ) : searchResults.length === 0 ? (
         <p>No search results found.</p>
       ) : (
-        // <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div className="max-w-2xl mx-auto space-y-6">
           {searchResults.map((song) => (
              <div key={song._id} className="bg-primary rounded-lg p-6 shadow-secondary">
-             <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4">Song: {song.title}</h2>
+             <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4">{song.title}</h2>
               <img src={song.albumImageUrl} alt={song.album} className="w-full h-64 object-cover rounded-md mb-4"  />
               <h3 className="text-xl text-secondary">{song.title}</h3>
               <p className="text-gray-600">Artist: {song.artist}</p>

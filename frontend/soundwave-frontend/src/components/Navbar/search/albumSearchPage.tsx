@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchSearchResultsByAlbum, AlbumResult } from '../../../api/SearchApi';
+import { searchAlbums, AlbumResult } from '../../../api/SearchApi';
 
 
 interface AlbumSearchPageProps {
@@ -12,12 +12,26 @@ const AlbumSearchPage: React.FC<AlbumSearchPageProps> = ({ searchQuery }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+  // Retrieve search query and results from local storage
+  const savedQuery = localStorage.getItem('searchQuery');
+  const savedResults = JSON.parse(localStorage.getItem('albumResults') || '[]');
+
+  if (savedQuery && savedResults.length > 0) {
+    setAlbumResults(savedResults);
+  }
+
+
     const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
-        const results = await fetchSearchResultsByAlbum(searchQuery); // Fetch album results based on the search query
+        const results = await searchAlbums(searchQuery); // Fetch album results based on the search query
         setAlbumResults(results);
+
+             // Save query and results to local storage
+             localStorage.setItem('searchQuery', searchQuery);
+             localStorage.setItem('albumResults', JSON.stringify(results));
+           
       } catch (error) {
         setError('Failed to fetch album results. Please try again.');
       } finally {
@@ -31,7 +45,7 @@ const AlbumSearchPage: React.FC<AlbumSearchPageProps> = ({ searchQuery }) => {
   }, [searchQuery]);
 
     return (
-      <div className=" mx-auto px-4 bg-primary p-8 shadow-secondary">
+      <div className=" mx-auto px-4 bg-primary p-8 shadow-secondary ">
         <div className='max-w-2xl mx-auto'>
           {loading ? (
             <p className="text-center text-gray-600">Loading...</p>
@@ -45,7 +59,7 @@ const AlbumSearchPage: React.FC<AlbumSearchPageProps> = ({ searchQuery }) => {
             <div className="space-y-6">
               {albumResults.map((album) => (
                 <div key={album._id} className="bg-primary shadow-secondary rounded-lg p-6 ">
-                  <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4 ">Album Name: {album.name}</h2>
+                  <h2 className="md:text-2xl text-xl lg:text-2xl text-secondary mb-4 "> {album.name}</h2>
                   <img src={album.album_cover} alt={album.name} className="w-full h-64 object-cover rounded-md mb-4" />
                   {/* <h3 className="text-2xl font-semibold mb-2">{album.name}</h3> */}
                   <p className="text-gray-600 mb-1">Artist: {album.artist}</p>
