@@ -23,3 +23,8 @@ export const getAllSongs = async (req: Request, res: Response) => {
       res.status(500).json({ message: 'Server error' });
     }
   };
+
+  export const addLikedSong = (req:Request, res:Response) => {
+    console.log(req.body)
+    res.send("request came into the backend")
+  }
