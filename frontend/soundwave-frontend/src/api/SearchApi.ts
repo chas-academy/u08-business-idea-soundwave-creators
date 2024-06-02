@@ -83,3 +83,4 @@ export const searchArtists = async (query: string): Promise<ArtistResult[]> => {
     throw new Error('Error searching artists');
   }
 };
+
