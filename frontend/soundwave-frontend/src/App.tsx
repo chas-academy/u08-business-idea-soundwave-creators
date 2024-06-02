@@ -47,7 +47,6 @@ const App: React.FC = () => {
         <Navbar onSearchQueryChange={handleSearchQueryChange} />
         <Routes>
           <Route path="/" element={<HomePage />} />
-
           <Route path="/admindashboard" element={<AdminDashboard />} />
           <Route
             path="/userdashboard"
