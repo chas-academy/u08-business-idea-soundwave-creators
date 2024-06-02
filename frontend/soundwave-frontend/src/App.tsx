@@ -22,6 +22,7 @@ import PrivacyPolicy from "./components/Footer/privacypolicy";
 import HelpAndSupport from "./components/Footer/helpandsupport";
 import FAQ from "./components/Footer/faq";
 import Feedback from "./components/Footer/Feedback";
+import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 
 const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -77,18 +78,7 @@ const App: React.FC = () => {
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/albums/:albumId/songs" element={<SongsByAlbum />} />
           <Route path="/albums" element={<Albums />} />
-          {/* <Route
-            path="/musicplayer"
-            element={
-              <MusicPlayer
-                song={{
-                  title: "Song Title",
-                  artist: "Artist Name",
-                  albumArt: "path_to_album_art.jpg",
-                }}
-              />
-            }
-          /> */}
+          {<Route path="/musicplayer" element={<MusicPlayer />} />}
           <Route
             path="/genres/:genre"
             element={<GenrePage genres={genres} />}
