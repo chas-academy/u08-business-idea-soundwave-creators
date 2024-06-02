@@ -83,6 +83,7 @@ const App: React.FC = () => {
             path="/genres/:genre"
             element={<GenrePage genres={genres} />}
           />
+          <Route path="/musicplayer" element={<MusicPlayer />} />
         </Routes>
         <Footer />
       </Router>

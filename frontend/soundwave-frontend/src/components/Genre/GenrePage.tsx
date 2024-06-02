@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { FiChevronDown, FiHeart } from "react-icons/fi";
 import axios from "axios";
 
@@ -23,6 +23,7 @@ const GenrePage: React.FC = () => {
   const [showMore, setShowMore] = useState<boolean>(false);
   const [songs, setSongs] = useState<Song[]>([]);
   const { genre } = useParams<{ genre: string }>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (genre) {
@@ -47,6 +48,10 @@ const GenrePage: React.FC = () => {
 
   const handleAddToPlaylist = (songId: string) => {
     console.log("Adding song to playlist:", songId);
+  };
+
+  const handlePlaySong = (song: Song) => {
+    navigate("/musicplayer", { state: { song } });
   };
 
   return (
@@ -78,7 +83,8 @@ const GenrePage: React.FC = () => {
             {songs.slice(0, showMore ? songs.length : 8).map((song) => (
               <div
                 key={song._id}
-                className="p-3 border border-black rounded-xl bg-gradient-to-b  from-secondary to-secondary-light flex flex-col items-center shadow-md relative"
+                className="p-3 border border-black rounded-xl bg-gradient-to-b from-secondary to-secondary-light flex flex-col items-center shadow-md relative cursor-pointer"
+                onClick={() => handlePlaySong(song)}
               >
                 <FiHeart
                   className="absolute top-2 right-2 text-white cursor-pointer hover:text-red-500"

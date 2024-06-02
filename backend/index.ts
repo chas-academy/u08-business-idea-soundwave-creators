@@ -9,6 +9,7 @@ import artistRoutes from "./src/routes/artistRoutes"; // Import artist routes
 import songRoutes from "./src/routes/songsRouter";
 import searchRoutes from "./src/routes/searchRoutes";
 import genreRoutes from "./src/routes/genreRoutes";
+
 dotenv.config();
 connectDB();
 
