@@ -31,6 +31,7 @@ const App: React.FC = () => {
     "rock",
     "hip-hop",
     "jazz",
+    "R&B",
     "electronic",
     "folk",
     "classical",
