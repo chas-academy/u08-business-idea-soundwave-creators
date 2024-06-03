@@ -46,10 +46,21 @@ const App: React.FC = () => {
     "classical",
     "country",
   ];
+  const genres = [
+    "pop",
+    "rock",
+    "hip-hop",
+    "jazz",
+    "electronic",
+    "folk",
+    "classical",
+    "country",
+  ];
 
   const handleSearchQueryChange = (query: string) => {
     setSearchQuery(query);
   };
+
   return (
     <>
       <Router>
@@ -83,6 +94,14 @@ const App: React.FC = () => {
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/albums/:albumId/songs" element={<SongsByAlbum />} />
           <Route path="/albums" element={<Albums />} />
+          <Route path="/popular-albums" element={<PopularAlbum />} />
+          <Route path="/popular-artists" element={<PopularArtist />} />
+          <Route
+            path="/genres/:genre"
+            element={<GenrePage genres={genres} />}
+          />
+          <Route path="/musicplayer" element={<MusicPlayer />} />
+
           {/* <Route
             path="/musicplayer"
             element={
