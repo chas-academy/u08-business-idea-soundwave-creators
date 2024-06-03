@@ -1,10 +1,11 @@
+
 import { Request, Response } from "express";
 // import { IAlbum } from '../interfaces/IAlbum';
 
 // import Album, { IAlbum } from "../models/albums";
 import Album, { IAlbum } from "../models/albums";
-import albums from "../models/albums";
 
+// CRUD operations
 const create = async (data: IAlbum) => {
   return await Album.create(data);
 };
@@ -27,8 +28,7 @@ const deleteOne = async (id: string) => {
 };
 
 
-
-
+// Controllers
 
 export const getAllAlbums = async (req: Request, res: Response) => {
   try {
