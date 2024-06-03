@@ -12,8 +12,8 @@ import Navbar from "./components/Navbar/navbar";
 import Footer from "./components/Footer/footer";
 import GenrePage from "./components/Genre/GenrePage";
 import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
-import Albums from "./components/Albums/Albums";
-import SongsByAlbum from "./components/Albums/SongsByAlbum";
+// import Albums from "./components/Albums/Albums";
+// import SongsByAlbum from "./components/Albums/SongsByAlbum";
 import SongSearchPage from "./components/Navbar/search/songSearchPage";
 import ArtistSearchPage from "./components/Navbar/search/artistSearchPage";
 import AlbumSearchPage from "./components/Navbar/search/albumSearchPage";
@@ -27,21 +27,12 @@ import OAuthCallback from "./components/callBacks/OAuthCallback";
 import Login from "./components/login/login";
 import ResetPassword from "./components/login/ResetPassword";
 //import AllSongs from './components/Playlists/allSongs';
+import PopularAlbum from "./components/PopularAlbum/PopularAlbum";
+import PopularArtist from "./components/PopularArtist/PopularArtist";
 
 const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const genres = [
-    "pop",
-    "rock",
-    "hip-hop",
-    "jazz",
-    "R&B",
-    "electronic",
-    "folk",
-    "classical",
-    "country",
-  ];
   const genres = [
     "pop",
     "rock",
@@ -88,8 +79,8 @@ const App: React.FC = () => {
           <Route path="/termsofservice" element={<Termsofservice />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/contactus" element={<Contactus />} />
-          <Route path="/albums/:albumId/songs" element={<SongsByAlbum />} />
-          <Route path="/albums" element={<Albums />} />
+          {/* <Route path="/albums/:albumId/songs" element={<SongsByAlbum />} />
+          <Route path="/albums" element={<Albums />} /> */}
           <Route path="/popular-albums" element={<PopularAlbum />} />
           <Route path="/popular-artists" element={<PopularArtist />} />
           <Route
