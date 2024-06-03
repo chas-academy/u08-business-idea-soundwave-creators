@@ -1,93 +1,266 @@
-// // FileName: LoginPage.tsx (Frontend)
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import API from '../../api/api';
 
-// import React, { SetStateAction, useState } from 'react';
-// import axios, { AxiosResponse, AxiosError } from 'axios';
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
-// //import googleIcon from '../src/components/img/google.png';
+const Login = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [registerName, setRegisterName] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const navigate = useNavigate();
+  
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      const response = await API.post('/auth/login', { email: loginEmail, password: loginPassword });
+      localStorage.setItem('token', response.data.token);
+      navigate('/');
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Failed to login');
+    }
+  };
 
-// const LoginPage = () => {
-//   const [activeTab, setActiveTab] = useState('login');
+  const handleRegister = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      const response = await API.post('/auth/signup', { name: registerName, email: registerEmail, password: registerPassword });
+      localStorage.setItem('token', response.data.token);
+      navigate('/');
+    } catch (error) {
+      console.error('Signup error:', error);
+      alert('Failed to signup');
+    }
+  };
 
-//   const handleTabChange = (tab: SetStateAction<string>) => {
-//     setActiveTab(tab);
-//   };
+  const handleTabChange = (newValue: number) => {
+    setActiveTab(newValue);
+  };
 
-//   const handleLogin = (googleData: GoogleLoginResponse | GoogleLoginResponseOffline) => {
-//     if ('tokenId' in googleData) {
-//       axios.post('/api/auth/google', { token: googleData.tokenId })
-//         .then((response: AxiosResponse) => {
-//           console.log('User authenticated', response.data);
-//         })
-//         .catch((error: AxiosError) => {
-//           console.error('Authentication error', error);
-//         });
-//     }
-//   };
 
-//   const handleFailure = (error: unknown) => {
-//     console.log('Login Failed:', error);
-//     toast.error('Google authentication failed');
-//   };
+  const handleForgotPassword = async () => {
+    if (loginEmail) {
+      try {
+        const response = await API.post('/auth/forgot-password', { email: loginEmail });
+        alert(response.data.message);
+        navigate('/reset-password');
+      } catch (error) {
+        alert('Email does not exist, please sign up');
+      }
+    } else {
+      alert('Please enter your email address');
+    }
+  };
 
-//   const handleEmailLogin = (e: React.FormEvent<HTMLFormElement>) => {
-//     e.preventDefault();
-//     // Handle email login
-//   };
+ /* const handleGoogleSuccess = async (credentialResponse: CredentialResponse) => {
+    if (credentialResponse.credential) {
+      try {
+        const res = await API.post('/auth/google', { tokenId: credentialResponse.credential });
+        localStorage.setItem('token', res.data.token);
+        navigate('/dashboard');
+      } catch (error) {
+        console.error(error);
+        alert('Google sign-in failed');
+      }
+    } else {
+      alert('Google sign-in failed: No credential received');
+    }
+  };
 
-//   const handleEmailSignup = (e: React.FormEvent<HTMLFormElement>) => {
-//     e.preventDefault();
-//     // Handle email signup
-//   };
+  const handleGoogleFailure = () => {
+    alert('Google sign-in failed');
+  };
 
-//   return (
-//     <div className="shadow-secondary app-container">
-//       <div className='bg-primary min-h-screen flex justify-center items-center'>
-//         <div className="form-container bg-transparent shadow-secondary rounded-2xl p-10 w-full md:w-96 h-auto md:h-148 ml-10 mr-10">
-//           <div className="tabs flex">
-//             <div className={`tab cursor-pointer py-2 px-4 rounded-tl-lg ${activeTab === 'login' ? 'bg-secondary text-white' : 'bg-gray-200 text-gray-600'}`} onClick={() => handleTabChange('login')}>
-//               LOG IN
-//             </div>
-//             <div className={`tab cursor-pointer py-2 px-4 rounded-tr-lg ${activeTab === 'signup' ? 'bg-secondary text-white' : 'bg-gray-200 text-gray-600'}`} onClick={() => handleTabChange('signup')}>
-//               SIGN UP
-//             </div>
-//           </div>
-//           {activeTab === 'login' && (
-//             <form className="mt-4 sm:mt-2" onSubmit={handleEmailLogin}>
-//               <input className="bg-text2 w-full mt-9 px-3 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:border-secondary" type="text" placeholder="Email" autoComplete="current-email"/>
-//               <input className="bg-text2 w-full mt-5 px-3 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:border-secondary" type="password" placeholder="Password" autoComplete="current-password"/>
-//               <button type="submit" className="border-0 focus:outline-none transition-transform duration-300 hover:scale-110 shadow-secondary text-lg w-full mt-5 bg-secondary text-white py-2 rounded-2xl hover:bg-hover focus:bg-hover">
-//                 Sign In
-//               </button>
-//             </form>
-//           )}
-//           {activeTab === 'signup' && (
-//             <form className="mt-4 sm:mt-2" onSubmit={handleEmailSignup}>
-//               <input className="bg-text2 w-full mt-5 px-3 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:border-secondary" type="text" placeholder="Email" />
-//               <input className="bg-text2 w-full mt-5 px-3 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:border-secondary" type="password" placeholder="Password" />
-//               <input className="bg-text2 w-full mt-5 px-3 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:border-secondary" type="password" placeholder="Confirm Password" />
-//               <button type="submit" className="border-0 focus:outline-none transition-transform duration-300 hover:scale-110 shadow-secondary text-lg w-full mt-5 bg-secondary text-white py-2 rounded-2xl hover:bg-hover focus:bg-hover">
-//                 Sign Up
-//               </button>
-//             </form>
-//           )}
-//           <h1 className="flex justify-center mt-5 text-text2"></h1>
-//           <div className="flex justify-center mt-5">
-//             <div className="social-buttons bg-transparent rounded-lg  flex items-center">
-//               <GoogleLogin
-//                 clientId="348531941395-qkh05gurrts4v8s87lkb6a5t7i3hlsu4.apps.googleusercontent.com"
-//                 buttonText="Login with Google"
-//                 onSuccess={handleLogin}
-//                 onFailure={handleFailure}
-//                 cookiePolicy={'single_host_origin'}
-//               />
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 
-// export default LoginPage;
+
+  return (
+    <GoogleOAuthProvider clientId="348531941395-qkh05gurrts4v8s87lkb6a5t7i3hlsu4.apps.googleusercontent.com">
+      <div className="shadow-secondary flex justify-center items-center pt-8 pb-8 bg-primary">
+        <div className="w-full max-w-xs p-8 bg-primary shadow-secondary rounded-2xl">
+          <div className="flex justify-between mb-4 p-6">
+            <button
+              className={`flex-1 py-2 px-4 ${activeTab === 0 ? "bg-secondary text-white" : "bg-gray-100 text-gray-700"}`}
+              onClick={() => handleTabChange(0)}
+            >
+              LOG IN
+            </button>
+            <button
+              className={`flex-1 py-2 px-4 ${activeTab === 1 ? "bg-secondary text-white" : "bg-gray-100 text-gray-700"}`}
+              onClick={() => handleTabChange(1)}
+            >
+              SIGN UP
+            </button>
+          </div>
+          {activeTab === 0 && (
+            <form onSubmit={handleLogin}>
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full p-2 mb-4 rounded bg-gray-200 text-gray-700"
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
+                autoComplete="username"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full p-2 mb-4 rounded bg-gray-200 text-gray-700"
+                value={loginPassword}
+                onChange={(e) => setLoginPassword(e.target.value)}
+                autoComplete="current-password"
+              />
+              <button
+                type="submit"
+                className="w-full py-2 mb-4 bg-secondary text-white rounded shadow hover:bg-hover"
+              >
+                Sign In
+              </button>
+              <div className="text-right">
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={handleGoogleFailure}
+                />
+              </div>
+            </form>
+          )}
+          {activeTab === 1 && (
+            <form onSubmit={handleRegister}>
+              <input
+                type="text"
+                placeholder="Name"
+                className="w-full p-2 mb-4 rounded bg-gray-200 text-gray-700"
+                value={registerName}
+                onChange={(e) => setRegisterName(e.target.value)}
+                autoComplete="name"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full p-2 mb-4 rounded bg-gray-200 text-gray-700"
+                value={registerEmail}
+                onChange={(e) => setRegisterEmail(e.target.value)}
+                autoComplete="username"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full p-2 mb-4 rounded bg-gray-200 text-gray-700"
+                value={registerPassword}
+                onChange={(e) => setRegisterPassword(e.target.value)}
+                autoComplete="new-password"
+              />
+              <button
+                type="submit"
+                className="w-full py-2 mb-4 bg-secondary text-white rounded shadow hover:bg-hover"
+              >
+                Sign Up
+              </button>
+              <div className="text-right">
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={handleGoogleFailure}
+                />
+              </div>
+            </form>
+          )}
+        </div>
+      </div>
+    </GoogleOAuthProvider>
+  );
+};
+
+export default Login;*/
+
+return (
+  <div className="shadow-secondary flex justify-center items-center pt-8 pb-9 bg-primary">
+    <div className="w-full max-w-xs p-8 bg-primary shadow-secondary rounded-2xl">
+      <div className="flex justify-between mb-4 p-6">
+        <button
+          className={`flex-1 py-2 px-4 ${activeTab === 0 ? "bg-secondary text-white" : "bg-gray-100 text-gray-700"}`}
+          onClick={() => handleTabChange(0)}
+        >
+          LOG IN
+        </button>
+        <button
+          className={`flex-1 py-2 px-4 ${activeTab === 1 ? "bg-secondary text-white" : "bg-gray-100 text-gray-700"}`}
+          onClick={() => handleTabChange(1)}
+        >
+          SIGN UP
+        </button>
+      </div>
+      {activeTab === 0 && (
+        <form onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email"
+            className="w-full p-2 mb-4 rounded bg-gray-200 text-gray-700"
+            value={loginEmail}
+            onChange={(e) => setLoginEmail(e.target.value)}
+            autoComplete="username"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full p-2 mb-4 rounded bg-gray-200 text-gray-700"
+            value={loginPassword}
+            onChange={(e) => setLoginPassword(e.target.value)}
+            autoComplete="current-password"
+          />
+          <div className='text-center'>
+          <button type="submit"
+            className="w-full text-text bg-secondary border-0 py-2 px-6 focus:outline-none transition-transform duration-300 hover:scale-110 shadow-secondary rounded text-lg mt-3.5">
+            Sign In
+          </button>
+          </div>
+          <div className="text-right">
+              <button
+                type="button"
+                onClick={handleForgotPassword}
+                className="text-sm text-gray-400 hover:text-gray-700 pt-5">
+                Forgot Password?
+              </button>
+            </div>
+        </form>
+      )}
+      {activeTab === 1 && (
+        <form onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="Name"
+            className="w-full p-2 mb-4 rounded bg-gray-200 text-gray-700"
+            value={registerName}
+            onChange={(e) => setRegisterName(e.target.value)}
+            autoComplete="name"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            className="w-full p-2 mb-4 rounded bg-gray-200 text-gray-700"
+            value={registerEmail}
+            onChange={(e) => setRegisterEmail(e.target.value)}
+            autoComplete="username"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full p-2 mb-4 rounded bg-gray-200 text-gray-700"
+            value={registerPassword}
+            onChange={(e) => setRegisterPassword(e.target.value)}
+            autoComplete="new-password"
+          />
+          <div className='text-center'>
+          <button type="submit"
+            className="w-full text-text bg-secondary border-0 py-2 px-6 focus:outline-none transition-transform duration-300 hover:scale-110 shadow-secondary rounded text-lg"          >
+            Sign Up
+          </button>
+          </div>
+        </form>
+      )}
+    </div>
+  </div>
+);
+};
+
+export default Login;

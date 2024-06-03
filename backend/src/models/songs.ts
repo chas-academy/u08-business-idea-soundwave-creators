@@ -2,6 +2,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface ISong extends Document {
+  _id: string;
   title: string;
   artist: string;
   albumId: number;
@@ -16,6 +17,7 @@ export interface ISong extends Document {
 
 const songSchema = new Schema<ISong>(
   {
+    _id: { type: String, required: true },
     title: { type: String, required: true, trim: true },
     artist: { type: String, required: true, trim: true },
     albumId: { type: Number, ref: 'Album', required: true },
