@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Song from '../models/songs';
-import mongoose from 'mongoose';
+//import mongoose from 'mongoose';
 
 
 export const getAllSongs = async (req: Request, res: Response) => {
