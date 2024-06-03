@@ -89,6 +89,7 @@ import FAQ from './components/Footer/faq';
 import Feedback from './components/Footer/Feedback';
 import PopularAlbum from './components/PopularAlbum/PopularAlbum';
 import PopularArtist from './components/PopularArtist/PopularArtist';
+import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 
 const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -130,6 +131,7 @@ const App: React.FC = () => {
           <Route path="/popular-albums" element={<PopularAlbum />} />
           <Route path="/popular-artists" element={<PopularArtist />} />
           <Route path="/genres/:genre" element={<GenrePage genres={genres} />} />
+          <Route path="/musicplayer" element={<MusicPlayer />} />
         </Routes>
         <Footer />
       </Router>
