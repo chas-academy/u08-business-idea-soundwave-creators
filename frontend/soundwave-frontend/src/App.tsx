@@ -24,6 +24,14 @@ import FAQ from "./components/Footer/faq";
 import Feedback from "./components/Footer/Feedback";
 import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 
+import OAuthCallback from "./components/callBacks/OAuthCallback";
+import Login from "./components/login/login";
+import UserDashboard from "./components/dashboard/userdashboard";
+import AdminDashboard from "./components/dashboard/admindashboard";
+import ResetPassword from "./components/login/ResetPassword";
+import Subscribe from "./components/subscribe/subscribe";
+//import AllSongs from './components/Playlists/allSongs';
+
 const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -48,14 +56,11 @@ const App: React.FC = () => {
         <Navbar onSearchQueryChange={handleSearchQueryChange} />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/callback" element={<OAuthCallback />} />
+          <Route path="/Login" element={<Login />} />
           <Route path="/admindashboard" element={<AdminDashboard />} />
-          <Route
-            path="/userdashboard"
-            element={
-              <UserDashboard fullName={""} emailAddress={""} createdAt={""} />
-            }
-          />
-          {/* <Route path="/login" element={<LoginPage />} /> */}
+          <Route path="/userdashboard" element={<UserDashboard />} />
           <Route path="/subscribe" element={<Subscribe />} />
           <Route
             path="/search/:query"
@@ -78,7 +83,18 @@ const App: React.FC = () => {
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/albums/:albumId/songs" element={<SongsByAlbum />} />
           <Route path="/albums" element={<Albums />} />
-          {<Route path="/musicplayer" element={<MusicPlayer />} />}
+          {/* <Route
+            path="/musicplayer"
+            element={
+              <MusicPlayer
+                song={{
+                  title: "Song Title",
+                  artist: "Artist Name",
+                  albumArt: "path_to_album_art.jpg",
+                }}
+              />
+            }
+          /> */}
           <Route
             path="/genres/:genre"
             element={<GenrePage genres={genres} />}

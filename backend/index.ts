@@ -8,7 +8,10 @@ import artistRoutes from "./src/routes/artistRoutes"; // Import artist routes
 // import { getAllArtists } from './src/controllers/artistscontroller';
 import songRoutes from "./src/routes/songsRouter";
 import searchRoutes from "./src/routes/searchRoutes";
-import genreRoutes from "./src/routes/genreRoutes";
+import authRoutes from "./src/routes/authRoutes";
+import userRoutes from "./src/routes/userRoutes";
+import errorHandler from "./src/middleware/errorHandler";
+//import playlistRoutes from './src/routes/playlistRoutes';
 
 dotenv.config();
 connectDB();
@@ -33,8 +36,17 @@ app.use("/api/artists", artistRoutes);
 
 app.use("/api/songs", songRoutes);
 
-// Use song routes for genres
-app.use("/api", genreRoutes);
+// Use auth routes
+app.use("/api/auth", authRoutes);
+
+// Use user routes
+app.use("/api/users", userRoutes);
+
+//playlist songs for user profile
+//app.use('/api/playlists', playlistRoutes);
+
+// Use error handling middleware
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
