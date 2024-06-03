@@ -68,7 +68,7 @@ const GenrePage: React.FC = () => {
       {genre && (
         <>
           {/* The hero card */}
-          <div className="ml-10 mr-10 relative mb-10 mt-10 sm:flex justify-center items-center space-x-0 mb-8">
+          <div className="ml-10 mr-10 relative mb-10 mt-10 sm:flex justify-center items-center space-x-0 ">
             <img
               src={musicBanner}
               alt="Music Banner"
