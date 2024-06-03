@@ -18,7 +18,7 @@ import PrivacyPolicy from './components/Footer/privacypolicy';
 import HelpAndSupport from './components/Footer/helpandsupport';
 import FAQ from './components/Footer/faq';
 import Feedback from './components/Footer/Feedback';
-import MusicPlayer from 'components/MusicPlayer/MusicPlayer';
+import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 
 import OAuthCallback from './components/callBacks/OAuthCallback';
 import Login from "./components/login/login";
