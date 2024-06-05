@@ -1,7 +1,4 @@
 
-
-
-
 // src/api/HomePageApi.ts
 import axios from 'axios';
 
@@ -73,13 +70,4 @@ export interface Artist {
     }
   };
 
-  // src/api/HomePageApi.ts
-
-  // src/api/HomePageApi.ts
-
-
   
-
-
-
-// src/api/HomePageApi.ts

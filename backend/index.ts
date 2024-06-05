@@ -4,8 +4,6 @@ import cors from 'cors';
 import connectDB from './src/db/db';
 import albumRoutes from './src/routes/albumRoutes'; // Import album routes
 import artistRoutes from './src/routes/artistRoutes'; // Import artist routes
-// import { getAllAlbums } from './src/controllers/albumcontroller';
-// import { getAllArtists } from './src/controllers/artistscontroller';
 import songRoutes from './src/routes/songsRouter';
 import searchRoutes from './src/routes/searchRoutes'
 dotenv.config();

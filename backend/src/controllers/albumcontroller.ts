@@ -39,15 +39,7 @@ export const getAllAlbums = async (req: Request, res: Response) => {
   }
 };
 
-/*export const addAlbum = async (req: Request, res: Response) => {
-  try {
-    const { id, title, artist, releaseYear, genre, tracks } = req.body;
-    const result = await create({ id, title, artist, releaseYear, genre, tracks });
-    res.status(201).json({ message: "Album created successfully", album: result });
-  } catch (error) {
-    res.status(500).json({ message: "Failed to create album", error });
-  }
-};*/
+
 
 export const getAlbum = async (req: Request, res: Response) => {
   try {
@@ -63,20 +55,7 @@ export const getAlbum = async (req: Request, res: Response) => {
   }
 };
 
-/*export const updateAlbum = async (req: Request, res: Response) => {
-  try {
-    const id = req.params.id;
-    const { title, artist, releaseYear, genre, tracks } = req.body;
-    const updatedAlbum = await update(id, { id: Number(id), title, artist, releaseYear, genre, tracks });
-    if (updatedAlbum) {
-      res.status(200).json({ message: "Update succeeded", updatedAlbum });
-    } else {
-      res.status(404).json({ message: "Album not found" });
-    }
-  } catch (error) {
-    res.status(500).json({ message: "Failed to update album", error });
-  }
-};*/
+
 
 export const deleteAlbum = async (req: Request, res: Response) => {
   try {
