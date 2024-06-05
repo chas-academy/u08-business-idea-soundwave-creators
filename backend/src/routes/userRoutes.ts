@@ -18,19 +18,3 @@ router.delete('/:id', deleteUser);
 //router.put('/profile', auth, updateUserProfile);
 
 export default router;
-
-
-//below is js format
-// // models/user.js
-// const mongoose = require('mongoose');
-
-// const userSchema = new mongoose.Schema({
-//   name: { type: String, required: true, unique: true },
-//   email: { type: String, required: true, unique: true },
-//   googleId: { type: String }, // Allow null for non-Google sign-in
-//   role: { type: String, default: 'user' }, // 'user' or 'admin'
-//   created_at: { type: Date, default: Date.now },
-//   updated_at: { type: Date, default: Date.now }
-// });
-
-// module.exports = mongoose.model('User', userSchema);
