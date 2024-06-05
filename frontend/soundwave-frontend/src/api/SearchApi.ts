@@ -105,7 +105,7 @@ export interface SearchResult {
       albumId: number;
     }
 
-  export   interface ArtistResult {
+  export  interface ArtistResult {
       _id: string;
       name: string;
       biography: string;
