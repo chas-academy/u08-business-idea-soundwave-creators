@@ -1,6 +1,6 @@
 // frontend/src/components/auth/ResetPassword.tsx
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import API from '../../api/api';
 
 const ResetPassword = () => {
@@ -10,7 +10,7 @@ const ResetPassword = () => {
   const [otp, setOTP] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const { token } = useParams<{ token: string }>();
+  //const { token } = useParams<{ token: string }>();
   const navigate = useNavigate();
   //const location = useLocation();
 
@@ -27,11 +27,12 @@ const ResetPassword = () => {
 setLoading(true);
     try {
       const response = await API.post('/auth/reset-password', {
-        token,
+        email,
+        otp,
         password,
         confirmPassword,
-        otp,
-        email,
+        //token,
+        
       });
       setMessage(response.data.message); // Display success message
       navigate('/login'); // Redirect to login page

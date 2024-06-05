@@ -9,7 +9,7 @@ function footer() {
         <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
           <div className="w-64 lg:w-72 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
             <a className="flex title-font font-medium items-center md:justify-start justify-center text-text-900">
-              <span className="ml-3 text-xl mb-5">Music App</span>
+              <span className="ml-3 text-xl mb-5">Sound Wave</span>
             </a>
             <hr className="border border-secondary" />
             <p className="mt-2 text-sm text-text">
@@ -96,7 +96,7 @@ function footer() {
         </div>
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row ">
           <p className="text-secondary text-sm text-center sm:text-left">
-            © {new Date().getFullYear()} Music App
+            © {new Date().getFullYear()} SoundWave Creators
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
             <a href="#" className="text-secondary transition-transform duration-300 hover:scale-150">

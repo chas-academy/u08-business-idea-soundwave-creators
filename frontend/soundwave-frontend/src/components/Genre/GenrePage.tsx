@@ -53,33 +53,36 @@ const GenrePage: React.FC = () => {
   const handlePlaySong = (song: Song) => {
     navigate('/musicplayer', { state: { song } });
   };
-
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 bg-primary text-text shadow-secondary">
+    <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4 bg-primary text-text shadow-secondary">
       {genre && (
         <>
-          <div className="relative mb-10 mt-10 flex justify-center items-center space-x-0">
+          {/* The hero card */}
+          <div className="ml-10 mr-10 relative mb-10 mt-10 sm:flex justify-center items-center space-x-0 ">
             <img
               src={musicBanner}
               alt="Music Banner"
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 sm:max-h-40 md:max-h-48 lg:max-h-56 xl:max-h-64 rounded-md shadow-secondary object-cover"
+              className="hidden sm:block w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 sm:max-h-40 md:max-h-48 lg:max-h-56 xl:max-h-64 rounded-md shadow-secondary object-cover"
             />
             <img
               src={musicbanner2}
               alt="Another Image"
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 sm:max-h-30 md:max-h-48 lg:max-h-56 xl:max-h-64 rounded-md shadow-secondary object-cover"
+              className="hidden sm:block w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 sm:max-h-30 md:max-h-48 lg:max-h-56 xl:max-h-64 rounded-md shadow-secondary object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <h1 className="text-white font-bold sm:text-1xl lg:text-4xl text-center drop-shadow-md">
+              <h1
+                className="hidden sm:block text-white font-bold text-3xl text-center drop-shadow-md mt-72 pt-20 pb-1"
+                style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.0)" }}
+              >
                 Dive into the variety of fantastic genres we offer!
               </h1>
             </div>
           </div>
 
-          <h2 className="text-xl font-semibold mb-4 text-center">
+          <h2 className="sm:block sm:mt-28 pt-2 text-xl font-semibold text-center">
             Songs in {genre} Genre:
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
+          <div className="sm:pt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {songs.slice(0, showMore ? songs.length : 8).map((song) => (
               <div
                 key={song._id}

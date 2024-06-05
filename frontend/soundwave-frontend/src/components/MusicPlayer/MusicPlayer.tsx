@@ -154,7 +154,7 @@ const MusicPlayer = () => {
         audioRef.current.play();
       }
     }
-  });
+  }, [isPlaying, currentSong.src]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-primary p-4 md:p-8 lg:p-12">

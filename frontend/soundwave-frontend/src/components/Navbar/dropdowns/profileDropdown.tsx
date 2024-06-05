@@ -80,7 +80,7 @@ interface ProfileDropdownMenuProps {
             <FaUser />
           </button>
           {showProfileDropdown && (
-            <div className="absolute right-0 mt-5 w-44 bg-primary shadow-secondary text-secondary hover:text-text rounded-lg overflow-hidden shadow-md profile-dropdown z-10">
+            <div className="mr-20 absolute right-0 mt-5 w-44 bg-primary shadow-secondary text-secondary hover:text-text rounded-lg overflow-hidden shadow-md profile-dropdown z-10">
               {!isLoggedIn && (
                 <>
                   <Link to="/login" className="block px-4 py-2 w-full text-left bg-transparent shadow-secondary text-secondary hover:text-text hover:bg-hover focus:outline-none">

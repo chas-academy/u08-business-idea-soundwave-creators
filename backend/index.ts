@@ -11,6 +11,7 @@ import searchRoutes from './src/routes/searchRoutes'
 import authRoutes from './src/routes/authRoutes';
 import userRoutes from './src/routes/userRoutes';
 import errorHandler from './src/middleware/errorHandler';
+import genreRoutes from './src/routes/genreRoutes';
 //import playlistRoutes from './src/routes/playlistRoutes';
 
 
@@ -42,6 +43,8 @@ app.use('/api/auth', authRoutes);
 
 // Use user routes
 app.use('/api/users', userRoutes);
+
+app.use("/api", genreRoutes);
 
 //playlist songs for user profile
 //app.use('/api/playlists', playlistRoutes);

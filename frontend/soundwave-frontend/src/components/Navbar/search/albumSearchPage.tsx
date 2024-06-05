@@ -77,17 +77,17 @@ const AlbumSearchPage: React.FC<AlbumSearchPageProps> = ({ searchQuery }) => {
                   <p className="text-gray-600">{album.other_details.label}</p>
                   <h4 className="text-lg text-secondary mt-4">Certifications</h4>
                   <p className="text-gray-600">{album.other_details.certifications}</p>
-                  <h4 className="text-lg text-secondary mt-4">Singles</h4>
+                  {/* <h4 className="text-lg text-secondary mt-4">Singles</h4> */}
                   <ul className="list-disc list-inside ml-4">
                     {album.singles.map((single, index) => (
                       <li key={index}>{single.title} - {single.release_date}</li>
                     ))}
                   </ul>
-                  <div className="mt-4 flex space-x-4">
+                  {/* <div className="mt-4 flex space-x-4">
                     <a href={album.options.play_album} className="text-blue-500 hover:underline">Play Album</a>
                     <a href={album.options.save_album} className="text-blue-500 hover:underline">Save Album</a>
                     <a href={album.options.explore_songs} className="text-blue-500 hover:underline">Explore Songs</a>
-                  </div>
+                  </div> */}
                 </div>
               ))}
             </div>

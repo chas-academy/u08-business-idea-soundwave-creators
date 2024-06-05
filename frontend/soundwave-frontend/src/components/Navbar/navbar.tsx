@@ -80,7 +80,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchQueryChange }) => {
             href="/"
             className="flex title-font font-medium items-center text-secondary mb-4 md:mb-0 transition-transform duration-300 hover:scale-125"
           >
-            <span className="ml-3 text-xl">Music App</span>
+            <span className="ml-3 text-xl">Sound Wave</span>
           </a>
           <div className="  flex">
             <Search  onSearchQueryChange={onSearchQueryChange}/>
@@ -111,7 +111,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchQueryChange }) => {
               href="/"
               className="flex title-font font-medium items-center text-secondary mb-4 md:mb-0"
             >
-              <span className="ml-3 text-xl">Music App</span>
+              <span className="ml-3 text-xl">Sound Wave</span>
             </a>
             <div>
               {showMenu ? (

@@ -1,3 +1,4 @@
+/* // i comment out to test errors 
 import React, { useState } from 'react';
 import API from '../../api/api';
 
@@ -48,4 +49,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ForgotPassword;*/           

@@ -7,7 +7,7 @@ import nodemailer from 'nodemailer';
 import OTP from '../models/otp'; // Create an OTP model
 import { Options } from 'nodemailer/lib/mailer';
 //import UserPlaylist from '../models/UserPlaylist';
-
+import auth from '../middleware/auth';
 
 // Update IUser interface to include resetToken
 interface IUser {
@@ -117,6 +117,8 @@ export const forgotPassword = async (req: Request, res: Response) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+        // Remove existing OTP record if it exists
+    await OTP.findOneAndDelete({ email });
 
     // Generate OTP
     const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -126,8 +128,8 @@ export const forgotPassword = async (req: Request, res: Response) => {
     await otp.save();
 
     /////// Set/resetToken for the user
-    user.resetToken = otpCode; // Assuming your User schema has a resetToken field
-    await user.save();
+   //user.resetToken = otpCode; // Assuming your User schema has a resetToken field
+   //await user.save();
 
     // Send OTP to user via email
     const transporter = await createTransporter();
@@ -157,7 +159,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
-
+/*
 export const verifyOTP = async (req: Request, res: Response) => {
   const { otp } = req.body;
   try {
@@ -171,7 +173,7 @@ export const verifyOTP = async (req: Request, res: Response) => {
     console.error('Error in verify OTP:', error);
     res.status(500).json({ message: 'Server error' });
   }
-};
+};*/
 
 // interface ResetPasswordRequest {
 //   body: {

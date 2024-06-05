@@ -6,7 +6,7 @@ import Contactus from './components/Footer/contactus';
 import HomePage from './components/HomePage/HomePage';
 import Navbar from "./components/Navbar/navbar";
 import Footer from "./components/Footer/footer";
-  import GenrePage from "./components/Genre/GenrePage";
+import GenrePage from "./components/Genre/GenrePage";
  // import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
  import Albums from './components/Albums/Albums';
 import SongsByAlbum from "./components/Albums/SongsByAlbum";
@@ -26,6 +26,7 @@ import UserDashboard from './components/dashboard/userdashboard';
 import AdminDashboard from './components/dashboard/admindashboard';
 import ResetPassword from './components/login/ResetPassword';
 import Subscribe from "./components/subscribe/subscribe";
+//import UserPlaylist from './components/Playlists/userPlaylist';
 //import AllSongs from './components/Playlists/allSongs';
 
 
@@ -57,6 +58,7 @@ const App: React.FC = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/callback" element={<OAuthCallback />} />
       <Route path="/Login" element={<Login />} />
+      {/* <Route path="/playlist/userPlaylist" element={<UserPlaylist />} /> */}
       <Route path="/admindashboard" element={<AdminDashboard />} />
       <Route path="/userdashboard" element={<UserDashboard />} />
       <Route path="/subscribe" element={<Subscribe />} />
@@ -84,10 +86,7 @@ const App: React.FC = () => {
               />
             }
           /> */}
-          <Route
-            path="/genres/:genre"
-            element={<GenrePage genres={genres} />}
-          />
+        <Route path="/genres/:genre" element={<GenrePage genres={genres} />}/>
           <Route path="/musicplayer" element={<MusicPlayer />} />
       </Routes>
      <Footer/>
