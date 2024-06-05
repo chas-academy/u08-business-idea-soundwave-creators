@@ -1,9 +1,14 @@
 
-import { Request, Response } from "express";
+import { Request, Response, response } from "express";
+
 // import { IAlbum } from '../interfaces/IAlbum';
 
 // import Album, { IAlbum } from "../models/albums";
 import Album, { IAlbum } from "../models/albums";
+
+import albums from "../models/albums";
+import { error } from "console";
+
 
 // CRUD operations
 const create = async (data: IAlbum) => {
@@ -58,6 +63,7 @@ export const getAlbum = async (req: Request, res: Response) => {
     } else {
       res.status(404).json({ message: "Album not found" });
     }
+    // res.status(404).json({message:"testing mongoose"})
   } catch (error) {
     res.status(500).json({ message: "Failed to get album", error });
   }

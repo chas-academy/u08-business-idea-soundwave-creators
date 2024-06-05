@@ -6,6 +6,8 @@ import albumRoutes from "./src/routes/albumRoutes"; // Import album routes
 import artistRoutes from "./src/routes/artistRoutes"; // Import artist routes
 // import { getAllAlbums } from './src/controllers/albumcontroller';
 // import { getAllArtists } from './src/controllers/artistscontroller';
+
+import songs from './src/models/songs';
 import songRoutes from "./src/routes/songsRouter";
 import searchRoutes from "./src/routes/searchRoutes";
 import authRoutes from "./src/routes/authRoutes";
@@ -47,6 +49,11 @@ app.use("/api/users", userRoutes);
 
 // Use error handling middleware
 app.use(errorHandler);
+
+// Use song routes
+// app.use('/api/music', songRoutes);
+
+
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

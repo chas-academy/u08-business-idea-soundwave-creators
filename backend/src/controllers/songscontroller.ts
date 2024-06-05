@@ -24,6 +24,30 @@ export const getAllSongs = async (req: Request, res: Response) => {
     }
   };
 
+
+
+
+// export const getAllSongs = async (req: Request, res: Response) => {
+//     try {
+//       const song = await songs.find({});
+//       res.status(200).json(song);
+//     } catch (error) {
+//       res.status(500).json({ message: "Failed to get songs", error });
+//     }
+//   };
+
+//   export const getSongsByAlbumId = async (req: Request, res: Response): Promise<void> => {
+//     try {
+//       console.log(typeof Number(req.params.albumId));
+//       const song = await songs.find({ albumId: Number(req.params.albumId) });
+//       console.log(song);
+//       res.json(songs);
+//     } catch (error) {
+//       console.log(error);
+//       res.status(500).json({ message: 'Server error' });
+//     }
+//   };
+
   //delete song
 export const deleteSong = async (req: Request, res: Response) => {
   try {
@@ -35,3 +59,4 @@ export const deleteSong = async (req: Request, res: Response) => {
       res.status(500).json({ message: 'Server error' });
   }
 };
+

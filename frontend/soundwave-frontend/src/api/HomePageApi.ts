@@ -1,8 +1,4 @@
 
-
-
-
-// src/api/HomePageApi.ts
 import axios from 'axios';
 
 export interface Album {
@@ -72,14 +68,3 @@ export interface Artist {
       throw new Error("Failed to fetch popular artists. Please try again.");
     }
   };
-
-  // src/api/HomePageApi.ts
-
-  // src/api/HomePageApi.ts
-
-
-  
-
-
-
-// src/api/HomePageApi.ts
