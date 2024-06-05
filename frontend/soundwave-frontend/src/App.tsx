@@ -28,6 +28,9 @@ import Login from "./components/login/login";
 
 
 import ResetPassword from "./components/login/ResetPassword";
+import AdminDashboard from "./components/dashboard/admindashboard";
+import UserDashboard from "./components/dashboard/userdashboard";
+import Subscribe from "./components/subscribe/subscribe";
 
 //import AllSongs from './components/Playlists/allSongs';
 
