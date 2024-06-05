@@ -1,9 +1,10 @@
-import { Request, Response } from "express";
+import { Request, Response, response } from "express";
 // import { IAlbum } from '../interfaces/IAlbum';
 
 // import Album, { IAlbum } from "../models/albums";
 import Album, { IAlbum } from "../models/albums";
 import albums from "../models/albums";
+import { error } from "console";
 
 const create = async (data: IAlbum) => {
   return await Album.create(data);
@@ -15,7 +16,9 @@ const readAll = async () => {
 };
 
 const read = async (id: string) => {
+  console.log("This is the id", id)
   return await Album.findById(id);
+  // Album.findById(id).then((Response)=> { console.log(Response); return Response}).catch(error=> {console.log(error); return error })
 };
 
 const update = async (id: string, data: IAlbum) => {
@@ -58,6 +61,7 @@ export const getAlbum = async (req: Request, res: Response) => {
     } else {
       res.status(404).json({ message: "Album not found" });
     }
+    // res.status(404).json({message:"testing mongoose"})
   } catch (error) {
     res.status(500).json({ message: "Failed to get album", error });
   }

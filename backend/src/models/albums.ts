@@ -71,12 +71,17 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IAlbum extends Document {
-  _id: number;
+  _id: string;
   name: string;
   artist?: string;
   release_date?: string;
   genre?: string;
-  tracklist?: { title: string; duration: string }[];
+  tracklist?: { 
+     title: string; duration: string 
+    }[];
+    // tracklist?: { songId: string;
+    //   title: string; duration: string 
+    //  }[];
   album_cover: string;
   other_details?: {
     producer: string;
@@ -95,7 +100,8 @@ export interface IAlbum extends Document {
 
 const albumSchema: Schema = new Schema(
   {
-    _id: Number,
+    // _id: Number,
+    _id: String,
     name: {
       type: String,
       required: true,
@@ -105,10 +111,19 @@ const albumSchema: Schema = new Schema(
     genre: String,
     tracklist: [
       {
+        // songId: String,
         title: String,
         duration: String,
       },
     ],
+
+    // tracklist: [
+    //   {
+    //     title: String,
+    //     duration: String,
+    //     songId: { type: Schema.Types.ObjectId, ref: 'Song' } // Reference to Song model
+    //   }
+    // ],
     album_cover: {
       type: String,
       required: true,

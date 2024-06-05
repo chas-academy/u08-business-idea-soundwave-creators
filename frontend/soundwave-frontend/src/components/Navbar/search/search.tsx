@@ -24,11 +24,11 @@ const Search: React.FC<SearchProps> = ({ onSearchQueryChange }) => {
       const titleResults = await searchTitles(searchValue); // Search by title
   
       if (albumResults.length > 0) {
-        navigate(`/album/${encodeURIComponent(searchValue)}`, {
+        navigate(`/search/album/${encodeURIComponent(searchValue)}`, {
           state: { albumResults },
         });
       } else if (artistResults.length > 0) {
-        navigate(`/artist/${encodeURIComponent(searchValue)}`, {
+        navigate(`/search/artist/${encodeURIComponent(searchValue)}`, {
           state: { artistResults },
         });
       } else if (titleResults.length > 0) {
@@ -40,6 +40,8 @@ const Search: React.FC<SearchProps> = ({ onSearchQueryChange }) => {
       console.error("Error fetching search results:", error);
     }
   };
+
+  
   return (
     <form onSubmit={handleSubmit} className="relative mr-4">
       <input

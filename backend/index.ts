@@ -8,6 +8,7 @@ import artistRoutes from './src/routes/artistRoutes'; // Import artist routes
 // import { getAllArtists } from './src/controllers/artistscontroller';
 import songRoutes from './src/routes/songsRouter';
 import searchRoutes from './src/routes/searchRoutes'
+import songs from './src/models/songs';
 dotenv.config();
 connectDB();
 
@@ -30,6 +31,11 @@ app.use('/api/albums', albumRoutes);
 app.use('/api/artists', artistRoutes);
 
 app.use('/api/songs', songRoutes);
+
+
+
+// Use song routes
+// app.use('/api/music', songRoutes);
 
 
 

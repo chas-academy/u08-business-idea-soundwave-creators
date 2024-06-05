@@ -29,12 +29,14 @@ export interface SearchResult {
     }
 
     export interface AlbumResult {
+      // songs: SearchResult[];
       _id: string;
       name: string;
       artist: string;
       release_date: string;
       genre: string;
       tracklist: { title: string, duration: string }[];
+      // tracklist: { songId: string; title: string, duration: string }[];
       album_cover: string;
       other_details: {
         producer: string;
@@ -49,6 +51,7 @@ export interface SearchResult {
       };
     }
     
+
     export const searchAlbums = async (query: string): Promise<AlbumResult[]> => {
       try {
         const response = await api.get('/search/albums', {
@@ -60,7 +63,8 @@ export interface SearchResult {
         throw new Error("Failed to fetch search results by album. Please try again.");
       }
     };
-   
+
+
     export const searchTitles = async (query: string): Promise<SearchResult[]> => {
       try {
         const response = await api.get(`/search/titles`, {
@@ -83,3 +87,14 @@ export const searchArtists = async (query: string): Promise<ArtistResult[]> => {
     throw new Error('Error searching artists');
   }
 };
+
+
+// export const getSongsByAlbumId = async (albumId: string): Promise<SearchResult[]> => {
+//   try {
+//     const response = await api.get(`/music/songs/${albumId}`);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error fetching songs by album ID:", error);
+//     throw new Error("Failed to fetch songs by album ID. Please try again.");
+//   }
+// };
