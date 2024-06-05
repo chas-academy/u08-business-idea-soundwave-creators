@@ -1,4 +1,4 @@
- interface ReviewData {
+ /*interface ReviewData {
      name: string;
      img: string;
     review: string;
@@ -32,6 +32,6 @@
      },
    ];
 
-   export default data;
+   export default data;*/
 
 

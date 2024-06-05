@@ -16,17 +16,19 @@ import PrivacyPolicy from "./components/Footer/privacypolicy";
 import HelpAndSupport from "./components/Footer/helpandsupport";
 import FAQ from "./components/Footer/faq";
 import Feedback from "./components/Footer/Feedback";
+
 import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 import SingleArtistPage from  "./components/SingleArtistPage/SingleArtistPage";
 import SingleAlbumPage from "./components/SingleAlbumPage/SingleAlbumPage";
 import PopularAlbum from "./components/PopularAlbum/PopularAlbum";
 import PopularArtist from "./components/PopularArtist/PopularArtist";      
+
 import OAuthCallback from "./components/callBacks/OAuthCallback";
 import Login from "./components/login/login";
-import UserDashboard from "./components/dashboard/userdashboard";
-import AdminDashboard from "./components/dashboard/admindashboard";
+
+
 import ResetPassword from "./components/login/ResetPassword";
-import Subscribe from "./components/subscribe/subscribe";
+
 //import AllSongs from './components/Playlists/allSongs';
 
 
@@ -44,6 +46,7 @@ const App: React.FC = () => {
     "classical",
     "country",
   ];
+
   const handleSearchQueryChange = (query: string) => {
     setSearchQuery(query);
   };
@@ -74,7 +77,13 @@ const App: React.FC = () => {
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/popular-albums" element={<PopularAlbum />} />
           <Route path="/popular-artists" element={<PopularArtist />} />
-          <Route path="/musicplayer" element={<MusicPlayer />} />
+
+          <Route
+            path="/genres/:genre"
+            element={<GenrePage genres={genres} />}
+          />
+          {/* <Route path="/musicplayer" element={<MusicPlayer />} /> */}
+
          <Route
             path="/musicplayer"
             element={
@@ -87,10 +96,12 @@ const App: React.FC = () => {
               />
             }
           /> 
-          <Route
+          {/* <Route
             path="/genres/:genre"
             element={<GenrePage genres={genres} />}
-          />
+          /> */}
+          {/* <Route path="/musicplayer" element={<MusicPlayer />} /> */}
+
         </Routes>
         <Footer />
       </Router>
