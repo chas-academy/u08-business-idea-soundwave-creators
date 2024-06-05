@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Song from '../models/songs';
-import mongoose from 'mongoose';
+//import mongoose from 'mongoose';
 
 
 export const getAllSongs = async (req: Request, res: Response) => {
@@ -26,6 +26,7 @@ export const getAllSongs = async (req: Request, res: Response) => {
 
 
 
+
 // export const getAllSongs = async (req: Request, res: Response) => {
 //     try {
 //       const song = await songs.find({});
@@ -46,3 +47,16 @@ export const getAllSongs = async (req: Request, res: Response) => {
 //       res.status(500).json({ message: 'Server error' });
 //     }
 //   };
+
+  //delete song
+export const deleteSong = async (req: Request, res: Response) => {
+  try {
+      const songId = req.params.id;
+      await Song.findByIdAndDelete(songId);
+      res.status(200).json({ message: 'Song deleted successfully' });
+  } catch (error) {
+      console.error('Error deleting song:', error);
+      res.status(500).json({ message: 'Server error' });
+  }
+};
+

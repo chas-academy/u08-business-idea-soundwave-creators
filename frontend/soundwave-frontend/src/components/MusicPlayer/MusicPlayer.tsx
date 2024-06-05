@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   BsSkipBackwardCircleFill,
   BsFillSkipForwardCircleFill,
@@ -27,42 +28,6 @@ const mockApi = {
   },
 };
 
-// Hardcoded songs list with streaming URLs
-const songs = [
-  {
-    id: "1",
-    title: "Song One",
-    artist: "Artist One",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-    cover:
-      "https://i.pinimg.com/736x/a8/14/eb/a814eb4c51518adcf827f4ee64137f7c.jpg",
-  },
-  {
-    id: "2",
-    title: "Song Two",
-    artist: "Artist Two",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-    cover:
-      "https://d1csarkz8obe9u.cloudfront.net/themedlandingpages/tlp_hero_album-cover-art-73ab5b3d9b81f442cb2288630ab63acf.jpg?ts%20=%201698245952",
-  },
-  {
-    id: "3",
-    title: "Song Three",
-    artist: "Artist Three",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-    cover:
-      "https://www.aimm.edu/hubfs/Blog%20Images/Top%2010%20Album%20Covers%20of%202017/Tyler%20the%20Creator-%20Flower%20boy.jpg",
-  },
-  {
-    id: "4",
-    title: "Song Four",
-    artist: "Artist Four",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-    cover:
-      "https://designwizard.com/blog/album-cover-ideas/resize/4-Design-Wizard-Album-Cover_1650885838707_resize.jpg",
-  },
-];
-
 const shuffleArray = (array) => {
   const shuffledArray = [...array];
   for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -73,6 +38,10 @@ const shuffleArray = (array) => {
 };
 
 const MusicPlayer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { song } = location.state || {};
+  const [currentSong, setCurrentSong] = useState(song);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [liked, setLiked] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
@@ -81,11 +50,16 @@ const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [shuffledSongs, setShuffledSongs] = useState([...songs]);
+  const [shuffledSongs, setShuffledSongs] = useState(song ? [song] : []);
 
   const audioRef = useRef(null);
 
-  const currentSong = shuffledSongs[currentSongIndex];
+  useEffect(() => {
+    if (song) {
+      setCurrentSong(song);
+      setShuffledSongs([song]);
+    }
+  }, [song]);
 
   const handleLike = async () => {
     if (liked) {
@@ -103,9 +77,9 @@ const MusicPlayer = () => {
   const handleShuffle = () => {
     setIsShuffleOn(!isShuffleOn);
     if (!isShuffleOn) {
-      setShuffledSongs(shuffleArray(songs));
+      setShuffledSongs(shuffleArray(shuffledSongs));
     } else {
-      setShuffledSongs([...songs]);
+      setShuffledSongs([currentSong]);
     }
   };
 
@@ -135,27 +109,22 @@ const MusicPlayer = () => {
   const skipBackward = () => {
     if (currentSongIndex > 0) {
       setCurrentSongIndex(currentSongIndex - 1);
+      setCurrentSong(shuffledSongs[currentSongIndex - 1]);
     } else {
       setCurrentSongIndex(shuffledSongs.length - 1);
+      setCurrentSong(shuffledSongs[shuffledSongs.length - 1]);
     }
     setIsPlaying(false);
     setCurrentTime(0);
   };
 
   const skipForward = () => {
-    if (isShuffleOn) {
-      setCurrentSongIndex((prevIndex) => {
-        const nextIndex = Math.floor(Math.random() * shuffledSongs.length);
-        return nextIndex !== prevIndex
-          ? nextIndex
-          : (nextIndex + 1) % shuffledSongs.length;
-      });
+    if (currentSongIndex < shuffledSongs.length - 1) {
+      setCurrentSongIndex(currentSongIndex + 1);
+      setCurrentSong(shuffledSongs[currentSongIndex + 1]);
     } else {
-      if (currentSongIndex < shuffledSongs.length - 1) {
-        setCurrentSongIndex(currentSongIndex + 1);
-      } else {
-        setCurrentSongIndex(0);
-      }
+      setCurrentSongIndex(0);
+      setCurrentSong(shuffledSongs[0]);
     }
     setIsPlaying(false);
     setCurrentTime(0);
@@ -185,20 +154,23 @@ const MusicPlayer = () => {
         audioRef.current.play();
       }
     }
-  }, [currentSongIndex]);
+  });
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-primary p-4 md:p-8 lg:p-12">
-      <button className="absolute top-4 left-4 md:top-8 md:left-8 text-white text-lg cursor-pointer transition ease-out hover:scale-125">
+      <button
+        onClick={() => navigate(-1)}
+        className="absolute top-4 left-4 md:top-8 md:left-8 text-white text-lg cursor-pointer transition ease-out hover:scale-125"
+      >
         <IoArrowBackSharp size={35} />
       </button>
 
       <div className="text-center mb-4 md:mb-8">
         <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
-          {currentSong.title}
+        {song.title}
         </h1>
         <p className="text-base md:text-lg lg:text-xl text-white">
-          {currentSong.artist}
+        {song.artist}
         </p>
       </div>
 
@@ -212,7 +184,7 @@ const MusicPlayer = () => {
 
         <div className="rounded-full overflow-hidden border-4 border-gray-900 mb-4 md:mb-6 lg:mb-8">
           <img
-            src={currentSong.cover}
+            src={song.albumImageUrl}
             className="w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 object-cover"
             alt="Song Cover"
           />
@@ -222,6 +194,7 @@ const MusicPlayer = () => {
           ref={audioRef}
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
+          preload="auto"
           className="mb-4 md:mb-6 lg:mb-8"
         >
           <source src={currentSong.src} type="audio/mpeg" />
@@ -279,4 +252,4 @@ const MusicPlayer = () => {
   );
 };
 
-export default MusicPlayer;
+export default MusicPlayer

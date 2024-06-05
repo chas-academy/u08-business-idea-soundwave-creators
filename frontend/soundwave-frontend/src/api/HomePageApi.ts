@@ -1,4 +1,4 @@
-// src/api/HomePageApi.ts
+
 import axios from 'axios';
 
 export interface Album {

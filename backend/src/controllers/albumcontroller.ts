@@ -1,11 +1,16 @@
+
 import { Request, Response, response } from "express";
+
 // import { IAlbum } from '../interfaces/IAlbum';
 
 // import Album, { IAlbum } from "../models/albums";
 import Album, { IAlbum } from "../models/albums";
+
 import albums from "../models/albums";
 import { error } from "console";
 
+
+// CRUD operations
 const create = async (data: IAlbum) => {
   return await Album.create(data);
 };
@@ -16,9 +21,7 @@ const readAll = async () => {
 };
 
 const read = async (id: string) => {
-  console.log("This is the id", id)
   return await Album.findById(id);
-  // Album.findById(id).then((Response)=> { console.log(Response); return Response}).catch(error=> {console.log(error); return error })
 };
 
 const update = async (id: string, data: IAlbum) => {
@@ -30,8 +33,7 @@ const deleteOne = async (id: string) => {
 };
 
 
-
-
+// Controllers
 
 export const getAllAlbums = async (req: Request, res: Response) => {
   try {

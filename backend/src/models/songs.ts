@@ -17,7 +17,8 @@ export interface ISong extends Document {
 
 const songSchema = new Schema<ISong>(
   {
-    _id: String, 
+
+    _id: { type: String, required: true },
     title: { type: String, required: true, trim: true },
     artist: { type: String, required: true, trim: true },
     albumId: { type: Number, ref: 'Album', required: true },
