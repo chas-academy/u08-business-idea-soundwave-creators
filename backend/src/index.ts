@@ -4,17 +4,13 @@ import cors from "cors";
 import connectDB from "./db/db";
 import albumRoutes from "./routes/albumRoutes"; // Import album routes
 import artistRoutes from "./routes/artistRoutes"; // Import artist routes
-// import { getAllAlbums } from './src/controllers/albumcontroller';
-// import { getAllArtists } from './src/controllers/artistscontroller';
-
-import songs from './models/songs';
+// import songs from './models/songs';
 import songRoutes from "./routes/songsRouter";
 import searchRoutes from "./routes/searchRoutes";
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import errorHandler from "./middleware/errorHandler";
-//import playlistRoutes from './src/routes/playlistRoutes';
-
+import genreRoutes from "./routes/genreRoutes";
 dotenv.config();
 connectDB();
 
@@ -52,6 +48,10 @@ app.use(errorHandler);
 
 // Use song routes
 // app.use('/api/music', songRoutes);
+
+// Genre Routes
+app.use("/api", genreRoutes);
+
 
 
 
