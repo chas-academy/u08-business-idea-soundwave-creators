@@ -13,6 +13,7 @@ import searchRoutes from "./routes/searchRoutes";
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import errorHandler from "./middleware/errorHandler";
+import genreRoutes from "./routes/genreRoutes";
 //import playlistRoutes from './src/routes/playlistRoutes';
 
 dotenv.config();
@@ -43,6 +44,8 @@ app.use("/api/auth", authRoutes);
 
 // Use user routes
 app.use("/api/users", userRoutes);
+
+app.use("/api", genreRoutes);
 
 //playlist songs for user profile
 //app.use('/api/playlists', playlistRoutes);
