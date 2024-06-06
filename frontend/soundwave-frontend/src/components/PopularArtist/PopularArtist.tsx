@@ -47,7 +47,7 @@ const PopularArtist: React.FC = () => {
   }, []);
 
   const handleArtistClick = (artistId: string) => {
-    navigate(`/artist/${artistId}`);
+    navigate(`/single/artist/${artistId}`);
   };
 
   const settings = {

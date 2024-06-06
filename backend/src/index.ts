@@ -1,16 +1,18 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import connectDB from "./src/db/db";
-import albumRoutes from "./src/routes/albumRoutes"; // Import album routes
-import artistRoutes from "./src/routes/artistRoutes"; // Import artist routes
+import connectDB from "./db/db";
+import albumRoutes from "./routes/albumRoutes"; // Import album routes
+import artistRoutes from "./routes/artistRoutes"; // Import artist routes
 // import { getAllAlbums } from './src/controllers/albumcontroller';
 // import { getAllArtists } from './src/controllers/artistscontroller';
-import songRoutes from "./src/routes/songsRouter";
-import searchRoutes from "./src/routes/searchRoutes";
-import authRoutes from "./src/routes/authRoutes";
-import userRoutes from "./src/routes/userRoutes";
-import errorHandler from "./src/middleware/errorHandler";
+
+import songs from './models/songs';
+import songRoutes from "./routes/songsRouter";
+import searchRoutes from "./routes/searchRoutes";
+import authRoutes from "./routes/authRoutes";
+import userRoutes from "./routes/userRoutes";
+import errorHandler from "./middleware/errorHandler";
 //import playlistRoutes from './src/routes/playlistRoutes';
 
 dotenv.config();
@@ -47,6 +49,11 @@ app.use("/api/users", userRoutes);
 
 // Use error handling middleware
 app.use(errorHandler);
+
+// Use song routes
+// app.use('/api/music', songRoutes);
+
+
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

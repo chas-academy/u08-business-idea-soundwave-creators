@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
-import albums from '../models/albums';
+import albums, { IAlbum } from '../models/albums';
 import artists from '../models/artists';
-import songs from '../models/songs';
+import songs, { ISong } from '../models/songs';
+// import albumsongs from '../models/albumSongs';
 
 export const searchAlbums = async (req: Request, res: Response) => {
   const { query, type } = req.query;
@@ -29,6 +30,38 @@ export const searchAlbums = async (req: Request, res: Response) => {
       res.status(500).json({ message: 'Server error' });
   }
 };
+
+// export const searchAlbums = async (req: Request, res: Response) => {
+//   const { query, type } = req.query;
+
+//   if (!query || !type) {
+//       return res.status(400).json({ message: 'Query and type are required' });
+//   }
+
+//   const queryString = query.toString(); // Convert query to string
+
+//   try {
+//       let searchResult: (IAlbum | ISong)[] = [];
+
+//       if (type === 'album') {
+//           searchResult = await albums.find({ name: new RegExp(queryString, 'i') });
+//       } else if (type === 'song') {
+//           const song = await songs.findById(queryString); // Fetch song by songId
+//           if (song) {
+//               searchResult = [song];
+//           }
+//       } else {
+//           return res.status(400).json({ message: 'Invalid search type' });
+//       }
+
+//       console.log('Search result:', searchResult); // Log search result before sending as response
+
+//       res.json(searchResult);
+//   } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ message: 'Server error' });
+//   }
+// };
 
 export const searchArtists = async (req: Request, res: Response) => {
   const { query, type } = req.query;
