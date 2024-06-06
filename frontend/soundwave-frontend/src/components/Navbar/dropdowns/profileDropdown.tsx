@@ -10,7 +10,7 @@ interface ProfileDropdownMenuProps {
   }
 
   const ProfileDropdown: React.FC<ProfileDropdownMenuProps> = ({ showProfileDropdown, toggleProfileDropdown }) => {
-      const [role, setRole] = useState<string>('');
+  const [role, setRole] = useState<string>('');
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();

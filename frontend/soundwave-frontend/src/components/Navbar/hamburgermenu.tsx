@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState , useEffect} from "react";
 import { FaAngleDown } from "react-icons/fa";
 import useClickOutside from "../../hooks/useClickOutside";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import API from '../../api/api';
 function HamburgerMenu() {
   const [showGenreDropdown, setShowGenreDropdown] = useState(false);
   const [showPlaylistDropdown, setShowPlaylistDropdown] = useState(false);
@@ -75,6 +75,8 @@ function HamburgerMenu() {
   };
 
   const ref = useRef<HTMLDivElement>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [role, setRole] = useState<string>('');
 
   useClickOutside(ref, () => {
     if (showGenreDropdown) {
@@ -96,6 +98,52 @@ function HamburgerMenu() {
     navigate(`/genres/${genre}`);
     toggleGenreDropdown();
   };
+
+//Samira added this part
+useEffect(() => {
+  const fetchUserRole = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setIsLoggedIn(false);
+        return;
+      }
+
+      setIsLoggedIn(true);
+
+      const response = await API.get('/users/me', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setRole(response.data.role);
+
+    } catch (error) {
+      console.error('Failed to fetch user role:', error);
+    }
+  };
+
+  fetchUserRole();
+}, []);
+
+const handleDashboardClick = () => {
+  if (role === 'admin') {
+    // Redirect to admin dashboard
+    navigate('/admindashboard');
+  } else {
+    console.log('You are not authorized'); // Print message
+    // Redirect to login page
+    navigate('/login');
+  }
+};
+
+const handleLogout = () => {
+  // Clear the user's session/token from local storage
+  localStorage.removeItem('token');
+  // Redirect the user to the login page or another appropriate page
+  navigate('/login');
+};
 
   return (
     <div className="absolute top-16 left-0 w-full h-auto bg-primary z-50 pb-4  ">
@@ -206,6 +254,8 @@ function HamburgerMenu() {
         </button>
         {showProfileDropdown && (
           <div>
+             {!isLoggedIn && (
+                <>
             <Link
               to="/login"
               className="block px-4 py-2 w-full text-left bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none"
@@ -218,39 +268,60 @@ function HamburgerMenu() {
             >
               Home
             </Link>
-            <Link
+            </>
+              )}
+               {isLoggedIn && (
+      <>
+            {/* <Link
               to="/subscribe"
               className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none"
             >
               Subscribe
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               to="/aboutus"
               className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none"
             >
               About Us
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               to="/contactus"
               className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none"
             >
               Contact Us
-            </Link>
+            </Link> */}
             <Link
-              to="/admindashboard"
+              to="/"
               className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none"
             >
-              Admin Dashboard
+              Home
             </Link>
             <Link
               to="/userdashboard"
               className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none"
             >
-              User Dashboard
+              Profile
             </Link>
-            <button className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">
+            {role === 'admin' && (
+            <Link
+              to="/admindashboard"  onClick={handleDashboardClick}
+              className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none"
+            >
+              Admin Dashboard
+            </Link>
+             )}
+            {/* <Link
+              to="/userdashboard"
+              className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover  focus:outline-none"
+            >
+              User Dashboard
+            </Link> */}
+            <button onClick={handleLogout} className="block px-4 py-2 w-full text-left  bg-transparent shadow-secondary  text-secondary hover:text-text hover:bg-hover focus:outline-none">
               Log Out
             </button>
+            </>
+    )}
+      
           </div>
         )}
       </div>
