@@ -6,7 +6,7 @@ const Sitemap = () => {
             <h1 className="text-4xl text-secondary font-bold mb-8 text-center">Sitemap</h1>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4 pb-2 ml-28 text-secondary">Navbar</h2>
+                <h2 className="text-2xl font-semibold mb-4 pb-2 text-center text-secondary">Navbar</h2>
                 <div className="shadow-secondary p-4 rounded-lg max-w-3xl mx-auto">
                     <ul className="list-disc list-inside ml-4">
                         <li className="text-secondary list-none mb-3">Search Bar
@@ -59,7 +59,7 @@ const Sitemap = () => {
             </section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4 pb-2 ml-28 text-secondary">Home Page</h2>
+                <h2 className="text-2xl font-semibold mb-4 pb-2 text-secondary text-center">Home Page</h2>
                 <div className="shadow-secondary p-4 rounded-lg max-w-3xl mx-auto">
                     <ul className="list-inside ml-4 text-secondary list-none mb-3">
                         <li>Popular Artists Section
@@ -75,33 +75,48 @@ const Sitemap = () => {
                     </ul>
                 </div>
             </section>
+            <section className="mb-8">
+    <h2 className="text-2xl font-semibold mb-4 pb-2 text-secondary text-center">Footer</h2>
+    <div className="shadow-secondary p-4 rounded-lg max-w-3xl mx-auto">
+        <div className="flex flex-wrap justify-around">
+            <div className="w-full md:w-1/3 px-4 mb-6">
+                <h3 className="text-lg font-semibold mb-3 text-secondary">General Pages</h3>
+                <ul className="list-disc list-inside ml-4 text-gray-700">
+                    <li>About Us </li>
+                    <li>Contact Us </li>
+                    <li>Home </li>
+                    <li>FAQ </li>
+                    <li>Feedback </li>
+                </ul>
+            </div>
+            <div className="w-full md:w-1/3 px-4 mb-6">
+                <h3 className="text-lg font-semibold mb-3 text-secondary">Support Pages</h3>
+                <ul className="list-disc list-inside ml-4 text-gray-700">
+                    <li>Help and Support </li>
+                    <li>Privacy Policy </li>
+                    <li>Terms of Service </li>
+                    <li>Subscribe </li>
+                </ul>
+            </div>
+            <div className="w-full md:w-1/3 px-4 mb-6">
+                <h3 className="text-lg font-semibold mb-3 text-secondary">Social Media</h3>
+                <ul className="list-disc list-inside ml-4 text-gray-700">
+                    <li>Social Media Links
+                        <ul className="list-disc list-inside ml-4 text-gray-600">
+                            <li>Instagram</li>
+                            <li>Facebook</li>
+                            <li>Twitter</li>
+                            <li>Linkedin</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4 pb-2 ml-28 text-secondary">Footer</h2>
-                <div className="shadow-secondary p-4 rounded-lg max-w-3xl mx-auto">
-                    <ul className="list-disc list-inside ml-4 text-gray-700">
-                        <li>About Us Page</li>
-                        <li>Contact Us Page</li>
-                        <li>Home Page</li>
-                        <li>FAQ Page</li>
-                        <li>Feedback Page</li>
-                        <li>Help and Support Page</li>
-                        <li>Privacy Policy Page</li>
-                        <li>Terms of Service Page</li>
-                        <li>Subscribe Page</li>
-                        <li>Social Media Links
-                            <ul className="list-disc list-inside ml-8 text-gray-600">
-                                <li>Instagram</li>
-                                <li>Facebook</li>
-                                <li>Twitter</li>
-                                <li>etc.</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            <section className="mb-8">
-    <h2 className="text-2xl font-semibold mb-4 pb-2 ml-28 text-secondary">Detailed Pages</h2>
+    <h2 className="text-2xl font-semibold mb-4 pb-2 text-secondary text-center">Detailed Pages</h2>
     <div className="shadow-secondary p-4 rounded-lg max-w-3xl mx-auto">
         <ul className="list-inside ml-4 text-secondary list-none mb-3">
             <li>Artist Page
