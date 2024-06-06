@@ -16,24 +16,19 @@ import PrivacyPolicy from "./components/Footer/privacypolicy";
 import HelpAndSupport from "./components/Footer/helpandsupport";
 import FAQ from "./components/Footer/faq";
 import Feedback from "./components/Footer/Feedback";
-
 import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
-import SingleArtistPage from  "./components/SingleArtistPage/SingleArtistPage";
+import SingleArtistPage from "./components/SingleArtistPage/SingleArtistPage";
 import SingleAlbumPage from "./components/SingleAlbumPage/SingleAlbumPage";
 import PopularAlbum from "./components/PopularAlbum/PopularAlbum";
-import PopularArtist from "./components/PopularArtist/PopularArtist";      
-
+import PopularArtist from "./components/PopularArtist/PopularArtist";
 import OAuthCallback from "./components/callBacks/OAuthCallback";
 import Login from "./components/login/login";
-
-
 import ResetPassword from "./components/login/ResetPassword";
 import AdminDashboard from "./components/dashboard/admindashboard";
 import UserDashboard from "./components/dashboard/userdashboard";
 import Subscribe from "./components/subscribe/subscribe";
-
+import Sitemap from "./components/Footer/sitemap";
 //import AllSongs from './components/Playlists/allSongs';
-
 
 const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -66,11 +61,23 @@ const App: React.FC = () => {
           <Route path="/admindashboard" element={<AdminDashboard />} />
           <Route path="/userdashboard" element={<UserDashboard />} />
           <Route path="/subscribe" element={<Subscribe />} />
-        <Route path="/search/:query" element={<SongSearchPage searchQuery={searchQuery} />} />
-       <Route path="/search/artist/:artistName" element={<ArtistSearchPage searchQuery={searchQuery} />} />
-       <Route path="/search/album/:albumTitle" element={<AlbumSearchPage searchQuery={searchQuery} />} />
-       <Route path="/single/album/:albumId" element={<SingleAlbumPage/>}/>
-       <Route path="/single/artist/:artistName" element={<SingleArtistPage/>}/> 
+          <Route
+            path="/search/:query"
+            element={<SongSearchPage searchQuery={searchQuery} />}
+          />
+          <Route
+            path="/search/artist/:artistName"
+            element={<ArtistSearchPage searchQuery={searchQuery} />}
+          />
+          <Route
+            path="/search/album/:albumTitle"
+            element={<AlbumSearchPage searchQuery={searchQuery} />}
+          />
+          <Route path="/single/album/:albumId" element={<SingleAlbumPage />} />
+          <Route
+            path="/single/artist/:artistName"
+            element={<SingleArtistPage />}
+          />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/helpandsupport" element={<HelpAndSupport />} />
@@ -80,6 +87,7 @@ const App: React.FC = () => {
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/popular-albums" element={<PopularAlbum />} />
           <Route path="/popular-artists" element={<PopularArtist />} />
+          <Route path="/sitemap" element={<Sitemap/>} />
 
           <Route
             path="/genres/:genre"
@@ -87,7 +95,7 @@ const App: React.FC = () => {
           />
           {/* <Route path="/musicplayer" element={<MusicPlayer />} /> */}
 
-         <Route
+          <Route
             path="/musicplayer"
             element={
               <MusicPlayer
@@ -98,13 +106,12 @@ const App: React.FC = () => {
                 }}
               />
             }
-          /> 
+          />
           {/* <Route
             path="/genres/:genre"
             element={<GenrePage genres={genres} />}
           /> */}
           {/* <Route path="/musicplayer" element={<MusicPlayer />} /> */}
-
         </Routes>
         <Footer />
       </Router>
