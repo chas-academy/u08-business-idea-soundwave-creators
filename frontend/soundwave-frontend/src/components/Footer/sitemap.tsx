@@ -4,7 +4,6 @@ const Sitemap = () => {
     return (
         <div className="mx-auto px-4 py-8 bg-primary shadow-secondary">
             <h1 className="text-4xl text-secondary font-bold mb-8 text-center">Sitemap</h1>
-
             <section className="mb-8">
                 <h2 className="text-2xl font-semibold mb-4 pb-2 text-center text-secondary">Navbar</h2>
                 <div className="shadow-secondary p-4 rounded-lg max-w-3xl mx-auto">
