@@ -35,7 +35,7 @@ export interface SearchResult {
       artist: string;
       release_date: string;
       genre: string;
-      tracklist: { title: string, duration: string }[];
+      tracklist: SearchResult[];
       // tracklist: { songId: string; title: string, duration: string }[];
       album_cover: string;
       other_details: {
