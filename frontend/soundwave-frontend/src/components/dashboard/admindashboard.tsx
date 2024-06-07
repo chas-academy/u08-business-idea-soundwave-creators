@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faToggleOn, faToggleOff, faUsers, faThumbsUp, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import API from '../../api/api'; // Import the axios instance
@@ -185,7 +185,7 @@ fetch('http://localhost:3000/api/songs/songs')
 
     return (
         <div className=" pb-16 shadow-secondary min-h-screen bg-primary text-white ms:pl-25 ">
-            <section className="pl-6 pr-6 sm:pl-10 sm:pl-28 sm:pr-28  max-h-screen:full">
+            <section className="pl-6 pr-6 sm:pl-28 sm:pr-28  max-h-screen:full">
                 <div className=''><h1  className="sm:text-5xl text-2xl font-bold mb-5 pt-16">Admin Dashboard </h1>
                     </div>
                 

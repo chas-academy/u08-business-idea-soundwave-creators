@@ -66,7 +66,7 @@ function footer() {
                   <Link to="/feedback" className="text-text hover:text-hover">Feedback</Link>
                 </li>
                 <li>
-                  <a className="text-text hover:text-hover">Sitemap</a>
+                <Link to="/sitemap" className="text-text hover:text-hover">Sitemap</Link>
                 </li>
               </nav>
             </div>
