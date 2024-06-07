@@ -33,8 +33,7 @@ const Sitemap = () => {
                             <ul className="list-disc list-inside ml-8 text-gray-600">
                                 <li>When Logged Out
                                     <ul className="list-disc list-inside ml-8 text-gray-600">
-                                        <li>Log In Link (Sign In Page)</li>
-                                        <li>Sign Up Link (Sign Up Page)</li>
+                                        <li>Log In Link (Sign In Page) / Sign Up Link (Sign Up Page)</li>
                                         <li>Home Link (Home Page)</li>
                                     </ul>
                                 </li>
@@ -45,19 +44,11 @@ const Sitemap = () => {
                                         <li>Home Link (Home Page)</li>
                                     </ul>
                                 </li>
-                                <li>When Logged In as Admin
-                                    <ul className="list-disc list-inside ml-8 text-gray-600">
-                                        <li>Admin Dashboard (Admin Dashboard Page)</li>
-                                        <li>Logout Link</li>
-                                        <li>Home Link (Home Page)</li>
-                                    </ul>
-                                </li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </section>
-
             <section className="mb-8">
                 <h2 className="text-2xl font-semibold mb-4 pb-2 text-secondary text-center">Home Page</h2>
                 <div className="shadow-secondary p-4 rounded-lg max-w-3xl mx-auto">
