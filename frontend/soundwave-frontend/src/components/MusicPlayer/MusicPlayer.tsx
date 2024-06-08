@@ -9,9 +9,9 @@ import {
 } from "react-icons/bs";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoArrowBackSharp } from "react-icons/io5";
-import { addLikedSong, removeLikedSong } from '../../api/songApi';
+import { addLikedSong } from "../../api/songApi"; // Make sure the path is correct
 
-const shuffleArray = (array) => {
+const shuffleArray = (array: unknown[]) => {
   const shuffledArray = [...array];
   for (let i = shuffledArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -43,35 +43,6 @@ const MusicPlayer = () => {
     }
   }, [song]);
 
-  const handleLike = async () => {
-    const userId = localStorage.getItem('userId');
-    console.log('Retrieved userId:', userId); // Add this line for debugging
-    if (!userId) {
-      console.error('User not logged in');
-      setNotificationMessage("User not logged in");
-      setShowNotification(true);
-      return;
-    }
-  
-    try {
-      if (liked) {
-        const response = await removeLikedSong(currentSong._id, userId);
-        setNotificationMessage(response.message || "Song removed from playlist");
-      } else {
-        // Call the API endpoint to add the song to the user's playlist
-        const response = await addLikedSong(currentSong._id, userId);
-        setNotificationMessage(response.message || "Song added to playlist");
-      }
-      setLiked(!liked);
-      setShowNotification(true);
-    } catch (error) {
-      console.error('Failed to update playlist:', error);
-      setNotificationMessage("Failed to update playlist");
-      setShowNotification(true);
-    }
-  };
-  
-
   const handleShuffle = () => {
     setIsShuffleOn(!isShuffleOn);
     if (!isShuffleOn) {
@@ -89,19 +60,20 @@ const MusicPlayer = () => {
     }
     setIsPlaying(!isPlaying);
   };
-  
+
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current?.currentTime || 0);
   };
-  
+
   const handleLoadedMetadata = () => {
     setDuration(audioRef.current?.duration || 0);
   };
-  
+
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTime = e.target.value;
-    audioRef.current && (audioRef.current.currentTime = parseFloat(newTime));
-    setCurrentTime(newTime);
+    const newTimeNumber = parseFloat(newTime); // Convert to number
+    audioRef.current && (audioRef.current.currentTime = newTimeNumber);
+    setCurrentTime(newTimeNumber); // Use the number value
   };
 
   const skipBackward = () => {
@@ -154,6 +126,27 @@ const MusicPlayer = () => {
     }
   }, [isPlaying, currentSong.src]);
 
+  const handleLike = async () => {
+    try {
+      const userId = localStorage.getItem("userId"); // Ensure userId is stored in localStorage
+      const token = localStorage.getItem("token");
+
+      if (!userId || !token) {
+        setNotificationMessage("User not logged in");
+        setShowNotification(true);
+        return;
+      }
+
+      await addLikedSong(currentSong._id, userId);
+      setLiked(true);
+      setNotificationMessage("Song added to liked songs");
+    } catch (error) {
+      console.error("Error adding liked song:", error);
+      setNotificationMessage("Failed to add song to liked songs");
+    }
+    setShowNotification(true);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-primary p-4 md:p-8 lg:p-12">
       <button
@@ -199,50 +192,42 @@ const MusicPlayer = () => {
           Your browser does not support the audio element.
         </audio>
 
-        <div className="flex items-center w-full mb-2 md:mb-4 lg:mb-6">
+        <div className="w-full flex items-center mb-4 md:mb-6 lg:mb-8">
           <span className="text-white">{formatTime(currentTime)}</span>
           <input
             type="range"
-            value={currentTime}
-            max={duration}
+            min="0"
+            max={duration.toString()}
+            step="1"
+            value={currentTime.toString()}
             onChange={handleSeek}
-            className="w-full mx-2 cursor-pointer"
+            className="mx-4 w-full"
           />
           <span className="text-white">{formatTime(duration)}</span>
         </div>
 
-        <div className="flex justify-center items-center space-x-4">
-          <button
-            className="text-white cursor-pointer transition ease-out hover:scale-125"
-            onClick={skipBackward}
-          >
-            <BsSkipBackwardCircleFill size={25} />
+        <div className="flex items-center justify-center space-x-4 md:space-x-6 lg:space-x-8">
+          <button onClick={skipBackward}>
+            <BsSkipBackwardCircleFill size={30} className="text-white" />
           </button>
-          <button
-            className="text-white cursor-pointer transition ease-out hover:scale-125"
-            onClick={togglePlayPause}
-          >
-            {isPlaying ? <BsPauseFill size={30} /> : <BsPlayFill size={30} />}
+          <button onClick={togglePlayPause}>
+            {isPlaying ? (
+              <BsPauseFill size={40} className="text-white" />
+            ) : (
+              <BsPlayFill size={40} className="text-white" />
+            )}
           </button>
-          <button
-            className="text-white cursor-pointer transition ease-out hover:scale-125"
-            onClick={skipForward}
-          >
-            <BsFillSkipForwardCircleFill size={25} />
+          <button onClick={skipForward}>
+            <BsFillSkipForwardCircleFill size={30} className="text-white" />
           </button>
-          <button
-            className={`cursor-pointer transition ease-out hover:scale-125 ${
-              isShuffleOn ? "text-primary" : "text-white"
-            }`}
-            onClick={handleShuffle}
-          >
-            <BsShuffle size={25} />
+          <button onClick={handleShuffle}>
+            <BsShuffle size={25} className="text-white" />
           </button>
         </div>
       </div>
 
       {showNotification && (
-        <div className="absolute top-10 right-4 md:top-8 md:right-10 text-white bg-secondary shadow-lg shadow-secondary p-4 rounded-lg transition-all duration ease-in-out">
+        <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white p-3 rounded-md shadow-lg">
           {notificationMessage}
         </div>
       )}
@@ -251,7 +236,3 @@ const MusicPlayer = () => {
 };
 
 export default MusicPlayer;
-function addToPlaylist(_id: any, userId: string) {
-  throw new Error("Function not implemented.");
-}
-
