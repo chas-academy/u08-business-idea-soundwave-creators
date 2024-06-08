@@ -7,7 +7,7 @@ import nodemailer from 'nodemailer';
 import OTP from '../models/otp'; // Create an OTP model
 import { Options } from 'nodemailer/lib/mailer';
 //import UserPlaylist from '../models/UserPlaylist';
-import auth from '../middleware/auth';
+//import auth from '../middleware/auth';   before i comment this out all works. 
 
 // Update IUser interface to include resetToken
 interface IUser {
