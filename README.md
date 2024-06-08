@@ -72,13 +72,19 @@ npm install (find out about our dependencies in package.json)
 4. Create a .env file and add your environment variables:
 env
 MONGODB_URI=your-mongodb-uri
+br
 JWT_SECRET=your-jwt-secret
+br
 EMAIL=your-email-address
+ br
 GMAIL_CLIENT_ID=your-client-id
+ br
 GMAIL_CLIENT_SECRET="your-client-secret
+ br
 GMAIL_REFRESH_TOKEN=your-refresh-token
+br
 
-5. Start the backend server:
+6. Start the backend server:
 npm start
 Start the server (by default, it will start on http://localhost:3000):
 
