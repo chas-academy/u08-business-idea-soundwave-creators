@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faToggleOn, faToggleOff, faUsers, faThumbsUp, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import API from '../../api/api'; // Import the axios instance
