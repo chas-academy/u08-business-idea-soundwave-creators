@@ -1,5 +1,6 @@
 // src/Data/Data.tsx
-interface ReviewData {
+
+/*interface ReviewData {
     name: string;
     img: string;
     review: string;
@@ -38,5 +39,5 @@ interface ReviewData {
     },
   ];
   
-  export default DataHeroes;
+  export default DataHeroes;*/
   
