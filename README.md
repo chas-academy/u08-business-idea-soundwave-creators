@@ -1,7 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/_zMNInW_)
 
 # Music Streaming App
-
+![](frontend/soundwave-frontend/src/assets/Screenshot%202024-06-08%20143031.png)
 A user-friendly music streaming app designed to provide seamless music streaming, playlist creation, and social interaction for music enthusiasts.
 
 ## Table of Contents
