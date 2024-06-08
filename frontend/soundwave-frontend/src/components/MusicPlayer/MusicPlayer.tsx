@@ -9,24 +9,7 @@ import {
 } from "react-icons/bs";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoArrowBackSharp } from "react-icons/io5";
-
-// Mock API endpoints
-const mockApi = {
-  addToPlaylist: async (songId) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ success: true, message: "Song added to playlist" });
-      }, 1000);
-    });
-  },
-  removeFromPlaylist: async (songId) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ success: true, message: "Song removed from playlist" });
-      }, 1000);
-    });
-  },
-};
+import { addLikedSong, removeLikedSong } from '../../api/songApi';
 
 const shuffleArray = (array) => {
   const shuffledArray = [...array];
@@ -51,8 +34,7 @@ const MusicPlayer = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [shuffledSongs, setShuffledSongs] = useState(song ? [song] : []);
-
-  const audioRef = useRef(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     if (song) {
@@ -62,17 +44,33 @@ const MusicPlayer = () => {
   }, [song]);
 
   const handleLike = async () => {
-    if (liked) {
-      const response = await mockApi.removeFromPlaylist(currentSong.id);
-      setNotificationMessage(response.message);
-    } else {
-      const response = await mockApi.addToPlaylist(currentSong.id);
-      setNotificationMessage(response.message);
+    const userId = localStorage.getItem('userId');
+    console.log('Retrieved userId:', userId); // Add this line for debugging
+    if (!userId) {
+      console.error('User not logged in');
+      setNotificationMessage("User not logged in");
+      setShowNotification(true);
+      return;
     }
-
-    setLiked(!liked);
-    setShowNotification(true);
+  
+    try {
+      if (liked) {
+        const response = await removeLikedSong(currentSong._id, userId);
+        setNotificationMessage(response.message || "Song removed from playlist");
+      } else {
+        // Call the API endpoint to add the song to the user's playlist
+        const response = await addLikedSong(currentSong._id, userId);
+        setNotificationMessage(response.message || "Song added to playlist");
+      }
+      setLiked(!liked);
+      setShowNotification(true);
+    } catch (error) {
+      console.error('Failed to update playlist:', error);
+      setNotificationMessage("Failed to update playlist");
+      setShowNotification(true);
+    }
   };
+  
 
   const handleShuffle = () => {
     setIsShuffleOn(!isShuffleOn);
@@ -85,24 +83,24 @@ const MusicPlayer = () => {
 
   const togglePlayPause = () => {
     if (isPlaying) {
-      audioRef.current.pause();
+      audioRef.current?.pause();
     } else {
-      audioRef.current.play();
+      audioRef.current?.play();
     }
     setIsPlaying(!isPlaying);
   };
-
+  
   const handleTimeUpdate = () => {
-    setCurrentTime(audioRef.current.currentTime);
+    setCurrentTime(audioRef.current?.currentTime || 0);
   };
-
+  
   const handleLoadedMetadata = () => {
-    setDuration(audioRef.current.duration);
+    setDuration(audioRef.current?.duration || 0);
   };
-
-  const handleSeek = (e) => {
+  
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTime = e.target.value;
-    audioRef.current.currentTime = newTime;
+    audioRef.current && (audioRef.current.currentTime = parseFloat(newTime));
     setCurrentTime(newTime);
   };
 
@@ -130,7 +128,7 @@ const MusicPlayer = () => {
     setCurrentTime(0);
   };
 
-  const formatTime = (time) => {
+  const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
@@ -154,7 +152,7 @@ const MusicPlayer = () => {
         audioRef.current.play();
       }
     }
-  });
+  }, [isPlaying, currentSong.src]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-primary p-4 md:p-8 lg:p-12">
@@ -167,10 +165,10 @@ const MusicPlayer = () => {
 
       <div className="text-center mb-4 md:mb-8">
         <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
-        {song.title}
+          {song.title}
         </h1>
         <p className="text-base md:text-lg lg:text-xl text-white">
-        {song.artist}
+          {song.artist}
         </p>
       </div>
 
@@ -252,4 +250,8 @@ const MusicPlayer = () => {
   );
 };
 
-export default MusicPlayer
+export default MusicPlayer;
+function addToPlaylist(_id: any, userId: string) {
+  throw new Error("Function not implemented.");
+}
+

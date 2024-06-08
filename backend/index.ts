@@ -12,6 +12,7 @@ import authRoutes from "./src/routes/authRoutes";
 import userRoutes from "./src/routes/userRoutes";
 import errorHandler from "./src/middleware/errorHandler";
 //import playlistRoutes from './src/routes/playlistRoutes';
+import genreRoutes from "./src/routes/genreRoutes"
 
 dotenv.config();
 connectDB();
@@ -47,6 +48,8 @@ app.use("/api/users", userRoutes);
 
 // Use error handling middleware
 app.use(errorHandler);
+
+app.use("/api", genreRoutes);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
