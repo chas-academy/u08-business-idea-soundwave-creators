@@ -82,14 +82,14 @@ function footer() {
                     </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <a className="text-text hover:text-hover">Pricing</a>
                 </li>
                 <li>
                   <a className="text-text hover:text-hover">
                     Upgrade Account
                   </a>
-                </li>
+                </li> */}
               </nav>
             </div>
           </div>
