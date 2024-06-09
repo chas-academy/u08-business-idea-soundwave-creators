@@ -87,7 +87,7 @@ const App: React.FC = () => {
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/popular-albums" element={<PopularAlbum />} />
           <Route path="/popular-artists" element={<PopularArtist />} />
-          <Route path="/sitemap" element={<Sitemap/>} />
+          <Route path="/sitemap" element={<Sitemap />} />
 
           <Route
             path="/genres/:genre"
@@ -95,18 +95,7 @@ const App: React.FC = () => {
           />
           {/* <Route path="/musicplayer" element={<MusicPlayer />} /> */}
 
-          <Route
-            path="/musicplayer"
-            element={
-              <MusicPlayer
-                song={{
-                  title: "Song Title",
-                  artist: "Artist Name",
-                  albumArt: "path_to_album_art.jpg",
-                }}
-              />
-            }
-          />
+          <Route path="/musicplayer" element={<MusicPlayer />} />
           {/* <Route
             path="/genres/:genre"
             element={<GenrePage genres={genres} />}
