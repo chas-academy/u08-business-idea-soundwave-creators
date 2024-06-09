@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 import API from '../../api/api';
 
 
-interface Song {
-  _id: string;
-  title: string;
-}
+// interface Song {
+//   _id: string;
+//   title: string;
+// }
 const UserDashboard: React.FC = () => {
   const [userInfo, setUserInfo] = useState({ fullName: '', emailAddress: '', createdAt: '' });
-  const [playlist, setPlaylist] = useState<Song[]>([]);
+  // const [playlist, setPlaylist] = useState<Song[]>([]);
   
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -109,14 +109,14 @@ const UserDashboard: React.FC = () => {
           <div className="text-center">
             <h1 className="block text-m font-bold  mt-8 max-w-2xl text-2xl text-gray-300">Saved Songs</h1>
           </div>
-          <ul className="mt-5 text-center text-text2 pb-8">
+          {/* <ul className="mt-5 text-center text-text2 pb-8">
             {playlist.map((song, index) => (
               <li key={index} className="mb-2">
                 {song.title}
                 <button onClick={() => (song._id)} className="ml-2 text-red-500">Remove</button>
               </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
       </div>
        </div>
