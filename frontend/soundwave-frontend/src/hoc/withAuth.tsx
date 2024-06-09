@@ -1,26 +1,25 @@
-// import React, { useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-// type WithAuthProps = {
-//   // Define the props type for the HOC
-//   [key: string]: unknown;
-// };
+type WithAuthProps = {
+  [key: string]: unknown;
+};
 
-// const withAuth = (WrappedComponent: React.ComponentType<unknown>) => {
-//   const AuthenticatedComponent: React.FC<WithAuthProps> = (props) => {
-//     const navigate = useNavigate();
+const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
+  const AuthenticatedComponent: React.FC<P & WithAuthProps> = (props) => {
+    const navigate = useNavigate();
 
-//     useEffect(() => {
-//       const token = localStorage.getItem('token');
-//       if (!token) {
-//         navigate('/login');
-//       }
-//     }, [navigate]);
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/login');
+      }
+    }, [navigate]);
 
-//     return <WrappedComponent {...props} />;
-//   };
+    return <WrappedComponent {...(props as P)} />;
+  };
 
-//   return AuthenticatedComponent;
-// };
+  return AuthenticatedComponent;
+};
 
-// export default withAuth;
+export default withAuth;

@@ -22,7 +22,7 @@ const SingleArtistPage: React.FC = () => {
     const fetchArtist = async () => {
       setLoading(true);
       setError(null);
-      try {
+      /*try {
         const res = await axios.get<Artist>(`http://localhost:3000/api/artists/getOne/${artistName}`);
         console.log(res.data);
         setArtist(res.data.data);
@@ -32,7 +32,22 @@ const SingleArtistPage: React.FC = () => {
       } finally {
         setLoading(false);
       }
-    };
+    };*/
+
+    try {
+      // Changed the type of the response to indicate that `data` property contains the `Artist` object
+      const res = await axios.get<{ data: Artist }>(`http://localhost:3000/api/artists/getOne/${artistName}`);
+      console.log(res.data);
+      // Changed `res.data.data` to `res.data.data` to correctly access the artist data
+      setArtist(res.data.data);
+    } catch (err) {
+      console.error(err);
+      setError('Failed to fetch artist details');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   
     if (artistName) {
       fetchArtist();
