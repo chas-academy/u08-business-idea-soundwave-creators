@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Aboutus from "./components/Footer/aboutus";
 import Contactus from "./components/Footer/contactus";
 import HomePage from "./components/HomePage/HomePage";
-// import LoginPage from './components/login/login';
 import Navbar from "./components/Navbar/navbar";
 import Footer from "./components/Footer/footer";
 import GenrePage from "./components/Genre/GenrePage";

@@ -5,6 +5,8 @@ import { forgotPassword} from '../controllers/authController';
 import { resetPassword } from '../controllers/authResetPass';
 //import { handleResetPassword } from '../controllers/authResetPass';
 import auth from '../middleware/auth';
+
+
 //import * as googleAuthController from '../controllers/googleAuthController';
 
 const router = express.Router();
@@ -20,5 +22,6 @@ router.post('/forgot-password', forgotPassword);
 router.post('/reset-password', resetPassword);
 //router.post('/reset-password', handleResetPassword);
 router.post('/reset-password', auth, resetPassword);
+
 
 export default router;

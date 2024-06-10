@@ -10,7 +10,7 @@ interface ProfileDropdownMenuProps {
   }
 
   const ProfileDropdown: React.FC<ProfileDropdownMenuProps> = ({ showProfileDropdown, toggleProfileDropdown }) => {
-  const [role, setRole] = useState<string>('');
+      const [role, setRole] = useState<string>('');
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ interface ProfileDropdownMenuProps {
               return;
             }
     
-            setIsLoggedIn(true);
+            //setIsLoggedIn(true);
     
             const response = await API.get('/users/me', {
               headers: {
@@ -40,9 +40,11 @@ interface ProfileDropdownMenuProps {
             });
     
             setRole(response.data.role);
+            setIsLoggedIn(true);
     
           } catch (error) {
             console.error('Failed to fetch user role:', error);
+            setIsLoggedIn(false); // Update isLoggedIn state if there's an error
           }
         };
     
@@ -67,6 +69,7 @@ interface ProfileDropdownMenuProps {
       const handleLogout = () => {
         // Clear the user's session/token from local storage
         localStorage.removeItem('token');
+        setIsLoggedIn(false); // Update isLoggedIn state when logging out
         // Redirect the user to the login page or another appropriate page
         navigate('/login');
       };
@@ -80,7 +83,7 @@ interface ProfileDropdownMenuProps {
             <FaUser />
           </button>
           {showProfileDropdown && (
-            <div className="absolute right-0 mt-5 w-44 bg-primary shadow-secondary text-secondary hover:text-text rounded-lg overflow-hidden shadow-md profile-dropdown z-10">
+            <div className="mr-20 absolute right-0 mt-5 w-44 bg-primary shadow-secondary text-secondary hover:text-text rounded-lg overflow-hidden shadow-md profile-dropdown z-10">
               {!isLoggedIn && (
                 <>
                   <Link to="/login" className="block px-4 py-2 w-full text-left bg-transparent shadow-secondary text-secondary hover:text-text hover:bg-hover focus:outline-none">

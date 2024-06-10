@@ -9,7 +9,7 @@ interface User {
     _id: number; 
     name: string;
     email: string;
-    //isAdmin: boolean;
+    isAdmin: boolean;
 }
 
 interface Song {
@@ -58,44 +58,6 @@ const fetchSongs = () => {
             // Handle the error, e.g., display an error message to the user
         });
 };
-//////Olli comment:later u  will makke variable base url for deployment
- 
-///////////////this part work with fetch only
-   /* const fetchSongs = () => {
-       //below is the part i tried with Olli
-        //const Data= getAllSongs( )
-       //console.log (Data)
-
-fetch('http://localhost:3000/api/songs/songs')
-            .then(response => {
-                console.log('Response status:', response.status);
-                console.log('Response content-type:', response.headers.get('content-type'));
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                // Check if response is JSON
-                const contentType = response.headers.get('content-type');
-                if (contentType && contentType.includes('application/json')) {
-                    return response.json();
-                } else {
-                    throw new Error('Response is not JSON');
-                }
-            })
-            .then(data => {
-                // Check if data is an array (JSON)
-                if (Array.isArray(data)) {
-                    setSongs(data);
-                } else {
-                    // Data is not an array, so it's likely HTML
-                    throw new Error('Received unexpected response format');
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching songs:', error);
-                // Handle the error, e.g., display an error message to the user
-            }); 
-    }; */
-
 
 //delete songs
     const handleDeleteSong = (id: string) => {

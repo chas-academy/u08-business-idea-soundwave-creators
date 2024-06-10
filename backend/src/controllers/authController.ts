@@ -127,9 +127,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
     const otp = new OTP({ email, code: otpCode });
     await otp.save();
 
-    /////// Set/resetToken for the user
-   //user.resetToken = otpCode; // Assuming your User schema has a resetToken field
-   //await user.save();
+
 
     // Send OTP to user via email
     const transporter = await createTransporter();
@@ -139,7 +137,8 @@ export const forgotPassword = async (req: Request, res: Response) => {
       subject: 'Password Reset OTP',
       text: `Your OTP code is ${otpCode}`,
     };
-    //await transporter.sendMail(mailOptions);
+    //await 
+    transporter.sendMail(mailOptions);
     type ExtendedOptions= Options & {auth: {user: string|undefined , refreshToken: string|undefined }}
     const options: ExtendedOptions = {
       from: process.env.EMAIL,
