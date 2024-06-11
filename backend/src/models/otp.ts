@@ -10,7 +10,7 @@ interface IOTP extends Document {
 const otpSchema: Schema = new Schema({
   email: { type: String, required: true },
   code: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now, expires: '10m' }, // OTP expires in 10 minutes
+  createdAt: { type: Date, default: Date.now, expires: '20m' }, // OTP expires in 10 minutes
 });
 
 const OTP = mongoose.model<IOTP>('Otp', otpSchema);

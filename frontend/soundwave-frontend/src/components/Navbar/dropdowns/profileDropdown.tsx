@@ -31,7 +31,7 @@ interface ProfileDropdownMenuProps {
               return;
             }
     
-            setIsLoggedIn(true);
+            //setIsLoggedIn(true);
     
             const response = await API.get('/users/me', {
               headers: {
@@ -40,9 +40,11 @@ interface ProfileDropdownMenuProps {
             });
     
             setRole(response.data.role);
+            setIsLoggedIn(true);
     
           } catch (error) {
             console.error('Failed to fetch user role:', error);
+            setIsLoggedIn(false); // Update isLoggedIn state if there's an error
           }
         };
     
@@ -67,6 +69,7 @@ interface ProfileDropdownMenuProps {
       const handleLogout = () => {
         // Clear the user's session/token from local storage
         localStorage.removeItem('token');
+        setIsLoggedIn(false); // Update isLoggedIn state when logging out
         // Redirect the user to the login page or another appropriate page
         navigate('/login');
       };

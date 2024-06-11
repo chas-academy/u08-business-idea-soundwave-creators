@@ -17,6 +17,7 @@ const Login = () => {
       const response = await API.post('/auth/login', { email: loginEmail, password: loginPassword });
       localStorage.setItem('token', response.data.token);
       navigate('/');
+      window.location.reload(); // Refresh the page
     } catch (error) {
       console.error('Login error:', error);
       alert('Failed to login');
@@ -29,6 +30,7 @@ const Login = () => {
       const response = await API.post('/auth/signup', { name: registerName, email: registerEmail, password: registerPassword });
       localStorage.setItem('token', response.data.token);
       navigate('/');
+      
     } catch (error) {
       console.error('Signup error:', error);
       alert('Failed to signup');
@@ -39,7 +41,7 @@ const Login = () => {
     setActiveTab(newValue);
   };
 
-//o the /auth/forgot-password()authRoutes.ts
+
   const handleForgotPassword = async () => {
     if (loginEmail) {
       try {
