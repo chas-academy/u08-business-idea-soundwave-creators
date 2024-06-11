@@ -122,6 +122,17 @@ baseURL: 'http://localhost:3000/api
 - POST /authController/login 
 
 **Music**
+- Get /albumController/getAllAlbums
+- Get /albumController/getAlbum
+- Delete/albumController/deleteAlbum
+
+- Get /artistController/getAllArtists
+- Get /artistController/getArtistById
+- Post /artistController/createArtist
+- Put /artistController/updateArtist
+- Delete /artistController/deleteArtist
+
+
 - GET /music - Get a list of all music
 - GET /music/:id - Get details of a specific track
 

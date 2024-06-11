@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { searchAlbums, AlbumResult, SearchResult} from '../../../api/SearchApi';
-import { useNavigate } from "react-router-dom";
+import { searchAlbums, AlbumResult,/* SearchResult*/} from '../../../api/SearchApi';
+// import { useNavigate } from "react-router-dom";
+// import { FaHeart } from 'react-icons/fa';
 
 interface AlbumSearchPageProps {
   searchQuery: string;
@@ -10,7 +11,7 @@ const AlbumSearchPage: React.FC<AlbumSearchPageProps> = ({ searchQuery }) => {
   const [albumResults, setAlbumResults] = useState<AlbumResult[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
   // Retrieve search query and results from local storage
@@ -45,9 +46,9 @@ const AlbumSearchPage: React.FC<AlbumSearchPageProps> = ({ searchQuery }) => {
     }
   }, [searchQuery]);
 
-  const handlePlaySong = (track: SearchResult) => {
-    navigate("/musicplayer", { state: { trackId: track._id } });
-  };
+  // const handlePlaySong = (track: SearchResult) => {
+  //   navigate("/musicplayer", { state: { trackId: track._id } });
+  // };
   
 
   return (
@@ -80,9 +81,9 @@ const AlbumSearchPage: React.FC<AlbumSearchPageProps> = ({ searchQuery }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:mt-[-5rem] sm:mt-[-4rem] lg:mt-[-5rem]" >
                 {Array.isArray(album.tracklist) ? (
                 album.tracklist.map((track, index) => (
-                  <div key={index} onClick={() => handlePlaySong(track)} className="p-3 shadow-secondary rounded-xl bg-gradient-to-b from-secondary to-secondary-light flex flex-col items-center relative cursor-pointer">
-                    {/* <FiHeart
-                      className="absolute top-2 right-2 text-white cursor-pointer hover:text-red-500"
+                  <div key={index} /* onClick={() => handlePlaySong(track)}*/ className="p-3 shadow-secondary rounded-xl bg-gradient-to-b from-secondary to-secondary-light flex flex-col items-center relative cursor-pointer">
+                    {/* <FaHeart
+                      className="absolute top-2 right-3 text-white cursor-pointer hover:text-red-600"
                       size={24}
                       onClick={() => handleAddToPlaylist(track._id)}
                     /> */}

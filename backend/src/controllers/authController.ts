@@ -137,8 +137,8 @@ export const forgotPassword = async (req: Request, res: Response) => {
     await otp.save();
 
     /////// Set/resetToken for the user
-    //user.resetToken = otpCode; // Assuming your User schema has a resetToken field
-    //await user.save();
+   //user.resetToken = otpCode; // Assuming your User schema has a resetToken field
+   //await user.save();
 
     // Send OTP to user via email
     const transporter = await createTransporter();
