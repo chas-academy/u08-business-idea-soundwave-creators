@@ -180,7 +180,7 @@ const GenrePage: React.FC<GenrePageProps> = ({}) => {
   const fetchSongsByGenre = async (genre: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/songs?genre=${genre}`
+        `https://u08-business-idea-soundwave-creators.onrender.com/api/songs?genre=${genre}`
       );
       setSongs(response.data);
     } catch (error) {

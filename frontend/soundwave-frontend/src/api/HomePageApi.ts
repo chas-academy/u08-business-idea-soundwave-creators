@@ -25,7 +25,7 @@ export interface Album {
 // Function to fetch popular albums
 export const fetchPopularAlbums = async (): Promise<Album[]> => {
   try {
-    const response = await axios.get<Album[]>('http://localhost:3000/api/albums');
+    const response = await axios.get<Album[]>('https://u08-business-idea-soundwave-creators.onrender.com/api/albums');
     return response.data;
   } catch (error) {
     console.error("Error fetching popular albums:", error);
@@ -36,7 +36,7 @@ export const fetchPopularAlbums = async (): Promise<Album[]> => {
 // Function to fetch a single album by ID
 export const fetchAlbumById = async (albumId: string): Promise<Album> => {
   try {
-    const response = await axios.get<Album>(`http://localhost:3000/api/albums/${albumId}`);
+    const response = await axios.get<Album>(`https://u08-business-idea-soundwave-creators.onrender.com/api/albums/${albumId}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching album with ID ${albumId}:`, error);
@@ -61,7 +61,7 @@ export interface Artist {
   // Function to fetch popular artists
   export const fetchPopularArtists = async (): Promise<Artist[]> => {
     try {
-      const response = await axios.get<Artistdata>('http://localhost:3000/api/artists/getAll');
+      const response = await axios.get<Artistdata>('https://u08-business-idea-soundwave-creators.onrender.com/api/artists/getAll');
       return response.data.data;
     } catch (error) {
       console.error("Error fetching popular artists:", error);

@@ -36,7 +36,7 @@ const SingleArtistPage: React.FC = () => {
 
     try {
       // Changed the type of the response to indicate that `data` property contains the `Artist` object
-      const res = await axios.get<{ data: Artist }>(`http://localhost:3000/api/artists/getOne/${artistName}`);
+      const res = await axios.get<{ data: Artist }>(`https://u08-business-idea-soundwave-creators.onrender.com/api/artists/getOne/${artistName}`);
       console.log(res.data);
       // Changed `res.data.data` to `res.data.data` to correctly access the artist data
       setArtist(res.data.data);

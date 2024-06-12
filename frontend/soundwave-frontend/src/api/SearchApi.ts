@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 
-const baseURL = 'http://localhost:3000/api'; // Adjust the base URL as needed
+const baseURL = 'https://u08-business-idea-soundwave-creators.onrender.com/api'; // Adjust the base URL as needed
 
 const api: AxiosInstance = axios.create({
   baseURL,

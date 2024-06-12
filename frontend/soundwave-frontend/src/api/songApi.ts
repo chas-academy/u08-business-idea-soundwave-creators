@@ -7,7 +7,7 @@ export interface likedSong {
 
 export const addLikedSong = async (songid:string, userid:string) => {
   try {
-    const response = await axios.post(`http://localhost:3000/api/song/addLikedSong`, {songid, userid});
+    const response = await axios.post(`https://u08-business-idea-soundwave-creators.onrender.com/api/song/addLikedSong`, {songid, userid});
     return response.data;
   } catch (error) {
     console.error("Error fetching search results by title:", error);

@@ -34,7 +34,7 @@ const SingleAlbumPage: React.FC = () => {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get<Album>(`http://localhost:3000/api/albums/${albumId}`);
+        const res = await axios.get<Album>(`https://u08-business-idea-soundwave-creators.onrender.com/api/albums/${albumId}`);
         setAlbum(res.data);
       } catch (err) {
         console.error(err);
